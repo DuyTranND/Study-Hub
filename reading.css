@@ -1,0 +1,273 @@
+/* Reading system: preserve the wide desktop layout and use a calm light palette. */
+#view-practice #question-stage {
+  font-family: "Segoe UI", "Noto Sans", system-ui, Arial, sans-serif;
+  color: #202c35;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+}
+/* Clearly distinguish the question prompt from the answer interaction. */
+#view-practice .question-prompt {
+  margin: 11px 0 28px;
+  padding: 21px 25px 25px;
+  background: #f5f8f7;
+  border-left: 3px solid #277c62;
+}
+#view-practice .question-section-label {
+  margin-bottom: 13px;
+  color: #22664f;
+  font-size: 11px;
+  font-weight: 780;
+  letter-spacing: .085em;
+}
+#view-practice .question-section-label span { color: #789087; font-weight: 600; }
+#view-practice .question-prompt .question-meta { margin-bottom: 17px; }
+#view-practice .question-prompt .question-title { margin: 0; }
+#view-practice .answer-prompt { margin: 0 0 13px; }
+#view-practice .answer-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 5px 14px;
+  padding-bottom: 12px;
+  margin-bottom: 13px;
+  border-bottom: 2px solid #d2e0d9;
+}
+#view-practice .answer-section-header h4 {
+  margin: 0;
+  color: #1f604e;
+  font-size: 13px;
+  font-weight: 760;
+  letter-spacing: .045em;
+  text-transform: uppercase;
+}
+#view-practice .answer-section-header span { color: #71827e; font-size: 12px; }
+#view-practice .question-title {
+  max-width: 1280px;
+  font-size: 19px;
+  font-weight: 470;
+  line-height: 1.7;
+  letter-spacing: 0;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+#view-practice .question-title > p { margin: 0 0 14px; color: #202c35; }
+#view-practice .question-title > p:first-child { font-weight: 560; }
+#view-practice .question-title strong, #view-practice .option-copy strong,
+#view-practice .feedback strong, .lesson-body strong {
+  font-weight: 750;
+  color: #103f37;
+}
+#view-practice .question-title strong {
+  padding: 0 2px;
+  background: linear-gradient(transparent 66%, #d6f3e5 66%);
+  box-decoration-break: clone;
+}
+#view-practice .question-title em { font-style: italic; color: #334f65; }
+#view-practice .options { max-width: 1280px; gap: 10px; }
+#view-practice .option {
+  font-size: 15px;
+  font-weight: 430;
+  line-height: 1.62;
+  min-height: 59px;
+  padding: 14px 17px;
+  gap: 14px;
+  border: 1px solid #d8e2dd;
+  border-left: 3px solid #d8e2dd;
+  border-radius: 0;
+  background: #fff;
+  box-shadow: none;
+  text-align: left;
+  overflow-wrap: break-word;
+}
+#view-practice .option:hover:not(:disabled) {
+  background: #f8fbf9;
+  border-color: #9fb9ab;
+  border-left-color: #44866b;
+  box-shadow: none;
+}
+#view-practice .option:focus-visible {
+  outline: 2px solid #217a5b;
+  outline-offset: 2px;
+}
+#view-practice .option.selected {
+  background: #edf7f0;
+  border-color: #9ac7ad;
+  border-left-color: #20794f;
+}
+#view-practice .option.correct {
+  background: #eaf7ee;
+  border-color: #8dc3a1;
+  border-left-color: #20794f;
+}
+#view-practice .option.wrong {
+  background: #fff2ef;
+  border-color: #e4b4a9;
+  border-left-color: #b85b4e;
+}
+#view-practice .option-copy { flex: 1; min-width: 0; color: #273943; }
+#view-practice .option-copy > p { color: inherit; margin: 0 0 10px; }
+#view-practice .option-copy > p:last-child { margin-bottom: 0; }
+#view-practice .option-copy .option-item-list {
+  list-style: decimal outside;
+  margin: 0;
+  padding-left: 1.6em;
+}
+#view-practice .option-copy .option-item-list li { padding-left: .25em; }
+#view-practice .option-copy .option-item-list li + li { margin-top: 7px; }
+#view-practice .option-copy .option-item-list li::marker {
+  color: #477262;
+  font-weight: 700;
+}
+#view-practice .option-letter {
+  display: grid;
+  place-items: center;
+  flex: 0 0 31px;
+  width: 31px;
+  height: 31px;
+  margin-top: 0;
+  border: 0;
+  border-radius: 2px;
+  background: #edf2ee;
+  color: #37604f;
+  font-size: 13px;
+  font-weight: 750;
+}
+#view-practice .option.selected .option-letter,
+#view-practice .option.correct .option-letter { background: #20794f; color: #fff; }
+#view-practice .option.wrong .option-letter { background: #b85b4e; color: #fff; }
+#view-practice .feedback, #view-practice .rich-text { font-size: 15px; line-height: 1.73; }
+
+/* A restrained editor surface with stable line numbers and readable syntax. */
+.code-editor {
+  margin: 16px 0 19px;
+  border: 1px solid #d7e0e8;
+  background: #f8fafc;
+  border-radius: 5px;
+  overflow: hidden;
+  max-width: 100%;
+  font-weight: 400;
+  box-shadow: 0 3px 14px rgb(32 50 70 / 4%);
+}
+.code-editor-bar {
+  height: 38px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 15px;
+  background: #edf2f6;
+  border-bottom: 1px solid #dce5ec;
+  color: #4b6175;
+  font: 650 11px/1 "Segoe UI", system-ui, sans-serif;
+  letter-spacing: .04em;
+}
+.code-editor-bar small { margin-left: auto; font-size: 10px; font-weight: 600; color: #8292a1; }
+.code-editor-mark { width: 8px; height: 8px; background: #6d9d89; border-radius: 50%; }
+.code-editor .code-editor-pre {
+  display: block;
+  overflow: auto;
+  margin: 0 !important;
+  padding: 15px 0 17px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: #f8fafc !important;
+  color: #223342 !important;
+  font: 13.5px/1.7 "Cascadia Code", "JetBrains Mono", Consolas, monospace !important;
+  tab-size: 4;
+  max-height: 560px;
+  white-space: pre;
+}
+.code-editor-pre code {
+  display: block;
+  font: inherit !important;
+  color: inherit !important;
+  background: none !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: pre;
+}
+.code-editor .code-line { display: block; white-space: pre; padding: 0 16px 0 0; }
+.code-editor .code-line::before {
+  content: attr(data-line);
+  display: inline-block;
+  width: 36px;
+  padding: 0 10px 0 0;
+  margin-right: 18px;
+  text-align: right;
+  color: #96a6b5;
+  border-right: 1px solid #e6edf2;
+  user-select: none;
+}
+.code-editor .tok-keyword { color: #7c3db1; font-weight: 650; }
+.code-editor .tok-string { color: #15744e; }
+.code-editor .tok-number { color: #b05221; }
+.code-editor .tok-comment { color: #70879a; font-style: italic; }
+.code-editor .tok-builtin { color: #175ba5; }
+
+/* Global svg icon rules must never resize MathJax glyphs. */
+mjx-container[jax="SVG"] > svg {
+  width: auto !important;
+  height: auto !important;
+  fill: currentColor !important;
+  stroke: none !important;
+  stroke-width: 0 !important;
+  flex-shrink: initial;
+  max-width: none;
+}
+.question-title mjx-container, .option-copy mjx-container, .rich-text mjx-container,
+.lesson-body mjx-container { font-size: 1em; max-width: 100%; }
+mjx-container[display="true"] {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 8px 0;
+  text-align: left !important;
+}
+.study-diagram {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 18px 0 24px;
+  padding: 20px 16px;
+  background: #f8fafb;
+  border: 1px solid #e3e9ee;
+  border-radius: 3px;
+}
+.study-diagram .mermaid {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  white-space: pre;
+  font: 13px/1.6 "Cascadia Code", Consolas, monospace;
+}
+.study-diagram svg {
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+  height: auto !important;
+  flex-shrink: initial;
+  fill: initial;
+  stroke: initial;
+  stroke-width: initial;
+  stroke-linecap: initial;
+  stroke-linejoin: initial;
+  margin: 0 auto;
+  font-family: "Segoe UI", "Noto Sans", system-ui, sans-serif;
+}
+.study-diagram .diagram-source { white-space: pre; }
+.hint-box.rich-text p { margin: 0 0 8px; }
+.hint-box.rich-text p:last-child { margin-bottom: 0; }
+@media (max-width: 620px) {
+  #view-practice .question-prompt { margin: 6px 0 23px; padding: 16px 15px 20px; }
+  #view-practice .question-section-label { margin-bottom: 11px; }
+  #view-practice .question-prompt .question-meta { margin-bottom: 13px; }
+  #view-practice .answer-section-header { padding-bottom: 10px; margin-bottom: 11px; }
+  #view-practice .answer-section-header h4 { font-size: 12px; }
+  #view-practice .answer-section-header span { font-size: 11px; }
+  #view-practice .question-title { font-size: 17px; line-height: 1.69; }
+  #view-practice .option { font-size: 14px; line-height: 1.65; padding: 12px 11px; gap: 11px; }
+  #view-practice .option-letter { width: 28px; height: 28px; flex-basis: 28px; }
+  .code-editor .code-editor-pre { font-size: 12px !important; }
+  .code-editor .code-line::before { width: 30px; margin-right: 12px; }
+  .study-diagram { padding: 12px 8px; }
+}

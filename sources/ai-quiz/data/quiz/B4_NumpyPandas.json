@@ -1,0 +1,262 @@
+[
+    {
+        "id": "B4_001",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Khác biệt cơ bản nhất giữa NumPy array và Python list là gì?",
+        "options": [
+            "Hai cấu trúc này hoàn toàn tương đồng và chỉ khác nhau về tên gọi",
+            "Dữ liệu đồng nhất và hỗ trợ vectorized operations giúp xử lý cực nhanh",
+            "NumPy array chỉ có thể chứa các chuỗi văn bản (string) ngắn",
+            "Python list có tốc độ truy xuất dữ liệu nhanh hơn hẳn NumPy array"
+        ],
+        "correct": 1,
+        "explanation": "NumPy sử dụng bộ nhớ liên tục và code C đã biên dịch. Vectorized operations cho phép thực hiện tính toán trên toàn mảng mà không cần vòng lặp for, giúp nhanh hơn từ 10-100 lần."
+    },
+    {
+        "id": "B4_002",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Cơ chế 'Broadcasting' trong NumPy được hiểu là gì?",
+        "options": [
+            "Quá trình sao chép dữ liệu từ một máy tính ra nhiều máy tính khác",
+            "Tự động điều chỉnh kích thước mảng để thực hiện các phép toán",
+            "Phát sóng dữ liệu qua mạng internet đến các node trong cluster",
+            "Tạo ra một bản sao hoàn toàn mới của mảng dữ liệu một cách tự động"
+        ],
+        "correct": 1,
+        "explanation": "Broadcasting cho phép thực hiện phép tính giữa các mảng có shape khác nhau mà không cần copy dữ liệu. Quy tắc: Từ phải sang trái, các chiều phải bằng nhau hoặc một trong hai phải bằng 1."
+    },
+    {
+        "id": "B4_003",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Trong thư viện Pandas, một DataFrame khác Series ở điểm nào?",
+        "options": [
+            "Series là dữ liệu 2 chiều, còn DataFrame là dữ liệu 1 chiều",
+            "DataFrame là bảng 2 chiều gồm nhiều Series có chung chỉ số (index)",
+            "Series và DataFrame hoàn toàn giống nhau và có thể dùng thay thế",
+            "DataFrame là cấu trúc chuyên biệt chỉ dùng để lưu trữ các con số"
+        ],
+        "correct": 1,
+        "explanation": "Series giống như một cột dữ liệu 1 chiều kèm theo index. DataFrame giống như một bảng biểu (spreadsheet), trong đó mỗi cột là một Series và tất cả các cột chia sẻ chung một index."
+    },
+    {
+        "id": "B4_004",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Phân biệt cách sử dụng giữa `.loc[]` và `.iloc[]` trong Pandas?",
+        "options": [
+            ".loc[] dùng vị trí số nguyên, còn .iloc[] dùng nhãn (labels) để truy cập",
+            ".loc[] dùng nhãn (labels), còn .iloc[] dùng vị trí số nguyên (position)",
+            "Cả hai phương thức này đều sử dụng nhãn và hoàn toàn giống nhau",
+            ".iloc[] chỉ dành riêng cho DataFrame và không thể áp dụng cho Series"
+        ],
+        "correct": 1,
+        "explanation": "df.loc['row_name', 'col_name'] truy cập bằng tên. df.iloc[0, 1] truy cập bằng vị trí thực tế trong bảng. Lưu ý: .loc[] bao gồm cả phần tử cuối (endpoint), còn .iloc[] thì không."
+    },
+    {
+        "id": "B4_005",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Hàm `groupby()` trong Pandas hoạt động theo mô hình nào dưới đây?",
+        "options": [
+            "Mô hình Map-Reduce phổ biến trong các hệ thống dữ liệu lớn",
+            "Mô hình Split-Apply-Combine (Tách - Áp dụng - Kết hợp)",
+            "Mô hình Filter-Sort-Join để tối ưu hóa tốc độ truy vấn dữ liệu",
+            "Mô hình Scatter-Gather thường dùng trong lập trình song song"
+        ],
+        "correct": 1,
+        "explanation": "Quy trình: Tách dữ liệu theo nhóm (Split) → Áp dụng hàm tính toán như sum, mean (Apply) → Ghép các kết quả lại thành một DataFrame/Series mới (Combine)."
+    },
+    {
+        "id": "B4_006",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Cách tiếp cận nào là tốt nhất để xử lý dữ liệu bị thiếu (NaN) trong Pandas?",
+        "options": [
+            "Mặc định luôn xóa bỏ tất cả các dòng có chứa dù chỉ một giá trị NaN",
+            "Lựa chọn xóa, thay thế hoặc nội suy tùy thuộc vào ngữ cảnh dữ liệu",
+            "Thay thế tất cả các giá trị NaN bằng số 0 để tránh lỗi khi tính toán",
+            "Bỏ qua các giá trị NaN vì các mô hình AI hiện đại sẽ tự động xử lý"
+        ],
+        "correct": 1,
+        "explanation": "Cần phân tích pattern của dữ liệu thiếu. Có thể dùng dropna() để xóa, fillna() để thay bằng giá trị trung bình/trung vị, hoặc interpolate() để nội suy cho chuỗi thời gian."
+    },
+    {
+        "id": "B4_007",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Phương thức `merge()` trong Pandas tương đương với khái niệm nào trong SQL?",
+        "options": [
+            "Tương đương với mệnh đề lọc dữ liệu WHERE trong câu lệnh SELECT",
+            "Tương đương với phép nối JOIN các bảng dựa trên một cột chung (key)",
+            "Tương đương với lệnh ORDER BY dùng để sắp xếp kết quả trả về",
+            "Giống với lệnh GROUP BY dùng để nhóm các hàng dữ liệu lại với nhau"
+        ],
+        "correct": 1,
+        "explanation": "pd.merge(df1, df2, on='id', how='left') tương đương với LEFT JOIN. Bạn có thể chọn các kiểu nối khác như inner, right, hoặc outer tùy theo nhu cầu."
+    },
+    {
+        "id": "B4_008",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Hàm `np.reshape()` trong NumPy được sử dụng để làm gì?",
+        "options": [
+            "Xóa bỏ hoàn toàn một số phần tử được chỉ định ra khỏi mảng ban đầu",
+            "Thay đổi kích thước mảng mà không làm thay đổi dữ liệu bên trong",
+            "Sắp xếp lại các phần tử trong mảng theo một trật tự ưu tiên nhất định",
+            "Khởi tạo một mảng mới với các giá trị được sinh ra một cách ngẫu nhiên"
+        ],
+        "correct": 1,
+        "explanation": "Ví dụ: biến mảng (6,) thành (2,3). Tổng số phần tử phải được giữ nguyên. Bạn có thể dùng tham số -1 để NumPy tự tính toán kích thước chiều còn lại."
+    },
+    {
+        "id": "B4_009",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Tại sao Vectorized operation trong NumPy lại nhanh hơn vòng lặp for?",
+        "options": [
+            "Vì Python sẽ tự động chuyển các phép toán này sang chạy trên GPU",
+            "Vì NumPy thực thi bằng mã C trực tiếp trên bộ nhớ liên tục",
+            "Nhờ vào bộ thông dịch JIT (Just-In-Time) mới nhất của ngôn ngữ Python",
+            "Sử dụng các phương thức ma thuật đặc biệt được gọi là __fast__"
+        ],
+        "correct": 1,
+        "explanation": "Việc lặp trong Python tốn nhiều chi phí (overhead). NumPy đẩy quá trình lặp xuống tầng C thấp hơn, giúp thực hiện phép tính trên toàn bộ mảng trong một bước duy nhất ở tầng máy."
+    },
+    {
+        "id": "B4_010",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Mục đích sử dụng hàm `apply()` trong thư viện Pandas là gì?",
+        "options": [
+            "Chỉ được dùng để sắp xếp dữ liệu theo thứ tự tăng dần hoặc giảm dần",
+            "Áp dụng một hàm tùy chỉnh lên từng hàng hoặc từng cột của bảng",
+            "Dùng để import thêm các module mở rộng từ bên ngoài vào dự án",
+            "Tạo ra các bảng tổng hợp chéo (pivot table) một cách hoàn toàn tự động"
+        ],
+        "correct": 1,
+        "explanation": "Dù chậm hơn vectorized operations, apply() cực kỳ linh hoạt cho các logic phức tạp. Bạn có thể áp dụng theo hàng (axis=1) hoặc theo cột (axis=0) tùy ý."
+    },
+    {
+        "id": "B4_011",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Tính năng Pivot Table trong Pandas có tác dụng gì chủ yếu?",
+        "options": [
+            "Tổng hợp dữ liệu và chuyển đổi giá trị từ hàng thành tiêu đề cột",
+            "Sắp xếp lại toàn bộ chỉ số (index) của bảng dữ liệu một cách nhanh nhất",
+            "Tự động tìm và xóa bỏ các dòng dữ liệu bị trùng lặp hoàn toàn",
+            "Lọc (filter) dữ liệu theo các điều kiện logic phức tạp được chỉ định"
+        ],
+        "correct": 0,
+        "explanation": "Giống như PivotTable trong Excel, nó giúp xoay dữ liệu để tạo ra cái nhìn tổng quát (cross-tabulation), thường đi kèm với các hàm aggregation như sum, mean."
+    },
+    {
+        "id": "B4_012",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Trong NumPy/Pandas, tham số `axis=0` và `axis=1` khác nhau như thế nào?",
+        "options": [
+            "axis=0 đại diện cho các cột, còn axis=1 đại diện cho các hàng",
+            "axis=0 hoạt động theo chiều dọc, axis=1 hoạt động theo chiều ngang",
+            "Hai tham số này hoàn toàn giống nhau và không gây khác biệt khi sử dụng",
+            "Tham số axis chỉ có tác dụng khi làm việc với các mảng dữ liệu 3D"
+        ],
+        "correct": 1,
+        "explanation": "axis=0 chạy qua các hàng (downwards), dùng để tính toán theo từng cột. axis=1 chạy qua các cột (sideways), dùng để tính toán theo từng hàng."
+    },
+    {
+        "id": "B4_013",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Phân biệt giữa `np.dot()` và `np.multiply()` trong NumPy?",
+        "options": [
+            "Hai hàm này hoàn toàn giống nhau và đều thực hiện nhân các phần tử",
+            "np.dot thực hiện nhân ma trận, np.multiply nhân từng phần tử tương ứng",
+            "np.dot chỉ dành cho vector, còn np.multiply chỉ dành cho các ma trận",
+            "np.multiply luôn có tốc độ xử lý nhanh hơn rất nhiều so với np.dot"
+        ],
+        "correct": 1,
+        "explanation": "np.dot(A,B) là tích vô hướng hoặc nhân ma trận. np.multiply(A,B) hoặc toán tử A*B thực hiện nhân element-wise (từng vị trí tương ứng nhân với nhau)."
+    },
+    {
+        "id": "B4_014",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Khái niệm 'Method Chaining' trong Pandas nghĩa là gì?",
+        "options": [
+            "Thực hiện nhiều phương thức liên tiếp trên cùng một đối tượng dữ liệu",
+            "Quá trình gọi và cài đặt các module Python một cách liên tục",
+            "Kỹ thuật chạy nhiều script xử lý dữ liệu cùng lúc để tăng hiệu năng",
+            "Tạo ra các cấu trúc dữ liệu dạng danh sách liên kết (linked list)"
+        ],
+        "correct": 0,
+        "explanation": "Ví dụ: df.dropna().groupby('col').sum(). Chaining giúp viết code gọn gàng như một pipeline xử lý, trong đó kết quả của bước này là đầu vào của bước kế tiếp."
+    },
+    {
+        "id": "B4_015",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Sử dụng kiểu dữ liệu 'category' thay cho 'object' (string) giúp ích gì?",
+        "options": [
+            "Tự động chuyển đổi các nhãn văn bản thành các biến số rời rạc",
+            "Tiết kiệm bộ nhớ và tăng tốc độ tính toán cho các cột có ít giá trị",
+            "Chuyển đổi các con số thành dạng chuỗi văn bản để dễ dàng đọc hiểu",
+            "Giúp tự động tạo ra các biểu đồ trực quan hóa dữ liệu một cách nhanh chóng"
+        ],
+        "correct": 1,
+        "explanation": "Nếu một cột 1 triệu dòng chỉ có các giá trị như 'Nam'/'Nữ', dùng 'category' sẽ lưu trữ dưới dạng số nguyên nhỏ (integer codes), giảm dung lượng bộ nhớ từ 80-90%."
+    },
+    {
+        "id": "B4_016",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Đâu là cách tối ưu nhất khi cần lặp qua các hàng của một DataFrame?",
+        "options": [
+            "Sử dụng vòng lặp for thông thường kết hợp với phương thức df.iterrows()",
+            "Ưu tiên sử dụng Vectorized operations hoặc hàm apply() của Pandas",
+            "Phương thức iterrows() luôn cho tốc độ thực thi nhanh nhất trong mọi trường hợp",
+            "Sử dụng vòng lặp while để kiểm soát vị trí index của từng hàng dữ liệu"
+        ],
+        "correct": 1,
+        "explanation": "Thứ tự tốc độ: Vectorization (nhanh nhất) > apply() > itertuples() > iterrows() (chậm nhất). Luôn tránh vòng lặp for thủ công trên DataFrame nếu có thể."
+    },
+    {
+        "id": "B4_017",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Hàm `np.where(condition, x, y)` trong NumPy hoạt động như thế nào?",
+        "options": [
+            "Tìm kiếm và trả về danh sách các chỉ số (index) thỏa mãn điều kiện",
+            "Trả về giá trị x nếu điều kiện đúng, và y nếu điều kiện là sai",
+            "Sắp xếp lại mảng dữ liệu dựa trên các điều kiện logic được thiết lập",
+            "Xóa bỏ hoàn toàn các phần tử trong mảng nếu chúng thỏa mãn điều kiện"
+        ],
+        "correct": 1,
+        "explanation": "Đây là phiên bản vectorized của if-else. Ví dụ: np.where(arr > 0, arr, 0) sẽ giữ nguyên các số dương và thay thế toàn bộ các số âm bằng số 0 một cách cực nhanh."
+    },
+    {
+        "id": "B4_018",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Điểm khác biệt chính giữa `pd.concat()` và `pd.merge()` là gì?",
+        "options": [
+            "Hai hàm này hoàn toàn giống nhau về mặt chức năng và cách sử dụng",
+            "concat nối theo trục, merge ghép dựa trên giá trị cột chung (key)",
+            "concat chỉ có thể thực hiện nối dữ liệu theo chiều dọc (đối với hàng)",
+            "merge luôn có tốc độ thực thi nhanh hơn rất nhiều so với hàm concat"
+        ],
+        "correct": 1,
+        "explanation": "pd.concat() dùng để xếp chồng (stack) các bảng lên nhau hoặc đặt cạnh nhau. pd.merge() dùng để kết nối logic các bảng dựa trên định danh chung, tương tự JOIN trong SQL."
+    },
+    {
+        "id": "B4_019",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Khái niệm 'Multi-index' trong Pandas được hiểu là gì?",
+        "options": [
+            "Việc đánh chỉ mục trên nhiều cấp độ, cho phép quản lý dữ liệu phân cấp",
+            "Sử dụng một dictionary phức tạp để làm chỉ mục cho bảng dữ liệu",
+            "Là một hệ thống chỉ mục tự động tăng dần bắt đầu từ giá trị 1",
+            "Việc sử dụng các chuỗi văn bản ngẫu nhiên để làm chỉ mục cho các hàng"
+        ],
+        "correct": 0,
+        "explanation": "Còn gọi là Hierarchical indexing. Nó cho phép bạn làm việc với dữ liệu nhiều chiều (như 3D hoặc cao hơn) ngay trên cấu trúc 2D của DataFrame, rất mạnh cho chuỗi thời gian."
+    },
+    {
+        "id": "B4_020",
+        "section": "B4: Numpy & Pandas Data Wrangling",
+        "question": "Hàm `np.random.seed()` được sử dụng nhằm mục đích gì?",
+        "options": [
+            "Tạo ra các con số thực sự ngẫu nhiên và không bao giờ lặp lại",
+            "Cố định trạng thái ngẫu nhiên để đảm bảo kết quả có thể tái lập",
+            "Xóa bỏ hoàn toàn trạng thái ngẫu nhiên hiện tại của hệ thống máy tính",
+            "Tạo ra một định danh duy nhất (seed) cho các database lớn của dự án"
+        ],
+        "correct": 1,
+        "explanation": "Khi thiết lập cùng một seed (ví dụ: 42), các hàm sinh số ngẫu nhiên sẽ luôn cho ra cùng một kết quả ở mọi lần chạy. Điều này cực kỳ quan trọng để debug và so sánh các thí nghiệm AI."
+    }
+]

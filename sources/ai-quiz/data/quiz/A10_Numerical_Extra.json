@@ -1,0 +1,132 @@
+[
+    {
+        "id": "A10_006",
+        "section": "A10: Số học máy tính & Ổn định số",
+        "question": "Chuẩn IEEE 754 biểu diễn số thực bằng 3 thành phần nào?",
+        "options": [
+            "Mantissa (phần định trị), Base (cơ số) và Length (độ dài)",
+            "Sign bit (dấu), Exponent (số mũ) và Mantissa (định trị)",
+            "Integer (phần nguyên), Decimal (thập phân) và Remainder (số dư)",
+            "Real (phần thực), Imaginary (phần ảo) và Phase (pha)"
+        ],
+        "correct": 1,
+        "explanation": "Cấu trúc này tương tự như ký hiệu khoa học ±M × 2^E. Với float32: 1 bit dấu, 8 bit số mũ và 23 bit định trị. Phần định trị quyết định độ chính xác (precision), còn số mũ quyết định dải giá trị (range)."
+    },
+    {
+        "id": "A10_007",
+        "section": "A10: Số học máy tính & Ổn định số",
+        "question": "Hiện tượng 'Catastrophic cancellation' xảy ra trong tình huống nào?",
+        "options": [
+            "Khi thực hiện phép nhân giữa hai số thực có giá trị rất lớn",
+            "Khi thực hiện phép trừ giữa hai số thực có giá trị gần bằng nhau",
+            "Khi thực hiện phép chia một số thực cho một số cực kỳ lớn",
+            "Khi thực hiện phép cộng giữa hai số thực có cùng dấu dương"
+        ],
+        "correct": 1,
+        "explanation": "Khi trừ hai số gần bằng nhau, các chữ số có nghĩa bị triệt tiêu dẫn đến mất độ chính xác nghiêm trọng. Sai số tương đối (relative error) tăng vọt. Ví dụ tính phương sai bằng E[X²]-E[X]² dễ gặp lỗi này."
+    },
+    {
+        "id": "A10_008",
+        "section": "A10: Số học máy tính & Ổn định số",
+        "question": "Kỹ thuật Gradient Clipping được dùng để giải quyết vấn đề gì?",
+        "options": [
+            "Khắc phục hiện tượng biến mất gradient (Vanishing gradient)",
+            "Giải quyết hiện tượng bùng nổ gradient (Exploding gradient)",
+            "Ngăn chặn sự quá khớp (Overfitting) của model trên tập train",
+            "Cải thiện độ chính xác cho các model đang bị Underfitting"
+        ],
+        "correct": 1,
+        "explanation": "Gradient clipping sẽ giới hạn độ lớn (norm) của gradient về một ngưỡng tối đa (threshold). Điều này ngăn chặn việc cập nhật trọng số quá lớn khiến quá trình training bị phân kỳ (diverge), thường thấy trong RNN/LSTM."
+    },
+    {
+        "id": "A10_009",
+        "section": "A10: Số học máy tính & Ổn định số",
+        "question": "Mixed Precision Training kết hợp FP16 và FP32 như thế nào?",
+        "options": [
+            "Chuyển đổi toàn bộ quá trình training sang định dạng FP16 để tối ưu",
+            "Dùng FP16 để tính toán nhưng lưu trọng số chính ở định dạng FP32",
+            "Dùng FP32 cho forward pass và dùng FP16 cho backward pass",
+            "Chỉ sử dụng định dạng FP16 cho các lớp (layers) ở đầu model"
+        ],
+        "correct": 1,
+        "explanation": "Forward/backward pass dùng FP16 để tăng tốc, nhưng bản sao chính của trọng số vẫn giữ ở FP32 để đảm bảo độ chính xác. Kỹ thuật Loss Scaling cũng được dùng để tránh lỗi dưới mức (underflow) của FP16."
+    },
+    {
+        "id": "A10_010",
+        "section": "A10: Số học máy tính & Ổn định số",
+        "question": "Mục tiêu chính của thuật toán cộng Kahan (Kahan Summation) là gì?",
+        "options": [
+            "Sắp xếp thứ tự các phần tử trong một mảng số thực một cách tối ưu",
+            "Giảm thiểu lỗi tích lũy khi thực hiện cộng nhiều số thực liên tiếp",
+            "Tìm ra giá trị lớn nhất trong một tập hợp dữ liệu không đồng nhất",
+            "Thực hiện nhân ma trận với tốc độ nhanh hơn thuật toán thông thường"
+        ],
+        "correct": 1,
+        "explanation": "Khi cộng một số nhỏ vào một tổng rất lớn, phần lẻ có thể bị mất do làm tròn. Thuật toán Kahan theo dõi 'phần bù' bị mất này và cộng lại vào bước kế tiếp, giúp tăng độ chính xác trong các tính toán khoa học."
+    },
+    {
+        "id": "A10_011",
+        "section": "A10: Số học máy tính & Ổn định số",
+        "question": "Khái niệm 'Machine Epsilon' trong số học máy tính là gì?",
+        "options": [
+            "Là giá trị nhỏ nhất mà máy tính có thể biểu diễn được (như 1.4e-45)",
+            "Khoảng cách nhỏ nhất giữa số 1.0 và số thực tiếp theo lớn hơn nó",
+            "Một giá trị hằng số cố định luôn bằng 0.0001 trong mọi hệ thống",
+            "Là giá trị số thực lớn nhất mà định dạng float64 có thể lưu trữ"
+        ],
+        "correct": 1,
+        "explanation": "Vì độ chính xác của số thực là hữu hạn, nên KHÔNG bao giờ so sánh a==b. Thay vào đó, ta kiểm tra abs(a-b) < epsilon. Trong float64, epsilon xấp xỉ 2.22e-16."
+    },
+    {
+        "id": "A10_012",
+        "section": "A10: Số học máy tính & Ổn định số",
+        "question": "Số 'Subnormal' (denormalized) trong IEEE 754 có vai trò gì?",
+        "options": [
+            "Giúp tăng đáng kể tốc độ tính toán cho các chip xử lý hiện đại",
+            "Cho phép biểu diễn các số cực nhỏ gần giá trị 0 hơn bình thường",
+            "Được dùng chuyên biệt để biểu diễn các số phức trong toán học",
+            "Tự động chuyển đổi các số thực dương thành số thực âm khi cần"
+        ],
+        "correct": 1,
+        "explanation": "Nó cho phép 'gradual underflow' thay vì đột ngột biến về 0 khi giá trị quá nhỏ. Tuy nhiên, việc tính toán với số subnormal thường chậm hơn 10-100 lần trên nhiều nền tảng phần cứng."
+    },
+    {
+        "id": "A10_013",
+        "section": "A10: Số học máy tính & Ổn định số",
+        "question": "Tính ổn định số học (Numerical stability) của thuật toán nghĩa là gì?",
+        "options": [
+            "Thuật toán luôn cho kết quả giống hệt nhau khi chạy nhiều lần",
+            "Thuật toán không bị lạm dụng hoặc khuếch đại các lỗi làm tròn",
+            "Thuật toán chỉ sử dụng các số nguyên (Integer) để đảm bảo chính xác",
+            "Thuật toán có tốc độ thực thi không thay đổi theo kích thước dữ liệu"
+        ],
+        "correct": 1,
+        "explanation": "Một thuật toán ổn định đảm bảo rằng những nhiễu nhỏ ở đầu vào hoặc lỗi làm tròn không dẫn đến kết quả sai lệch khủng khiếp. Unstable algorithms có thể khuếch đại lỗi nhỏ thành lỗi lớn (ví dụ Gram-Schmidt cổ điển)."
+    },
+    {
+        "id": "A10_014",
+        "section": "A10: Số học máy tính & Ổn định số",
+        "question": "Label Smoothing giúp ích gì cho tính ổn định số học trong Deep Learning?",
+        "options": [
+            "Nó giúp tăng đáng kể kích thước batch size mà không làm đầy bộ nhớ",
+            "Tránh việc model dự đoán xác suất tuyệt đối 0 hoặc 1 gây lỗi Log(0)",
+            "Tự động giảm tốc độ học (learning rate) khi model đã hội tụ đủ tốt",
+            "Loại bỏ hoàn toàn các nhãn nhiễu trong bộ dữ liệu training ban đầu"
+        ],
+        "correct": 1,
+        "explanation": "Khi dùng Cross-Entropy, nếu model dự đoán xác suất bằng 0 cho lớp đúng, giá trị -log(0) sẽ tiến tới vô cùng (NaN). Chuyển nhãn cứng (0/1) sang nhãn mềm (0.05/0.95) giúp giới hạn giá trị loss."
+    },
+    {
+        "id": "A10_015",
+        "section": "A10: Số học máy tính & Ổn định số",
+        "question": "Tác dụng chính của Quantization (như INT8/INT4) đối với model AI là?",
+        "options": [
+            "Tăng độ chính xác (accuracy) của model lên mức cao hơn ban đầu",
+            "Giảm dung lượng model và tăng tốc độ xử lý khi triển khai thực tế",
+            "Giảm đáng kể thời gian cần thiết để huấn luyện model từ đầu",
+            "Thay thế hoàn toàn khái niệm số thực trong lĩnh vực học máy"
+        ],
+        "correct": 1,
+        "explanation": "Bằng cách chuyển từ FP32 (4 bytes) sang INT8 (1 byte), model nhỏ đi 4 lần và chạy nhanh hơn trên các phần cứng hỗ trợ, với độ chính xác thường chỉ giảm nhẹ (1-2%). Rất thiết yếu cho các thiết bị di động/edge."
+    }
+]

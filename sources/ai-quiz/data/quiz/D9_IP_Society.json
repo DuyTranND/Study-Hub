@@ -1,0 +1,119 @@
+[
+    {
+        "id": "D9_001",
+        "section": "D9: IP, Môi trường & Xã hội",
+        "question": "Các nội dung do AI sinh ra (ảnh, văn bản) hiện có được bảo hộ bản quyền không?",
+        "options": [
+            "Mọi nội dung do AI sinh ra mặc định đều được bảo hộ bản quyền",
+            "Pháp luật thường yêu cầu tác giả phải là con người cụ thể",
+            "Mọi quyền tác giả đều thuộc về công ty phát triển mô hình AI đó",
+            "Luật sở hữu trí tuệ hiện nay không được áp dụng cho lĩnh vực AI"
+        ],
+        "correct": 1,
+        "explanation": "Tại nhiều quốc gia như Mỹ, văn phòng sở hữu trí tuệ quy định rằng một tác phẩm phải có sự sáng tạo trực tiếp từ con người mới được cấp bản quyền."
+    },
+    {
+        "id": "D9_002",
+        "section": "D9: IP, Môi trường & Xã hội",
+        "question": "Việc huấn luyện AI dựa trên dữ liệu có bản quyền gây ra tranh cãi chính nào?",
+        "options": [
+            "Việc huấn luyện này hoàn toàn không gây ra bất kỳ tranh cãi pháp lý nào",
+            "Tranh cãi giữa quyền sử dụng hợp lý và vi phạm bản quyền",
+            "Mọi dữ liệu trên internet mặc định đều là dữ liệu sử dụng hợp lý",
+            "Hành động này luôn được coi là vi phạm pháp luật một cách nghiêm trọng"
+        ],
+        "correct": 1,
+        "explanation": "Các nghệ sĩ cho rằng dữ liệu của họ bị dùng không phép, trong khi công ty AI cho rằng việc biến đổi dữ liệu đó là quyền sử dụng hợp lý (fair use)."
+    },
+    {
+        "id": "D9_003",
+        "section": "D9: IP, Môi trường & Xã hội",
+        "question": "Vấn đề về dấu chân carbon (carbon footprint) trong lĩnh vực AI là gì?",
+        "options": [
+            "Tác động này là không đáng kể so với các ngành công nghiệp khác",
+            "Việc huấn luyện AI tiêu tốn một lượng lớn năng lượng điện",
+            "Một mô hình AI chỉ thải ra khoảng 1 kg khí CO2 trong đời",
+            "Ngành AI hiện có mức độ gây ô nhiễm lớn nhất trong mọi ngành"
+        ],
+        "correct": 1,
+        "explanation": "Quá trình huấn luyện các mô hình lớn như GPT-3 tiêu tốn hàng trăm megawatt giờ điện, tương đương với khí thải của hàng trăm chiếc ô tô trong một năm."
+    },
+    {
+        "id": "D9_004",
+        "section": "D9: IP, Môi trường & Xã hội",
+        "question": "AI có khả năng gây ảnh hưởng như thế nào đến thị trường việc làm toàn cầu?",
+        "options": [
+            "AI hoàn toàn không có bất kỳ tác động nào tới các công việc hiện nay",
+            "Tự động hóa các tác vụ lặp lại và thay đổi cơ cấu việc làm",
+            "AI sẽ thực hiện việc thay thế hoàn toàn 100% mọi loại công việc",
+            "AI chỉ gây ra các tác động tiêu cực đối với tầng lớp lao động chân tay"
+        ],
+        "correct": 1,
+        "explanation": "AI có thể thay thế một phần các công việc đơn điệu nhưng đồng thời cũng tạo ra những vị trí việc làm mới và hỗ trợ con người làm việc hiệu quả hơn."
+    },
+    {
+        "id": "D9_005",
+        "section": "D9: IP, Môi trường & Xã hội",
+        "question": "Kỹ thuật mô hình hóa (distillation) giúp ích gì cho vấn đề môi trường?",
+        "options": [
+            "Làm gia tăng đáng kể kích thước và số lượng tham số của mô hình",
+            "Nén mô hình để tiết kiệm năng lượng và tài nguyên tính toán",
+            "Dùng để thay thế hoàn toàn cho quá trình huấn luyện dữ liệu ban đầu",
+            "Kỹ thuật này chỉ có hiệu quả đối với các mô hình xử lý hình ảnh"
+        ],
+        "correct": 1,
+        "explanation": "Bằng cách dạy một mô hình nhỏ bắt chước mô hình lớn, chúng ta có được hiệu năng tương đương nhưng tiêu tốn ít điện năng hơn khi vận hành."
+    },
+    {
+        "id": "D9_006",
+        "section": "D9: IP, Môi trường & Xã hội",
+        "question": "Vấn đề 'Khoảng cách số' (Digital divide) trong AI được hiểu như thế nào?",
+        "options": [
+            "Đây là khái niệm hoàn toàn không có sự liên quan đến lĩnh vực AI",
+            "Khoảng cách trong việc tiếp cận và thụ hưởng công nghệ AI",
+            "AI giúp thu hẹp khoảng cách giàu nghèo một cách hoàn toàn tự nhiên",
+            "Khái niệm này chỉ dùng để chỉ khả năng tiếp cận internet của người dân"
+        ],
+        "correct": 1,
+        "explanation": "Các quốc gia giàu có sở hữu nhiều tài nguyên tính toán và dữ liệu hơn, có nguy cơ bỏ xa các quốc gia đang phát triển trong cuộc đua công nghệ."
+    },
+    {
+        "id": "D9_007",
+        "section": "D9: IP, Môi trường & Xã hội",
+        "question": "Sự cân bằng giữa mô hình AI mã nguồn mở và mã nguồn đóng là gì?",
+        "options": [
+            "Các mô hình AI mã nguồn mở luôn tốt hơn trong mọi khía cạnh sử dụng",
+            "Sự cân bằng giữa sự minh bạch và khả năng kiểm soát an toàn",
+            "Mô hình mã nguồn đóng luôn đảm bảo mức độ an toàn tuyệt đối",
+            "Không có bất kỳ sự khác biệt nào giữa hai hình thức phân phối này"
+        ],
+        "correct": 1,
+        "explanation": "Mã nguồn mở giúp phổ cập công nghệ (democratize) nhưng lại tiềm ẩn nguy cơ bị kẻ xấu lợi dụng để tạo ra các ứng dụng độc hại."
+    },
+    {
+        "id": "D9_008",
+        "section": "D9: IP, Môi trường & Xã hội",
+        "question": "Lo ngại lớn nhất khi ứng dụng AI vào lĩnh vực giáo dục hiện nay là?",
+        "options": [
+            "Hoàn toàn không có bất kỳ lo ngại nào khi đưa AI vào trường học",
+            "Vấn đề về tính trung thực và sự phụ thuộc quá mức vào công cụ",
+            "Hệ thống AI sẽ thực hiện việc thay thế hoàn toàn vai trò của giáo viên",
+            "Lĩnh vực giáo dục chỉ nhận được các tác động tích cực từ công nghệ AI"
+        ],
+        "correct": 1,
+        "explanation": "Có nguy cơ sinh viên lạm dụng AI để gian lận học thuật hoặc dần mất đi khả năng tự nghiên cứu và tư duy độc lập."
+    },
+    {
+        "id": "D9_009",
+        "section": "D9: IP, Môi trường & Xã hội",
+        "question": "Tại sao chi phí vận hành (inference cost) lại quan trọng trong thực tế?",
+        "options": [
+            "Chế độ vận hành của mô hình AI hiện nay là hoàn toàn miễn phí",
+            "Chi phí vận hành thực tế khi phục vụ hàng triệu người dùng",
+            "Chi phí huấn luyện ban đầu luôn đắt hơn gấp hàng nghìn lần vận hành",
+            "Vấn đề này chỉ thực sự quan trọng đối với các công ty khởi nghiệp"
+        ],
+        "correct": 1,
+        "explanation": "Vì mô hình phải chạy 24/7 để phục vụ người dùng, tổng năng lượng tiêu thụ cho dự báo thường lớn hơn nhiều so với năng lượng lúc huấn luyện."
+    }
+]

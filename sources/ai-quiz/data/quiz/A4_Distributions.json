@@ -1,0 +1,327 @@
+[
+    {
+        "id": "A4_001",
+        "section": "A4: Phân phối xác suất",
+        "question": "Phân phối mô tả số thành công trong n phép thử độc lập với xác suất p cố định?",
+        "options": [
+            "Phân phối chuẩn (Normal)",
+            "Phân phối Poisson",
+            "Phân phối nhị thức (Binomial)",
+            "Phân phối đều (Uniform)"
+        ],
+        "correct": 2,
+        "explanation": "Phân phối nhị thức Bernoulli đếm số lần thành công khi thực hiện n thí nghiệm lặp lại độc lập."
+    },
+    {
+        "id": "A4_002",
+        "section": "A4: Phân phối xác suất",
+        "question": "Phân phối chuẩn (Normal Distribution) có đồ thị dạng hình gì?",
+        "options": [
+            "Hình vuông",
+            "Hình chuông (Bell curve)",
+            "Đường thẳng tuyến tính",
+            "Hình vòm chóp"
+        ],
+        "correct": 1,
+        "explanation": "Đồ thị phân phối chuẩn đối xứng quanh giá trị trung bình, có mật độ cao nhất ở tâm và giảm dần về hai phía tạo thành hình chuông."
+    },
+    {
+        "id": "A4_003",
+        "section": "A4: Phân phối xác suất",
+        "question": "Phân phối Poisson thường được dùng để mô hình hóa dạng dữ liệu nào?",
+        "options": [
+            "Số sự kiện xảy ra trong một khoảng cố định",
+            "Các giá trị đo lường độ dài liên tục",
+            "Xác suất một thí sinh trả lời trắc nghiệm ngẫu nhiên",
+            "Mức độ hội tụ của các chỉ số chuẩn hóa Z-score"
+        ],
+        "correct": 0,
+        "explanation": "Poisson dùng cho dữ liệu đếm (counts) như số lượt khách vào cửa hàng, số lỗi trên một mét vải trong một khoảng thời gian hoặc không gian nhất định."
+    },
+    {
+        "id": "A4_004",
+        "section": "A4: Phân phối xác suất",
+        "question": "Kết quả tung một con xúc xắc 6 mặt công bằng tuân theo phân phối gì?",
+        "options": [
+            "Phân phối nhị thức (Binomial)",
+            "Phân phối đều rời rạc (Discrete Uniform)",
+            "Phân phối chuẩn Gaussian",
+            "Phân phối mũ Exponential"
+        ],
+        "correct": 1,
+        "explanation": "Vì mỗi mặt từ 1 đến 6 đều có xác suất xuất hiện hoàn toàn bằng nhau là 1/6."
+    },
+    {
+        "id": "A4_005",
+        "section": "A4: Phân phối xác suất",
+        "question": "Phân phối Bernoulli là phân phối nhị thức trong trường hợp đặc biệt nào?",
+        "options": [
+            "Khi xác suất thành công p = 1",
+            "Khi số lần thực hiện phép thử n = 1",
+            "Khi giá trị kỳ vọng mong đợi E = 1",
+            "Khi tham số tốc độ Poisson λ = 1"
+        ],
+        "correct": 1,
+        "explanation": "Bernoulli chỉ mô tả kết quả của đúng một phép thử duy nhất với hai đầu ra: thành công hoặc thất bại."
+    },
+    {
+        "id": "A4_006",
+        "section": "A4: Phân phối xác suất",
+        "question": "Đặc điểm của phân phối chuẩn tiêu chuẩn (Standard Normal) là gì?",
+        "options": [
+            "Kỳ vọng Mean = 1, Phương sai Variance = 0",
+            "Kỳ vọng Mean = 0, Phương sai Variance = 1",
+            "Kỳ vọng Mean = 100, Phương sai Variance = 15",
+            "Các tham số này thay đổi tùy theo bộ dữ liệu cụ thể"
+        ],
+        "correct": 1,
+        "explanation": "Phân phối Z có tâm tại 0 và độ lệch chuẩn bằng 1, giúp dễ dàng so sánh các biến số có đơn vị khác nhau."
+    },
+    {
+        "id": "A4_007",
+        "section": "A4: Phân phối xác suất",
+        "question": "Định lý Giới hạn Trung tâm (CLT) phát biểu trung bình mẫu sẽ hội tụ về?",
+        "options": [
+            "Phân phối đều ngẫu hứng",
+            "Phân phối Poisson",
+            "Phân phối chuẩn (Normal)",
+            "Hội tụ về giá trị 0 tuyệt đối"
+        ],
+        "correct": 2,
+        "explanation": "Bất kể phân phối gốc là gì, khi kích thước mẫu đủ lớn (thường n >= 30), trung bình của các mẫu sẽ có dạng phân phối chuẩn."
+    },
+    {
+        "id": "A4_008",
+        "section": "A4: Phân phối xác suất",
+        "question": "Theo quy tắc 68-95-99.7, khoảng 1 độ lệch chuẩn quanh Mean chứa bao nhiêu % dữ liệu?",
+        "options": [
+            "95%",
+            "99.7%",
+            "50%",
+            "68%"
+        ],
+        "correct": 3,
+        "explanation": "Khoảng dốc nhất của hình chuông (từ -1 std đến +1 std) chứa khoảng 68.27% toàn bộ các quan sát."
+    },
+    {
+        "id": "A4_009",
+        "section": "A4: Phân phối xác suất",
+        "question": "Hàm PDF của phân phối đều liên tục trên đoạn [a, b] có đồ thị hình gì?",
+        "options": [
+            "Một đường chéo cong dốc",
+            "Hình chữ nhật có diện tích bằng 1",
+            "Hình một tam giác cân đối xứng",
+            "Đồ thị dạng nửa đường tròn"
+        ],
+        "correct": 1,
+        "explanation": "Vì mật độ bằng nhau tại mọi điểm trong khoảng [a, b] và bằng 0 ở ngoài khoảng đó, đồ thị sẽ là một hình chữ nhật nằm ngang."
+    },
+    {
+        "id": "A4_010",
+        "section": "A4: Phân phối xác suất",
+        "question": "Giá trị của hàm PDF tại một điểm x trong phân phối liên tục cho biết điều gì?",
+        "options": [
+            "Xác suất chính xác để biến cố x xảy ra",
+            "Giá trị luôn luôn phải nhỏ hơn không",
+            "Xác suất tích lũy tính từ âm vô cùng",
+            "Mật độ xác suất tương đối tại điểm đó"
+        ],
+        "correct": 3,
+        "explanation": "Trong phân phối liên tục, xác suất tại một điểm chính xác là 0. Hàm PDF chỉ mô tả mật độ, xác suất chỉ có ý nghĩa trên một khoảng (tích phân)."
+    },
+    {
+        "id": "A4_011",
+        "section": "A4: Phân phối xác suất",
+        "question": "Tham số λ (Lambda) trong phân phối Poisson thể hiện điều gì?",
+        "options": [
+            "Giới hạn số lượt đếm tối đa của bộ nhớ hệ thống",
+            "Tốc độ xảy ra trung bình (Rate) trên đơn vị tính",
+            "Điểm kết thúc của đường cong mật độ xác suất",
+            "Khoảng cách tuyệt đối giữa các biến cố trong không gian"
+        ],
+        "correct": 1,
+        "explanation": "λ là kỳ vọng đồng thời là phương sai của phân phối Poisson, cho biết trung bình có bao nhiêu sự kiện xảy ra."
+    },
+    {
+        "id": "A4_012",
+        "section": "A4: Phân phối xác suất",
+        "question": "Thời gian chờ giữa 2 sự kiện trong quy trình Poisson tuân theo phân phối nào?",
+        "options": [
+            "Phân phối Chuẩn (Normal)",
+            "Phân phối Mũ (Exponential Distribution)",
+            "Phân phối Đều (Uniform)",
+            "Phân phối Poisson tĩnh"
+        ],
+        "correct": 1,
+        "explanation": "Nếu số sự kiện tuân theo Poisson thì thời gian chờ giữa các sự kiện đó tuân theo phân phối Mũ (Exponential)."
+    },
+    {
+        "id": "A4_013",
+        "section": "A4: Phân phối xác suất",
+        "question": "Phân phối liên tục nào có tính chất 'quên' (memoryless)?",
+        "options": [
+            "Phân phối Normal",
+            "Phân phối Lognormal",
+            "Phân phối Gamma",
+            "Phân phối Mũ (Exponential)"
+        ],
+        "correct": 3,
+        "explanation": "Tính không nhớ nghĩa là thời gian bạn đã chờ không ảnh hưởng đến thời gian bạn sẽ phải chờ thêm để sự kiện xảy ra."
+    },
+    {
+        "id": "A4_014",
+        "section": "A4: Phân phối xác suất",
+        "question": "Giá trị kỳ vọng của phân phối Nhị thức B(n, p) là?",
+        "options": [
+            "n + p",
+            "n / p",
+            "n * p",
+            "p * (1 - p)"
+        ],
+        "correct": 2,
+        "explanation": "Trung bình số lần thành công mong đợi bằng số lần thử nhân với xác suất thành công của mỗi lần."
+    },
+    {
+        "id": "A4_015",
+        "section": "A4: Phân phối xác suất",
+        "question": "Công thức tính Z-score tiêu chuẩn hóa của một giá trị X là?",
+        "options": [
+            "Z = (X + Mean) / Standard Deviation",
+            "Z = (X - Mean) / Standard Deviation",
+            "Z = X / Variance của mẫu",
+            "Z = Log(X) - Mean"
+        ],
+        "correct": 1,
+        "explanation": "Z-score cho biết giá trị đó cách trung bình bao nhiêu đơn vị độ lệch chuẩn (std units)."
+    },
+    {
+        "id": "A4_016",
+        "section": "A4: Phân phối xác suất",
+        "question": "Đầu ra của Logistic Regression mô phỏng tham số của phân phối nào?",
+        "options": [
+            "Phân phối Bernoulli",
+            "Phân phối Lognormal",
+            "Phân phối Đều",
+            "Phân phối Cauchy"
+        ],
+        "correct": 0,
+        "explanation": "Hàm sigmoid ép giá trị về khoảng [0, 1], đại diện cho xác suất thành công p trong phân phối Bernoulli cho hai lớp dữ liệu."
+    },
+    {
+        "id": "A4_017",
+        "section": "A4: Phân phối xác suất",
+        "question": "Biến X có phân phối Lognormal khi nào?",
+        "options": [
+            "Khi bản thân X có hình dạng đồ thị đối xứng chuông",
+            "Khi giá trị Logarit tự nhiên của X đạt cực đại",
+            "Khi logarit của biến đó có phân phối chuẩn",
+            "Khi X là tổng của các biến nhị phân độc lập"
+        ],
+        "correct": 2,
+        "explanation": "Lognormal thường dùng để mô tả các dữ liệu luôn dương và bị lệch phải mạnh như thu nhập hoặc giá tài sản."
+    },
+    {
+        "id": "A4_018",
+        "section": "A4: Phân phối xác suất",
+        "question": "Đặc điểm của phân phối bị lệch trái (Negative Skew) là gì?",
+        "options": [
+            "Đồ thị hoàn toàn đối xứng qua trục Mean",
+            "Mean < Median < Mode",
+            "Mode luôn nằm ngoài khoảng tứ phân vị IQR",
+            "Mean bằng đúng giá trị trung vị Median"
+        ],
+        "correct": 1,
+        "explanation": "Vì đuôi trái dài (các giá trị rất nhỏ), nó kéo giá trị trung bình (Mean) xuống thấp hơn trung vị và yếu vị."
+    },
+    {
+        "id": "A4_019",
+        "section": "A4: Phân phối xác suất",
+        "question": "Hiện tượng đuôi mập (Heavy tails) trong thống kê ám chỉ điều gì?",
+        "options": [
+            "Xác suất xảy ra các biến cố cực đoan cao hơn so với Normal",
+            "Mô hình đang bị khớp quá lỏng lẻo với dữ liệu",
+            "Các sự kiện ngoại lai outlier hoàn toàn không tồn tại",
+            "Sử dụng các số ngẫu nhiên không thể tính toán thủ công"
+        ],
+        "correct": 0,
+        "explanation": "Đây là các bài toán liên quan đến rủi ro lớn (như khủng hoảng tài chính), nơi các sự kiện hiếm xảy ra thường xuyên hơn dự tính của phân phối chuẩn."
+    },
+    {
+        "id": "A4_020",
+        "section": "A4: Phân phối xác suất",
+        "question": "Hàm phân phối tích lũy CDF F(x) có khoảng giá trị đầu ra là bao nhiêu?",
+        "options": [
+            "Từ 0 đến dương vô cùng",
+            "Từ -1 đến 1",
+            "Từ 0 đến 1",
+            "Không xác định khoảng cố định"
+        ],
+        "correct": 2,
+        "explanation": "CDF tích lũy tất cả xác suất từ trái sang phải, nên nó bắt đầu từ 0 và tăng dần đến tối đa là 1 (100%)."
+    },
+    {
+        "id": "A4_021",
+        "section": "A4: Phân phối xác suất",
+        "question": "Khi n rất lớn và p rất nhỏ, Binomial có thể xấp xỉ bằng phân phối nào?",
+        "options": [
+            "Đường cong T-Student",
+            "Phân phối Poisson với λ = n*p",
+            "Phân phối Gamma",
+            "Phân phối Mũ (Exponential)"
+        ],
+        "correct": 1,
+        "explanation": "Giúp đơn giản hóa tính toán các sự kiện hiếm trong một tập mẫu thử nghiệm quy mô lớn."
+    },
+    {
+        "id": "A4_022",
+        "section": "A4: Phân phối xác suất",
+        "question": "Tại sao sai số mô hình thường được giả định có phân phối chuẩn?",
+        "options": [
+            "Tổng các nguồn nhiễu nhỏ độc lập hội tụ về phân phối chuẩn",
+            "Vì phân phối chuẩn dễ chia lấy phần dư lẻ hơn",
+            "Đó là quy ước chung không cần chứng minh toán học",
+            "Vì đây là phân phối duy nhất có Mean bằng Median"
+        ],
+        "correct": 0,
+        "explanation": "Dựa trên Định lý Giới hạn Trung tâm, sự kết hợp của nhiều sai số nhỏ ngẫu nhiên sẽ tạo ra hình chuông Gaussian."
+    },
+    {
+        "id": "A4_023",
+        "section": "A4: Phân phối xác suất",
+        "question": "Đại lượng Kurtosis đo lường đặc tính gì của phân phối?",
+        "options": [
+            "Độ rộng của dải giá trị yếu vị Mode",
+            "Tính bất đối xứng giữa hai bên trái và phải",
+            "Độ nhọn của đỉnh và độ béo của đuôi phân phối",
+            "Chỉ số tương quan tuyến tính giữa các biến"
+        ],
+        "correct": 2,
+        "explanation": "Kurtosis cao nghĩa là phân phối có đỉnh rất nhọn và đồng thời phần đuôi chứa nhiều giá trị cực đoan (outliers)."
+    },
+    {
+        "id": "A4_024",
+        "section": "A4: Phân phối xác suất",
+        "question": "Multinomial Distribution là tổng quát hóa của phân phối nào?",
+        "options": [
+            "Phân phối Poisson",
+            "Phân phối Hypergeometric",
+            "Phân phối Nhị thức (Binomial)",
+            "Phân phối Bernoulli đơn lẻ"
+        ],
+        "correct": 2,
+        "explanation": "Trong khi Nhị thức chỉ có 2 đầu ra (ví dụ: ngửa/sấp), Đa thức cho phép có k đầu ra (ví dụ: tung xúc xắc 6 mặt)."
+    },
+    {
+        "id": "A4_025",
+        "section": "A4: Phân phối xác suất",
+        "question": "Để tìm mức phân vị Percentile, ta sử dụng hàm nào?",
+        "options": [
+            "Thuật toán Gradient Descent",
+            "Nghịch đảo của hàm phân phối tích lũy (Inverse-CDF)",
+            "Hàm Entroy chéo (Cross-Entropy)",
+            "Đạo hàm bậc cao của hàm mật độ PDF"
+        ],
+        "correct": 1,
+        "explanation": "Ta truyền vào tỷ lệ diện tích p (ví dụ 0.95 cho percentile 95) vào Inverse-CDF để tìm vị trí ngưỡng x tương ứng."
+    }
+]

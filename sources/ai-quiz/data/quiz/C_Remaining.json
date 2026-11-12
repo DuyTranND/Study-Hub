@@ -1,0 +1,67 @@
+[
+    {
+        "id": "C6_001",
+        "section": "C6: MLOps & Model Deployment",
+        "question": "Mục tiêu cốt lõi mà kỹ thuật MLOps hướng tới giải quyết là?",
+        "options": [
+            "Tạo ra các mô hình AI có độ chính xác tuyệt đối 100%",
+            "Tự động hóa và chuẩn hóa toàn bộ vòng đời của mô hình AI",
+            "Sử dụng AI để thay thế hoàn toàn vai trò của Data Scientist",
+            "MLOps là một kỹ thuật chỉ được dùng cho Deep Learning"
+        ],
+        "correct": 1,
+        "explanation": "MLOps kết hợp giữa Machine Learning, DevOps và Data Engineering để vận hành các hệ thống AI một cách tin cậy và hiệu quả."
+    },
+    {
+        "id": "C6_002",
+        "section": "C6: MLOps & Model Deployment",
+        "question": "Hiện tượng Model drift (hay concept drift) trong vận hành AI là?",
+        "options": [
+            "Tốc độ xử lý của mô hình bị chậm dần theo thời gian sử dụng",
+            "Sự thay đổi của phân phối dữ liệu thực tế so với dữ liệu huấn luyện",
+            "Mô hình bị tấn công và thay đổi các tham số bởi phía hacker",
+            "Kích thước của mô hình quá lớn so với cấu hình của server"
+        ],
+        "correct": 1,
+        "explanation": "Khi thế giới thật thay đổi, các quy luật mà mô hình đã học được có thể không còn đúng nữa, dẫn đến độ chính xác bị giảm sút."
+    },
+    {
+        "id": "C7_001",
+        "section": "C7: AI Product Thinking",
+        "question": "Khái niệm MVP trong phát triển một sản phẩm AI mang ý nghĩa gì?",
+        "options": [
+            "Xây dựng mô hình có cấu trúc toán học phức tạp nhất có thể",
+            "Phiên bản sản phẩm tối giản nhất có thể mang lại giá trị",
+            "Xây dựng một mô hình toán học mà không cần đến giao diện UI",
+            "Chỉ được phép sử dụng các hệ thống luật lệ (rule-based) đơn giản"
+        ],
+        "correct": 1,
+        "explanation": "MVP giúp doanh nghiệp kiểm chứng nhanh chóng nhu cầu của người dùng trước khi đầu tư lớn vào việc nghiên cứu các mô hình AI phức tạp."
+    },
+    {
+        "id": "C8_001",
+        "section": "C8: Phân tích Chuỗi thời gian (Time Series)",
+        "question": "Tính dừng (Stationarity) trong chuỗi thời gian được hiểu là?",
+        "options": [
+            "Dữ liệu bắt buộc phải có tốc độ tăng trưởng đều đặn hàng năm",
+            "Các thuộc tính thống kê của dữ liệu không thay đổi theo thời gian",
+            "Bắt buộc tập dữ liệu phải có tính chất lặp lại theo chu kỳ (seasonality)",
+            "Tập dữ liệu đầu vào hoàn toàn không được chứa bất kỳ các nhiễu nào"
+        ],
+        "correct": 1,
+        "explanation": "Dữ liệu có tính dừng (trung bình và phương sai ổn định) là điều kiện quan quyết để các mô hình thống kê như ARIMA có thể hoạt động chính xác."
+    },
+    {
+        "id": "C9_001",
+        "section": "C9: Generative AI & Large Language Models (LLMs)",
+        "question": "Kỹ thuật RAG dùng để giải quyết vấn đề lớn nhất nào của LLM?",
+        "options": [
+            "Gia tăng tốc độ đưa ra câu trả lời cho các yêu cầu phức tạp",
+            "Truy xuất thông tin thực tế để bổ sung ngữ cảnh cho LLM",
+            "Thực hiện huấn luyện các mô hình ngôn ngữ với tốc độ nhanh hơn",
+            "Thực hiện việc cắt giảm kích thước file lưu trữ của mô hình"
+        ],
+        "correct": 1,
+        "explanation": "RAG giúp LLM tiếp cận được với các kiến thức mới nhất hoặc dữ liệu nội bộ của doanh nghiệp mà không cần phải huấn luyện lại toàn bộ mô hình."
+    }
+]

@@ -1,0 +1,171 @@
+[
+    {
+        "id": "C12_001",
+        "section": "C12: Feature Engineering & AutoML",
+        "question": "Tại sao Feature Engineering lại cực kỳ quan trọng trong Machine Learning?",
+        "options": [
+            "Nó chỉ là một bước phụ không bắt buộc nếu model đã đủ mạnh",
+            "Chất lượng input feature quyết định phần lớn hiệu suất của model",
+            "Model Deep Learning có thể tự học mọi feature mà không cần can thiệp",
+            "Nó chỉ quan trọng khi huấn luyện các mô hình xử lý ngôn ngữ tự nhiên"
+        ],
+        "correct": 1,
+        "explanation": "Theo nguyên tắc 'Garbage In, Garbage Out', chất lượng features quyết định khoảng 80% hiệu suất cho tabular data. Một feature tốt (như tỷ lệ nợ/thu nhập thay vì dữ liệu thô) có thể giúp model đơn giản thắng cả Deep Learning."
+    },
+    {
+        "id": "C12_002",
+        "section": "C12: Feature Engineering & AutoML",
+        "question": "Kỹ thuật Target Encoding cho các biến categorical hoạt động như thế nào?",
+        "options": [
+            "Gán một con số nguyên ngẫu nhiên duy nhất cho mỗi hạng mục dữ liệu",
+            "Thay thế hạng mục bằng giá trị trung bình của biến mục tiêu (target)",
+            "Gán giá trị 0 hoặc 1 dựa trên tần suất xuất hiện của hạng mục đó",
+            "Tạo ra các cột nhị phân (binary) cho mọi giá trị duy nhất hiện có"
+        ],
+        "correct": 1,
+        "explanation": "Ví dụ: city='HN' được thay bằng giá trị trung bình của giá nhà tại Hà Nội. Tuy nhiên, cần cẩn thận với hiện tượng 'target leakage', nên dùng thêm các kỹ thuật như cross-validation encoding hoặc smoothing."
+    },
+    {
+        "id": "C12_003",
+        "section": "C12: Feature Engineering & AutoML",
+        "question": "Các phương pháp Feature Selection thường được chia thành những loại nào?",
+        "options": [
+            "Chỉ tồn tại duy nhất một loại phương pháp dựa trên độ tương quan",
+            "Filter (lọc), Wrapper (bao gói) và Embedded (nhúng trực tiếp)",
+            "Chỉ sử dụng phương pháp PCA để giảm chiều dữ liệu một cách tự động",
+            "Lựa chọn ngẫu nhiên các tập con thuộc tính để tìm ra bộ tốt nhất"
+        ],
+        "correct": 1,
+        "explanation": "Filter (như correlation) nhanh nhưng độc lập với model. Wrapper (như RFE) thử các tập con với model nên chính xác nhưng tốn kém. Embedded (như L1 regularization) tích hợp sẵn việc chọn thuộc tính vào quá trình training."
+    },
+    {
+        "id": "C12_004",
+        "section": "C12: Feature Engineering & AutoML",
+        "question": "Kỹ thuật tạo 'Polynomial Features' thực chất là gì?",
+        "options": [
+            "Tạo các feature mới bằng cách tính tích và lũy thừa các feature gốc",
+            "Sử dụng các hàm polynomial regression để thay thế hoàn toàn model",
+            "Loại bỏ các thuộc tính có mối quan hệ phi tuyến tính ra khỏi tập dữ liệu",
+            "Sử dụng PCA để chiếu dữ liệu lên các không gian đa thức bậc cao hơn"
+        ],
+        "correct": 1,
+        "explanation": "Từ [x1, x2] tạo ra [x1², x1·x2, x2²]. Việc này giúp model tuyến tính có khả năng học được các mối quan hệ phi tuyến. Tuy nhiên, bậc đa thức quá cao sẽ làm tăng số lượng feature cực nhanh, dễ gây overfitting."
+    },
+    {
+        "id": "C12_005",
+        "section": "C12: Feature Engineering & AutoML",
+        "question": "Các công cụ AutoML (như Auto-sklearn, H2O) tự động hóa những bước nào?",
+        "options": [
+            "Chỉ tự động hóa việc lựa chọn giữa các loại model khác nhau mà thôi",
+            "End-to-end: từ tiền xử lý, chọn feature, chọn model đến tối ưu tham số",
+            "Chỉ thực hiện việc chạy thử lưới (grid search) cho một model xác định",
+            "Thay thế hoàn toàn vai trò của Data Scientist trong việc hiểu domain"
+        ],
+        "correct": 1,
+        "explanation": "AutoML tìm kiếm pipeline tốt nhất một cách tự động. Nó rất tốt để tạo baseline nhanh chóng, nhưng kiến thức về domain (Domain Knowledge) vẫn cực kỳ cần thiết để thiết kế feature engineering ban đầu."
+    },
+    {
+        "id": "C12_006",
+        "section": "C12: Feature Engineering & AutoML",
+        "question": "Mục đích của việc 'Binning' (rời rạc hóa) các feature liên tục là gì?",
+        "options": [
+            "Tự động xóa bỏ hoàn toàn các giá trị ngoại lai (outliers) trong dữ liệu",
+            "Chia dữ liệu liên tục thành các nhóm để giảm nhiễu và bắt mẫu hình",
+            "Tăng độ chính xác tuyệt đối cho bộ dự báo của các mạng nơ-ron sâu",
+            "Chỉ phục vụ cho mục đích trực quan hóa dữ liệu trên các biểu đồ cột"
+        ],
+        "correct": 1,
+        "explanation": "Ví dụ: biến 'tuổi' thành các nhóm 'trẻ', 'trưởng thành', 'già'. Góp phần giúp model tuyến tính xử lý các quan hệ phi tuyến tính tốt hơn, tuy nhiên sẽ làm mất mát một phần thông tin chi tiết của dữ liệu."
+    },
+    {
+        "id": "C12_007",
+        "section": "C12: Feature Engineering & AutoML",
+        "question": "Lưu ý gì khi diễn giải Feature Importance từ các model dựa trên cây (Tree-based)?",
+        "options": [
+            "Luôn tin tưởng tuyệt đối vào thứ tự các thuộc tính quan trọng trả về",
+            "Cẩn trọng vì các feature có độ tương quan cao sẽ chia sẻ độ quan trọng",
+            "Feature Importance luôn đồng nghĩa với mối quan hệ nguyên nhân - kết quả",
+            "Mọi bảng xếp hạng quan trọng trả về đều không mang giá trị thực tiễn"
+        ],
+        "correct": 1,
+        "explanation": "Các feature có cardinality cao (nhiều giá trị duy nhất) thường bị đánh giá quan trọng hơn mức thực tế. Nên dùng thêm Permutation Importance hoặc SHAP để xác nhận chéo kết quả."
+    },
+    {
+        "id": "C12_008",
+        "section": "C12: Feature Engineering & AutoML",
+        "question": "Khi nào bạn nên áp dụng phép biến đổi Log (Log transformation)?",
+        "options": [
+            "Có thể áp dụng cho mọi loại dữ liệu đầu vào trong tất cả mọi dự án",
+            "Khi dữ liệu bị lệch phải (right-skewed) như thu nhập, giá nhà",
+            "Khi dữ liệu đã tuân theo phân phối chuẩn (normal distribution)",
+            "Chỉ áp dụng được đối với các tập dữ liệu có chứa các con số thực âm"
+        ],
+        "correct": 1,
+        "explanation": "Log biến phân phối lệch thành phân phối gần giống chuẩn (normal), giúp giảm ảnh hưởng của các giá trị cực lớn. Lưu ý: log(0) không xác định nên thường dùng công thức log(1+x)."
+    },
+    {
+        "id": "C12_009",
+        "section": "C12: Feature Engineering & AutoML",
+        "question": "Hiện tượng đa cộng tuyến (Multicollinearity) gây ra vấn đề gì?",
+        "options": [
+            "Nó hoàn toàn không gây ảnh hưởng gì đến các mô hình học máy hiện đại",
+            "Làm cho các hệ số của model không ổn định và khó diễn giải ý nghĩa",
+            "Làm tăng độ chính xác của model lên mức tối đa một cách không tự nhiên",
+            "Chỉ gây ảnh hưởng duy nhất đến các mạng nơ-ron sâu (Deep Learning)"
+        ],
+        "correct": 1,
+        "explanation": "Xảy ra khi các features có tương quan quá mạnh với nhau. Cách phát hiện: xem ma trận tương quan hoặc dùng chỉ số VIF (Variance Inflation Factor). Giải pháp là xóa bớt hoặc gộp các feature này lại."
+    },
+    {
+        "id": "C12_010",
+        "section": "C12: Feature Engineering & AutoML",
+        "question": "Ưu điểm của Bayesian Optimization so với Grid Search là gì?",
+        "options": [
+            "Nó có cấu trúc đơn giản hơn và dễ cài đặt thủ công hơn rất nhiều",
+            "Thông minh hơn bằng cách học từ các kết quả thử nghiệm trước đó",
+            "Đảm bảo luôn tìm thấy giá trị tối ưu toàn cục (global optimum) nhanh nhất",
+            "Không yêu cầu người dùng phải định nghĩa không gian tìm kiếm tham số"
+        ],
+        "correct": 1,
+        "explanation": "Thay vì thử ngẫu nhiên hay thử hết (Grid), Bayesian xây dựng một model xác suất để dự đoán xem bộ tham số nào tiềm năng nhất để thử tiếp theo, giúp giảm số lần thử nghiệm từ 10-50 lần."
+    },
+    {
+        "id": "C12_011",
+        "section": "C12: Feature Engineering & AutoML",
+        "question": "Từ dữ liệu ngày tháng (Date/time), ta thường trích xuất thêm gì?",
+        "options": [
+            "Chỉ nên giữ lại giá trị timestamp gốc để model tự phân tích",
+            "Thứ trong tuần, tháng, quý, ngày lễ và các tính chất mang tính chu kỳ",
+            "Chỉ cần trích xuất ba thông tin cơ bản: ngày, tháng và năm hiện tại",
+            "Chuyển đổi toàn bộ dữ liệu thời gian sang định dạng giây (Unix timestamp)"
+        ],
+        "correct": 1,
+        "explanation": "Các đặc điểm như 'có phải cuối tuần không?', 'ngày lễ không?' cực kỳ quan trọng cho bài toán dự báo doanh số/nhu cầu. Kỹ thuật dùng sin/cos để mã hóa chu kỳ (hour, month) cũng rất hữu ích."
+    },
+    {
+        "id": "C12_012",
+        "section": "C12: Feature Engineering & AutoML",
+        "question": "Phương pháp RFE (Recursive Feature Elimination) hoạt động ra sao?",
+        "options": [
+            "Xóa bỏ các feature một cách ngẫu nhiên cho đến khi đạt số lượng mong muốn",
+            "Huấn luyện model và loại bỏ dần các thuộc tính ít quan trọng nhất",
+            "Tự động thêm các feature mới vào cho đến khi độ chính xác ngừng tăng",
+            "Sử dụng bộ lọc độ tương quan để loại bỏ các feature ngay từ đầu dự án"
+        ],
+        "correct": 1,
+        "explanation": "RFE là một Wrapper method: Train model → xếp hạng quan trọng → xóa feature 'tệ' nhất → train lại. Quá trình lặp lại cho đến khi còn lại số lượng feature mục tiêu. Ưu điểm là rất chính xác nhưng tốn compute."
+    },
+    {
+        "id": "C12_013",
+        "section": "C12: Feature Engineering & AutoML",
+        "question": "Khái niệm Neural Architecture Search (NAS) được hiểu là gì?",
+        "options": [
+            "Tìm kiếm các tham số tối ưu (hyperparameters) cho một kiến trúc có sẵn",
+            "Tự động tìm ra cấu trúc mạng nơ-ron (số lớp, loại lớp) tối ưu nhất",
+            "Tìm kiếm các bộ dữ liệu mới phù hợp để huấn luyện thêm cho model",
+            "Một hệ thống tìm kiếm các bài báo khoa học về lĩnh vực Deep Learning"
+        ],
+        "correct": 1,
+        "explanation": "NAS giúp tìm ra các kiến trúc (như EfficientNet) vượt trội hơn cả các thiết kế thủ công của con người. Tuy nhiên, nó cực kỳ tốn kém tài nguyên tính toán (hàng ngàn giờ GPU)."
+    }
+]

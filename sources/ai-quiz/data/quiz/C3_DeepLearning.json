@@ -1,0 +1,93 @@
+[
+    {
+        "id": "C3_001",
+        "section": "C3: Học Sâu (Deep Learning)",
+        "question": "Thuật toán Backpropagation trong mạng nơ-ron hoạt động như thế nào?",
+        "options": [
+            "Truyền dữ liệu trực tiếp từ tầng đầu vào tới tầng đầu ra",
+            "Truyền ngược sai số để cập nhật các trọng số",
+            "Thực hiện tìm kiếm ngẫu nhiên các bộ trọng số tối ưu",
+            "Chỉ thực hiện việc cập nhật các giá trị của biến chệch (bias)"
+        ],
+        "correct": 1,
+        "explanation": "Backpropagation tính toán gradient của hàm mất mát đối với mỗi trọng số thông qua quy tắc chuỗi (chain rule), truyền ngược từ đầu ra về đầu vào."
+    },
+    {
+        "id": "C3_002",
+        "section": "C3: Học Sâu (Deep Learning)",
+        "question": "Hàm kích hoạt ReLU có ưu điểm lớn nào so với hàm Sigmoid?",
+        "options": [
+            "ReLU luôn đưa ra giá trị đầu ra nằm trong khoảng từ 0 đến 1",
+            "Khắc phục hiện tượng biến mất đạo hàm (vanishing)",
+            "ReLU thường được dùng cho các bài toán phân loại nhị phân",
+            "Hàm Sigmoid có tốc độ tính toán nhanh hơn so với hàm ReLU"
+        ],
+        "correct": 1,
+        "explanation": "ReLU tính toán cực nhanh và giữ nguyên độ dốc (gradient = 1) cho các giá trị dương, giúp quá trình huấn luyện mạng sâu không bị tắc nghẽn."
+    },
+    {
+        "id": "C3_003",
+        "section": "C3: Học Sâu (Deep Learning)",
+        "question": "Mạng CNN đặc biệt phù hợp nhất để xử lý loại dữ liệu nào?",
+        "options": [
+            "Các tập dữ liệu dạng bảng (tabular data) thông thường",
+            "Phân tích dữ liệu có cấu trúc không gian như hình ảnh",
+            "Chỉ dùng cho các bài toán phân tích cảm xúc văn bản",
+            "Các loại dữ liệu có cấu trúc dạng đồ thị (graph data)"
+        ],
+        "correct": 1,
+        "explanation": "CNN sử dụng các bộ lọc (filters) trượt trên không gian dữ liệu để tự động nhận diện các đặc trưng từ đơn giản đến phức tạp."
+    },
+    {
+        "id": "C3_004",
+        "section": "C3: Học Sâu (Deep Learning)",
+        "question": "Kỹ thuật Dropout hoạt động theo cơ chế nào?",
+        "options": [
+            "Thực hiện việc xóa bỏ vĩnh viễn các nơ-ron khỏi mạng",
+            "Ngắt ngẫu nhiên các nơ-ron để giảm quá khớp",
+            "Thực hiện việc giảm dần tốc độ học sau mỗi vòng lặp",
+            "Tăng cường kích thước của các lô dữ liệu (batch size)"
+        ],
+        "correct": 1,
+        "explanation": "Bằng cách tắt ngẫu nhiên một số nơ-ron trong quá trình huấn luyện, Dropout ngăn chặn mạng quá phụ thuộc vào một số ít đặc trưng cụ thể."
+    },
+    {
+        "id": "C3_005",
+        "section": "C3: Học Sâu (Deep Learning)",
+        "question": "Lợi ích của việc sử dụng Batch Normalization là gì?",
+        "options": [
+            "Giúp mô hình có thể xử lý được các lô dữ liệu lớn hơn",
+            "Chuẩn hóa dữ liệu giữa các lớp để ổn định quá trình học",
+            "Giúp tự động loại bỏ các giá trị ngoại lai trong tập dữ liệu",
+            "Làm giảm tổng số lượng các tham số cần học của mô hình"
+        ],
+        "correct": 1,
+        "explanation": "Batch Normalization giữ cho các phân phối đầu vào của mỗi tầng ổn định, giúp mạng hội tụ nhanh hơn và ít nhạy cảm với việc khởi tạo trọng số."
+    },
+    {
+        "id": "C3_006",
+        "section": "C3: Học Sâu (Deep Learning)",
+        "question": "Khái niệm Transfer Learning được hiểu như thế nào?",
+        "options": [
+            "Sao chép các đoạn mã nguồn từ các dự án khác về sử dụng",
+            "Tái sử dụng tri thức từ một mô hình đã được huấn luyện",
+            "Thực hiện huấn luyện lại toàn bộ mô hình từ đầu mỗi khi có dữ liệu",
+            "Di chuyển dữ liệu huấn luyện giữa các hệ thống máy chủ khác nhau"
+        ],
+        "correct": 1,
+        "explanation": "Cho phép chúng ta sử dụng những đặc trưng mà mô hình đã học được từ một tập dữ liệu khổng lồ (như ImageNet) để áp dụng cho một bài toán mới ít dữ liệu hơn."
+    },
+    {
+        "id": "C3_007",
+        "section": "C3: Học Sâu (Deep Learning)",
+        "question": "Bộ tối ưu Adam kết hợp những ý tưởng cốt lõi nào?",
+        "options": [
+            "Kết hợp giữa thuật toán SGD truyền thống và L-BFGS",
+            "Kết hợp quán tính và tốc độ học thích ứng",
+            "Sự kết hợp giữa AdaGrad và các phương pháp Newton",
+            "Kết hợp giữa Batch Gradient Descent và phương pháp mini-batch"
+        ],
+        "correct": 1,
+        "explanation": "Adam tận dụng được sự ổn định của Momentum và khả năng tự điều chỉnh tốc độ học của RMSProp cho từng tham số riêng biệt."
+    }
+]

@@ -1,0 +1,1 @@
+{"name":"study-hub","version":"1.0.0","private":true,"description":"Local-first study and exam practice workspace","scripts":{"start":"node server.cjs","test:shl":"node _qa/shl-browser-test.cjs"},"engines":{"node":">=22"}}

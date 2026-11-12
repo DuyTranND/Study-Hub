@@ -1,0 +1,262 @@
+[
+    {
+        "id": "A7_001",
+        "section": "A7: Tư duy định lượng & ước lượng",
+        "question": "Kỹ năng cốt lõi nhất khi giải quyết một Bài toán Fermi là gì?",
+        "options": [
+            "Đảm bảo tính chính xác 100% bằng các thuật toán tối ưu",
+            "Chia nhỏ vấn đề để ước lượng bậc độ lớn (order of magnitude)",
+            "Thực hiện mô phỏng Monte Carlo trên các cụm GPU mạnh",
+            "Ghi nhớ chính xác tuyệt đối mọi số liệu thống kê liên quan"
+        ],
+        "correct": 1,
+        "explanation": "Bài toán Fermi không yêu cầu con số chính xác mà cần khả năng phân tích logic để đưa ra con số ước tính hợp lý từ các giả định ban đầu."
+    },
+    {
+        "id": "A7_002",
+        "section": "A7: Tư duy định lượng & ước lượng",
+        "question": "Quy tắc 72 được sử dụng phổ biến để ước lượng điều gì?",
+        "options": [
+            "Số tháng tối đa để hoàn trả toàn bộ nợ thẻ tín dụng",
+            "Số năm để một khoản đầu tư có thể tăng gấp đôi giá trị",
+            "Tỷ lệ lạm phát trung bình hàng năm của một quốc gia",
+            "Tổng số lượng khách hàng tối thiểu cần để đạt điểm hòa vốn"
+        ],
+        "correct": 1,
+        "explanation": "Lấy 72 chia cho lãi suất hàng năm sẽ ra số năm cần thiết để tài sản nhân đôi nhờ lãi suất kép."
+    },
+    {
+        "id": "A7_003",
+        "section": "A7: Tư duy định lượng & ước lượng",
+        "question": "Ý nghĩa của Quy tắc 80/20 (Pareto) trong phân tích dữ liệu là?",
+        "options": [
+            "80% nhân viên trong công ty chỉ làm việc 20 giờ mỗi tuần",
+            "Chỉ cần sử dụng 80% RAM để xử lý 20% lượng dữ liệu lớn",
+            "80% kết quả thường đến từ 20% các nguyên nhân trọng yếu",
+            "80% mô hình cần 20% thời gian cho việc tinh chỉnh tham số"
+        ],
+        "correct": 2,
+        "explanation": "Giúp người quản lý tập trung nguồn lực vào nhóm các yếu tố then chốt mang lại nhiều giá trị nhất hoặc gây ra nhiều lỗi nhất."
+    },
+    {
+        "id": "A7_004",
+        "section": "A7: Tư duy định lượng & ước lượng",
+        "question": "Luật Benford giúp phát hiện gian lận dựa trên đặc điểm gì?",
+        "options": [
+            "Các số cuối cùng trong báo cáo tài chính phải là số chẵn",
+            "Chữ số đầu tiên có xác xuất xuất hiện không đều nhau",
+            "Tổng tất cả các chữ số trong báo cáo phải chia hết cho 9",
+            "Mọi số liệu tài chính bắt buộc phải tuân theo phân phối chuẩn"
+        ],
+        "correct": 1,
+        "explanation": "Trong dữ liệu tự nhiên, số 1 xuất hiện ở vị trí đầu tiên nhiều nhất (~30%) và giảm dần đến số 9. Gian lận nhân tạo thường có phân phối đều hơn."
+    },
+    {
+        "id": "A7_005",
+        "section": "A7: Tư duy định lượng & ước lượng",
+        "question": "Chỉ số CAGR có ưu điểm gì so với trung bình cộng tăng trưởng?",
+        "options": [
+            "CAGR có khả năng loại bỏ hoàn toàn ảnh hưởng của lạm phát",
+            "Chỉ số này được tính bằng cấp số cộng theo từng quý riêng lẻ",
+            "Phản ánh tỷ lệ tăng trưởng ổn định theo cấp số nhân",
+            "CAGR luôn luôn cho ra kết quả lớn hơn mức trung bình cộng"
+        ],
+        "correct": 2,
+        "explanation": "CAGR (Tốc độ tăng trưởng hàng năm kép) giúp đánh giá hiệu quả đầu tư chính xác hơn khi có sự biến động lớn giữa các năm."
+    },
+    {
+        "id": "A8_001",
+        "section": "A8: Lý thuyết thông tin",
+        "question": "Đại lượng Shannon Entropy dùng để đo lường điều gì?",
+        "options": [
+            "Tổng độ dài tính bằng byte của toàn bộ mảng dữ liệu",
+            "Mức độ bất định (uncertainty) của một nguồn tin ngẫu nhiên",
+            "Khoảng cách vật lý trung bình từ server đến các máy trạm",
+            "Tổng số lượng tính năng được dùng trong mô hình Random Forest"
+        ],
+        "correct": 1,
+        "explanation": "Entropy càng cao thì thông tin đó càng khó dự đoán và chứa đựng nhiều 'nội dung' mới mẻ hơn."
+    },
+    {
+        "id": "A8_002",
+        "section": "A8: Lý thuyết thông tin",
+        "question": "Trong Machine Learning, Cross-Entropy Loss thường dùng để làm gì?",
+        "options": [
+            "Tính toán sai số cho các bài toán hồi quy tuyến tính đơn giản",
+            "Đo lường mức độ phân cụm hiệu quả của thuật toán Clustering",
+            "Đo khoảng cách giữa phân phối dự đoán và nhãn thực",
+            "Giảm số lượng chiều của dữ liệu trong kỹ thuật phân tích PCA"
+        ],
+        "correct": 2,
+        "explanation": "Nó phạt nặng những dự đoán sai với độ tự tin cao, giúp mô hình phân loại (Classification) hội tụ nhanh và chính xác hơn."
+    },
+    {
+        "id": "A8_003",
+        "section": "A8: Lý thuyết thông tin",
+        "question": "KL Divergence (Kullback-Leibler) được dùng để đo lường?",
+        "options": [
+            "Độ sâu tối đa của một cây quyết định trong mô hình học máy",
+            "Mức độ mất mát thông tin khi dùng phân phối này xấp xỉ phân phối kia",
+            "Biên độ dao động của các sóng sin trong phép biến đổi Fourier",
+            "Tổng của toàn bộ bình phương các sai số trong quá trình huấn luyện"
+        ],
+        "correct": 1,
+        "explanation": "Đây là công cụ đo lường sự khác biệt giữa hai phân phối xác suất, thường dùng trong VAE hoặc GAN."
+    },
+    {
+        "id": "A8_004",
+        "section": "A8: Lý thuyết thông tin",
+        "question": "Chỉ số Information Gain trong Decision Tree mang bản chất là gì?",
+        "options": [
+            "Thực hiện nhân entropy với tổng số lượng các nhánh con hiện có",
+            "Độ giảm entropy trung bình sau khi phân tách mẫu",
+            "Tổng bình phương của tất cả các sai số sau khi thực hiện split",
+            "Giá trị logarit của tổng số lượng các nhánh của cây hiện tại"
+        ],
+        "correct": 1,
+        "explanation": "Một phép tách tốt là phép tách làm giảm sự hỗn loạn (entropy) nhiều nhất, giúp phân loại dữ liệu thuần khiết hơn."
+    },
+    {
+        "id": "A8_005",
+        "section": "A8: Lý thuyết thông tin",
+        "question": "Chỉ số Gini Impurity trong thuật toán CART dùng để đo lường?",
+        "options": [
+            "Đo xác suất phân loại sai của một mẫu ngẫu nhiên",
+            "Tổng của tích các xác suất tương ứng với từng nhãn dữ liệu",
+            "Giá trị trung bình cộng của toàn bộ bình phương các xác suất",
+            "Tích của các xác suất nhãn xuất hiện trong một nút của cây"
+        ],
+        "correct": 0,
+        "explanation": "Gini Impurity thấp có nghĩa là nút đó chứa chủ yếu một lớp dữ liệu duy nhất (thuần khiết)."
+    },
+    {
+        "id": "A9_001",
+        "section": "A9: Distance metrics & Similarity",
+        "question": "Cosine Similarity đo lường đặc tính nào giữa hai vector đầu vào?",
+        "options": [
+            "Khoảng cách hình học Euclid ngắn nhất giữa hai điểm cuối",
+            "Đo góc giữa hai vector bất kể độ lớn của chúng",
+            "Kết quả của phép tích có hướng trong không gian ba chiều",
+            "Khoảng cách Manhattan được tính trên lưới tọa độ trực tiếp"
+        ],
+        "correct": 1,
+        "explanation": "Rất hữu ích khi chúng ta quan tâm đến sự tương đồng về hướng (như chủ đề bài viết) hơn là độ dài (số lượng từ)."
+    },
+    {
+        "id": "A9_002",
+        "section": "A9: Distance metrics & Similarity",
+        "question": "Sự khác biệt cơ bản giữa Manhattan (L1) và Euclidean (L2) là?",
+        "options": [
+            "Manhattan sử dụng căn bậc ba trong khi Euclidean dùng căn bậc hai",
+            "Manhattan đo đường thẳng trực tiếp giữa hai vị trí bất kỳ",
+            "Manhattan đi theo trục tọa độ, Euclidean đi đường thẳng",
+            "Hai khoảng cách này hoàn toàn không có sự khác biệt về mặt toán học"
+        ],
+        "correct": 2,
+        "explanation": "Manhattan (L1) là tổng khoảng cách theo các trục vuông góc, tương tự như việc lái xe trong thành phố theo các khối phố."
+    },
+    {
+        "id": "A9_003",
+        "section": "A9: Distance metrics & Similarity",
+        "question": "Jaccard Index thường được ưu tiên sử dụng cho loại dữ liệu nào?",
+        "options": [
+            "Các vector chứa các số thực có giá trị biến thiên liên tục",
+            "Dữ liệu dạng hình ảnh với độ phân giải cực cao tính theo pixel",
+            "Dữ liệu dạng tập hợp (Sets)",
+            "Các chuỗi thời gian (Time series) có tính chất thay đổi liên tục"
+        ],
+        "correct": 2,
+        "explanation": "Jaccard tính tỷ lệ giữa phần giao và phần hợp của hai tập hợp, thường dùng để so sánh các tập từ khóa hoặc các nhãn."
+    },
+    {
+        "id": "A9_004",
+        "section": "A9: Distance metrics & Similarity",
+        "question": "Khoảng cách Hamming đo điều gì giữa hai chuỗi có cùng độ dài?",
+        "options": [
+            "Tổng giá trị mã ASCII của toàn bộ các ký tự trong hai chuỗi",
+            "Số vị trí mà tại đó các ký tự tương ứng có giá trị khác nhau",
+            "Độ dài của chuỗi con chung dài nhất có thể tìm thấy giữa hai chuỗi",
+            "Số lượng các thao tác chỉnh sửa cần thiết để hai chuỗi trở nên giống nhau"
+        ],
+        "correct": 1,
+        "explanation": "Dùng để đo mức độ khác biệt tại từng vị trí tương ứng, rất phổ biến trong mã hóa và sửa lỗi bit nhị phân."
+    },
+    {
+        "id": "A9_005",
+        "section": "A9: Distance metrics & Similarity",
+        "question": "Tại sao Minkowski Distance được coi là độ đo khoảng cách tổng quát?",
+        "options": [
+            "Vì nó là một biến số phi tuyến hoàn toàn không có sự liên quan",
+            "Minkowski là dạng tổng quát với tham số p linh hoạt",
+            "Nó được tính bằng trung bình cộng của Manhattan và Euclidean",
+            "Chỉ được thiết kế dành riêng cho không gian từ ba chiều trở lên"
+        ],
+        "correct": 1,
+        "explanation": "Bằng cách thay đổi tham số p (p=1 cho Manhattan, p=2 cho Euclidean), chúng ta có thể tạo ra các độ đo khoảng cách khác nhau."
+    },
+    {
+        "id": "A10_001",
+        "section": "A10: Số học máy tính & Ổn định số",
+        "question": "Hiện tượng Underflow trong tính toán số thực xảy ra khi nào?",
+        "options": [
+            "Nhiệt độ của GPU quá cao dẫn đến các sai số phần cứng",
+            "Giá trị quá nhỏ bị làm tròn thành số 0 (underflow)",
+            "Khi giá trị tính toán quá lớn vượt quá khả năng lưu trữ của bộ nhớ",
+            "Kết quả của phép chia hai số nguyên không phải là một số nguyên"
+        ],
+        "correct": 1,
+        "explanation": "Khi nhân nhiều xác suất nhỏ (ví dụ 10^-20), kết quả có thể nhỏ hơn giới hạn của kiểu dữ liệu float, làm cho gradient biến mất."
+    },
+    {
+        "id": "A10_002",
+        "section": "A10: Số học máy tính & Ổn định số",
+        "question": "Kỹ thuật Log-Sum-Exp Trick có tác dụng gì trong lập trình?",
+        "options": [
+            "Dùng để tăng tốc độ huấn luyện của mô hình trí tuệ nhân tạo",
+            "Giảm thiểu tổng số lượng các tham số cần thiết của mạng neural",
+            "Tránh tràn số (overflow) khi thực hiện hàm số mũ",
+            "Thực hiện chuẩn hóa các gradient về trong khoảng cố định"
+        ],
+        "correct": 2,
+        "explanation": "Bằng cách trừ đi giá trị lớn nhất trước khi tính hàm mũ, kết quả sẽ ổn định và không bị lỗi Infinity hoặc NaN."
+    },
+    {
+        "id": "A10_003",
+        "section": "A10: Số học máy tính & Ổn định số",
+        "question": "Trong huấn luyện mô hình, lỗi NaN (Not a Number) thường do đâu?",
+        "options": [
+            "Chia cho số 0 hoặc lấy logarit của các số không dương",
+            "Thiết lập chỉ số Learning rate ở mức giá trị quá nhỏ",
+            "Quá trình xáo trộn dữ liệu (shuffling) được thực hiện ngẫu nhiên",
+            "Sử dụng kỹ thuật dừng sớm Early Stopping không đúng thời điểm"
+        ],
+        "correct": 0,
+        "explanation": "Các phép toán không hợp lệ này sẽ sinh ra NaN, sau đó NaN lan truyền qua toàn bộ mạng làm hỏng tất cả các trọng số."
+    },
+    {
+        "id": "A10_004",
+        "section": "A10: Số học máy tính & Ổn định số",
+        "question": "Tính toán trong Log-space giúp giải quyết vấn đề gì?",
+        "options": [
+            "Thực hiện các phép chia số thực liên tiếp một cách nhanh chóng",
+            "Phép cộng các giá trị logarit thay vì nhân xác suất",
+            "Thực hiện các phép nhân ma trận có kích thước lớn hiệu quả hơn",
+            "Tính toán căn bậc n của các số thực có độ lớn cực đại"
+        ],
+        "correct": 1,
+        "explanation": "Thay vì nhân các giá trị nhỏ (gây underflow), ta cộng các giá trị logarit của chúng để đảm bảo tính ổn định số học."
+    },
+    {
+        "id": "A10_005",
+        "section": "A10: Số học máy tính & Ổn định số",
+        "question": "Lợi ích chính của việc sử dụng kiểu dữ liệu FP16 trong huấn luyện LLM?",
+        "options": [
+            "Cung cấp các kết quả tính toán có độ chính xác cao hơn FP32",
+            "Giúp cho mô hình tránh được các hiện tượng Overfitting hiệu quả",
+            "Thực hiện mã hóa các dữ liệu đầu vào một cách an toàn và bảo mật",
+            "Tiết kiệm dung lượng VRAM và tăng tốc độ tính toán"
+        ],
+        "correct": 3,
+        "explanation": "FP16 sử dụng ít bộ nhớ hơn, cho phép huấn luyện các mô hình lớn hơn hoặc sử dụng batch size lớn hơn trên cùng một phần cứng."
+    }
+]

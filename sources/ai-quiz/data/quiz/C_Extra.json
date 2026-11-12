@@ -1,0 +1,158 @@
+[
+    {
+        "id": "C6_003",
+        "section": "C6: MLOps & Model Deployment",
+        "question": "Thử nghiệm A/B testing trong giai đoạn đưa mô hình vào sản xuất dùng để?",
+        "options": [
+            "Kiểm thử các đơn vị mã nguồn (Unit Test) của hệ thống",
+            "So sánh hiệu năng giữa hai mô hình trên lưu lượng thực",
+            "Kiểm tra chất lượng của tập dữ liệu huấn luyện đầu vào",
+            "Đánh giá hiệu năng phần cứng trên các server thực tế"
+        ],
+        "correct": 1,
+        "explanation": "Giúp đánh giá xem mô hình mới có thực sự mang lại hiệu quả kinh doanh hay trải nghiệm tốt hơn mô hình hiện tại hay không."
+    },
+    {
+        "id": "C6_004",
+        "section": "C6: MLOps & Model Deployment",
+        "question": "Khái niệm Feature Store trong một nền tảng Machine Learning là gì?",
+        "options": [
+            "Nơi chuyên dụng để lưu trữ các bộ tham số của mô hình",
+            "Hệ thống quản lý và chia sẻ các đặc trưng dữ liệu",
+            "Hệ quản trị cơ sở dữ liệu quan hệ thông thường như SQL",
+            "Kho lưu trữ mã nguồn cho các dự án ngôn ngữ Python"
+        ],
+        "correct": 1,
+        "explanation": "Đảm bảo tính nhất quán của dữ liệu giữa quá trình huấn luyện (offline) và quá trình dự báo thực tế (online)."
+    },
+    {
+        "id": "C6_005",
+        "section": "C6: MLOps & Model Deployment",
+        "question": "Lợi ích lớn nhất của việc sử dụng Docker khi triển khai mô hình là?",
+        "options": [
+            "Giúp tăng cường đáng kể độ chính xác của các mô hình AI",
+            "Đảm bảo tính nhất quán của môi trường trên mọi hệ thống",
+            "Công cụ này chỉ được thiết kế dành riêng cho các ứng dụng web",
+            "Được dùng để thay thế hoàn toàn cho các môi trường ảo Python"
+        ],
+        "correct": 1,
+        "explanation": "Docker đóng gói code và mọi thư viện cần thiết vào một container, giúp tránh lỗi 'chạy được trên máy tôi nhưng không chạy được trên server'."
+    },
+    {
+        "id": "C6_006",
+        "section": "C6: MLOps & Model Deployment",
+        "question": "Tại sao việc thực hiện Model versioning lại cực kỳ quan trọng?",
+        "options": [
+            "Nó giúp cho quá trình huấn luyện mô hình diễn ra nhanh hơn",
+            "Quản lý và truy vết các phiên bản khác nhau của mô hình",
+            "Kỹ thuật này chỉ cần thiết đối với các đội ngũ phát triển lớn",
+            "Được thiết kế để thay thế cho các hệ thống quản lý git truyền thống"
+        ],
+        "correct": 1,
+        "explanation": "Cho phép bạn quay lại phiên bản cũ nếu mô hình mới gặp lỗi và hiểu rõ mô hình nào được huấn luyện từ tập dữ liệu nào."
+    },
+    {
+        "id": "C7_002",
+        "section": "C7: AI Product Thinking",
+        "question": "Thuật ngữ 'Metric proxy trap' trong phát triển sản phẩm AI có nghĩa là gì?",
+        "options": [
+            "Tốc độ xử lý của mô hình quá chậm so với yêu cầu thực tế",
+            "Tối ưu hóa các chỉ số phụ thay vì mục tiêu thực sự",
+            "Không cung cấp đủ lượng dữ liệu cần thiết cho việc huấn luyện",
+            "Cấu trúc của mô hình được thiết kế quá mức phức tạp cần thiết"
+        ],
+        "correct": 1,
+        "explanation": "Xảy ra khi bạn quá tập trung vào các chỉ số kỹ thuật (như Click-rate) mà quên mất mục tiêu cốt lõi (như sự hài lòng lâu dài của khách hàng)."
+    },
+    {
+        "id": "C7_003",
+        "section": "C7: AI Product Thinking",
+        "question": "Mô hình hệ thống Human-in-the-loop AI được hiểu là?",
+        "options": [
+            "Hệ thống trí tuệ nhân tạo thay thế hoàn toàn vai trò con người",
+            "Hệ thống AI có sự tham gia và kiểm soát của con người",
+            "Hệ thống chỉ sử dụng các quy tắc logic cứng nhắc (rule-based)",
+            "Mô hình AI chỉ được phép huấn luyện bởi một người duy nhất"
+        ],
+        "correct": 1,
+        "explanation": "Con người đóng vai trò kiểm duyệt và phản hồi giúp AI ngày càng thông minh hơn, đặc biệt quan trọng trong lĩnh vực y tế hay pháp luật."
+    },
+    {
+        "id": "C8_002",
+        "section": "C8: Phân tích Chuỗi thời gian (Time Series)",
+        "question": "Ba số p, d, q trong mô hình ARIMA lần lượt đại diện cho?",
+        "options": [
+            "Các chỉ số về sự kiên nhẫn, độ sâu và các truy vấn dữ liệu",
+            "Các tham số về độ trễ, sai phân và trung bình trượt",
+            "Các chỉ số về độ chính xác, số chiều và các phân vị toán học",
+            "Số lượng các lớp ẩn được sử dụng trong mạng nơ-ron tuần hoàn"
+        ],
+        "correct": 1,
+        "explanation": "p là số lượng giá trị quá khứ, d là số lần lấy sai phân để dữ liệu ổn định, và q là độ dài của cửa sổ sai số trung bình."
+    },
+    {
+        "id": "C8_003",
+        "section": "C8: Phân tích Chuỗi thời gian (Time Series)",
+        "question": "Phương pháp Walk-Forward Validation khác gì so với Cross-Validation thông thường?",
+        "options": [
+            "Hai phương pháp kiểm thử này hoàn toàn giống hệt nhau về bản chất",
+            "Đảm bảo việc huấn luyện và kiểm thử luôn theo trình tự",
+            "K-Fold Cross-Validation luôn tốt hơn khi xử lý chuỗi thời gian",
+            "Walk-Forward chỉ được phép sử dụng duy nhất hai tập dữ liệu chia"
+        ],
+        "correct": 1,
+        "explanation": "Trong chuỗi thời gian, bạn tuyệt đối không được dùng dữ liệu của ngày mai để dự báo cho dữ liệu của ngày hôm qua."
+    },
+    {
+        "id": "C9_002",
+        "section": "C9: Generative AI & Large Language Models (LLMs)",
+        "question": "Sự khác biệt giữa Fine-tuning và Prompt Engineering là gì?",
+        "options": [
+            "Hai kỹ thuật này hoàn toàn giống hệt nhau về mặt bản chất thực thi",
+            "Tối ưu tham số so với thiết kế câu lệnh đầu vào",
+            "Prompt Engineering luôn mang lại hiệu quả tốt hơn trong mọi trường hợp",
+            "Quá trình Fine-tuning không làm thay đổi các trọng số của mô hình"
+        ],
+        "correct": 1,
+        "explanation": "Fine-tuning là huấn luyện lại mô hình trên dữ liệu mới, còn Prompt Engineering là tinh chỉnh cách đặt câu hỏi để nhận được câu trả lời tốt nhất."
+    },
+    {
+        "id": "C9_003",
+        "section": "C9: Generative AI & Large Language Models (LLMs)",
+        "question": "Khái niệm 'Hallucination' (ảo tưởng) trong LLM được dùng để chỉ?",
+        "options": [
+            "Hiện tượng mô hình xử lý các yêu cầu với tốc độ quá chậm",
+            "Hiện tượng mô hình tạo ra các thông tin sai lệch hoặc bịa đặt",
+            "Mô hình từ chối đưa ra câu trả lời cho các yêu cầu từ người dùng",
+            "Hiện tượng mô hình đưa ra câu trả lời với độ dài quá ngắn"
+        ],
+        "correct": 1,
+        "explanation": "Do bản chất là mô hình xác suất từ tiếp theo, LLM có thể bịa ra các sự kiện, con số trông rất thuyết phục nhưng không có thật."
+    },
+    {
+        "id": "C9_004",
+        "section": "C9: Generative AI & Large Language Models (LLMs)",
+        "question": "Mục đích của việc sử dụng RLHF (Học tăng cường từ phản hồi con người) là?",
+        "options": [
+            "Gia tăng tốc độ đưa ra câu trả lời của hệ thống (inference)",
+            "Điều chỉnh hành vi của mô hình theo các tiêu chuẩn con người",
+            "Giảm thiểu kích thước và dung lượng lưu trữ của mô hình ngôn ngữ",
+            "Thực hiện việc tự động tăng cường dữ liệu huấn luyện đầu vào"
+        ],
+        "correct": 1,
+        "explanation": "RLHF giúp các mô hình ngôn ngữ lớn trở nên hữu ích, trung thực và vô hại hơn đối với người dùng cuối."
+    },
+    {
+        "id": "C9_005",
+        "section": "C9: Generative AI & Large Language Models (LLMs)",
+        "question": "Kỹ thuật LoRA giúp giải quyết vấn đề gì khi huấn luyện LLM?",
+        "options": [
+            "Gia tăng độ chính xác của mô hình trên các bảng xếp hạng công khai",
+            "Kỹ thuật tối ưu hóa trọng số hiệu quả với tài nguyên thấp",
+            "Thực hiện việc cắt giảm độ dài của các dữ liệu văn bản đầu vào",
+            "Giúp loại bỏ hoàn toàn các hiện tượng ảo tưởng của mô hình ngôn ngữ"
+        ],
+        "correct": 1,
+        "explanation": "Thay vì huấn luyện lại hàng tỷ tham số, LoRA chỉ huấn luyện thêm các ma trận nhỏ, giúp tiết kiệm rất nhiều bộ nhớ và thời gian."
+    }
+]

@@ -1,0 +1,54 @@
+[
+    {
+        "id": "D1_001",
+        "section": "D1: Logic & Tư duy phản biện",
+        "question": "Lỗi ngụy biện 'Ad Hominem' (tấn công cá nhân) được hiểu là gì?",
+        "options": [
+            "Sử dụng các số liệu thống kê bị sai lệch để lập luận",
+            "Tập trung tấn công người nói thay vì phản bác lập luận",
+            "Trích dẫn ý kiến từ các chuyên gia không có thật",
+            "Đưa ra các quyết định và kết luận một cách vội vàng"
+        ],
+        "correct": 1,
+        "explanation": "Lập luận đúng hay sai phụ thuộc vào logic và bằng chứng, chứ không phụ thuộc vào địa vị hay tính cách của người đưa ra lập luận đó."
+    },
+    {
+        "id": "D1_002",
+        "section": "D1: Logic & Tư duy phản biện",
+        "question": "Khái niệm Suy luận sống sót (Survivorship bias) có nghĩa là?",
+        "options": [
+            "Một loại sai số (bias) thường gặp trong mạng nơ-ron",
+            "Chỉ tập trung vào những đối tượng đã thành công",
+            "Mất cân bằng dữ liệu giữa các lớp trong quá trình học",
+            "Sử dụng dữ liệu huấn luyện không đại diện cho thực tế"
+        ],
+        "correct": 1,
+        "explanation": "Xảy ra khi chúng ta chỉ đánh giá dựa trên những người/vật đã 'sống sót' qua một quá trình tuyển chọn mà bỏ qua những trường hợp đã thất bại."
+    },
+    {
+        "id": "D1_003",
+        "section": "D1: Logic & Tư duy phản biện",
+        "question": "Câu nói 'Correlation does not imply causation' mang ý nghĩa gì?",
+        "options": [
+            "Hai biến có tương quan thì luôn có quan hệ nhân quả",
+            "Tương quan không đồng nghĩa với quan hệ nhân quả",
+            "Tương quan là một mối quan hệ mạnh hơn là nhân quả",
+            "Khái niệm này chỉ được áp dụng cho các chuỗi thời gian"
+        ],
+        "correct": 1,
+        "explanation": "Hai sự việc xảy ra cùng lúc không có nghĩa là sự việc này gây ra sự việc kia. Có thể có một yếu tố thứ ba gây ra cả hai."
+    },
+    {
+        "id": "D1_004",
+        "section": "D1: Logic & Tư duy phản biện",
+        "question": "Bản chất của Nghịch lý Simpson (Simpson's Paradox) là gì?",
+        "options": [
+            "Một loại nghịch lý xuất hiện trong máy tính lượng tử",
+            "Xu hướng dữ liệu bị đảo ngược khi gộp các nhóm lại",
+            "Một lỗi kỹ thuật trong quá trình tính toán thống kê",
+            "Xảy ra khi giá trị trung bình luôn lớn hơn trung vị"
+        ],
+        "correct": 1,
+        "explanation": "Xảy ra khi một xu hướng xuất hiện trong các nhóm dữ liệu nhỏ nhưng lại biến mất hoặc đảo ngược khi các nhóm đó được kết hợp lại."
+    }
+]

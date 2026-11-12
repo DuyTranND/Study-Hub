@@ -1,0 +1,301 @@
+[
+  {
+    "id": "B3_001",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Cấu trúc dữ liệu Stack (Ngăn xếp) hoạt động theo nguyên lý cốt lõi nào?",
+    "options": [
+      "First-In, First-Out (FIFO)",
+      "Last-In, First-Out (LIFO)",
+      "Lựa chọn ngẫu nhiên (Random Access)",
+      "Sắp xếp theo mức độ ưu tiên (Priority)"
+    ],
+    "correct": 1,
+    "explanation": "Stack hoạt động theo cơ chế 'Vào sau ra trước', giống như việc xếp và lấy đĩa từ trên xuống."
+  },
+  {
+    "id": "B3_002",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Kí pháp Big O Notation chủ yếu được sử dụng để làm gì?",
+    "options": [
+      "Đếm chính xác tổng số dòng mã nguồn trong dự án",
+      "Đo lường thời gian chạy thực tế của chương trình",
+      "Phân tích tốc độ tăng của thời gian và bộ nhớ",
+      "Thống kê tổng số lượng bug phát sinh trong code"
+    ],
+    "correct": 2,
+    "explanation": "Big O dùng để đánh giá hiệu năng của thuật toán khi kích thước dữ liệu đầu vào (N) tiến tới vô cùng."
+  },
+  {
+    "id": "B3_003",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Độ phức tạp thời gian trung bình khi tìm kiếm trong Hash Table là?",
+    "options": [
+      "O(log N)",
+      "O(1)",
+      "O(N)",
+      "O(N^2)"
+    ],
+    "correct": 1,
+    "explanation": "Nhờ hàm băm để truy cập trực tiếp vị trí phần tử, bảng băm cho phép tra cứu cực nhanh gần như tức thì."
+  },
+  {
+    "id": "B3_004",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Ưu điểm chính của Linked List so với Array truyền thống là gì?",
+    "options": [
+      "Tốc độ tìm kiếm phần tử luôn được thực hiện nhanh hơn",
+      "Quá trình khởi tạo tốn ít dung lượng bộ nhớ RAM hơn",
+      "Các phần tử không cần nằm trên các ô nhớ liên tiếp",
+      "Kích thước của danh sách luôn cố định và không thay đổi"
+    ],
+    "correct": 2,
+    "explanation": "Linked List linh hoạt trong việc cấp phát bộ nhớ vì các node được kết nối với nhau thông qua con trỏ."
+  },
+  {
+    "id": "B3_005",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Điều kiện cần thiết để thực hiện thuật toán Binary Search là?",
+    "options": [
+      "Số lượng các phần tử trong tập dữ liệu phải là số chẵn",
+      "Dữ liệu bắt buộc phải được lưu trữ dưới dạng Linked List",
+      "Tập dữ liệu đầu vào phải được sắp xếp từ trước",
+      "Tất cả các giá trị trong tập dữ liệu phải là số dương"
+    ],
+    "correct": 2,
+    "explanation": "Tìm kiếm nhị phân dựa trên việc chia đôi khoảng tìm kiếm, điều này chỉ khả thi khi mảng đã có thứ tự."
+  },
+  {
+    "id": "B3_006",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Cấu trúc Queue (Hàng đợi) hoạt động theo nguyên lý nào?",
+    "options": [
+      "Last-In, First-Out (LIFO)",
+      "First-In, First-Out (FIFO)",
+      "Lựa chọn ngẫu nhiên (Random)",
+      "Thứ tự tùy biến theo độ ưu tiên"
+    ],
+    "correct": 1,
+    "explanation": "Queue tuân thủ thứ tự 'Vào trước ra trước', tương tự như việc xếp hàng chờ thanh toán."
+  },
+  {
+    "id": "B3_007",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Độ phức tạp của khối code gồm hai vòng lặp lồng nhau (nxn) là?",
+    "options": [
+      "O(N)",
+      "O(N log N)",
+      "O(N^2)",
+      "O(1)"
+    ],
+    "correct": 2,
+    "explanation": "Số phép toán tăng theo bình phương kích thước đầu vào. Nếu N = 10, số lần lặp sẽ là 100."
+  },
+  {
+    "id": "B3_008",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Thuật toán tìm kiếm theo chiều sâu (DFS) thường sử dụng?",
+    "options": [
+      "Hàng đợi (Queue)",
+      "Ngăn xếp (Stack) hoặc sử dụng tính đệ quy",
+      "Bảng băm (Hash Table)",
+      "Cây nhị phân (Binary Tree)"
+    ],
+    "correct": 1,
+    "explanation": "DFS đi sâu nhất có thể trên một nhánh trước khi quay lui, do đó cần Stack để ghi nhớ lộ trình."
+  },
+  {
+    "id": "B3_009",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Thành phần quan trọng nhất để chia mảng trong thuật toán Quick Sort?",
+    "options": [
+      "Sử dụng một Nút gốc (Root)",
+      "Điểm chốt xoay (Pivot)",
+      "Sử dụng bảng băm trung gian",
+      "Xác định độ sâu của cây"
+    ],
+    "correct": 1,
+    "explanation": "Quick Sort chọn một phần tử làm Pivot và phân loại các phần tử khác xung quanh nó."
+  },
+  {
+    "id": "B3_010",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Phép duyệt In-order trên cây nhị phân tìm kiếm (BST) trả về?",
+    "options": [
+      "Một danh sách các phần tử có thứ tự ngẫu nhiên",
+      "Danh sách các nút theo thứ tự tăng dần",
+      "Nút có giá trị lớn nhất nằm ở ngay vị trí đầu tiên",
+      "Nút gốc của cây luôn luôn được in ra đầu tiên"
+    ],
+    "correct": 1,
+    "explanation": "Duyệt theo thứ tự 'Trái - Gốc - Phải' trên BST sẽ thu được dãy số đã được sắp xếp tăng dần."
+  },
+  {
+    "id": "B3_011",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Lợi ích của kỹ thuật Memoization trong Quy hoạch động là gì?",
+    "options": [
+      "Tăng tốc độ bằng cách tránh lặp lại các bài toán con",
+      "Giúp giải phóng đáng kể dung lượng bộ nhớ RAM",
+      "Ngăn chặn hoàn toàn hiện tượng tràn ngăn xếp đệ quy",
+      "Chuyển đổi dữ liệu mảng thành dạng danh sách liên kết"
+    ],
+    "correct": 0,
+    "explanation": "Memoization lưu kết quả của các bài toán con đã giải để tái sử dụng, giúp giảm độ phức tạp từ mũ xuống tuyến tính."
+  },
+  {
+    "id": "B3_012",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Hạn chế lớn nhất của thuật toán tham lam (Greedy) là gì?",
+    "options": [
+      "Tốc độ thực thi rất chậm khi dữ liệu đầu vào lớn",
+      "Chương trình rất dễ rơi vào vòng lặp vô hạn",
+      "Chỉ chọn tối ưu cục bộ, có thể bỏ lỡ tối ưu toàn cục",
+      "Đòi hỏi cấu hình máy tính có dung lượng bộ nhớ cao"
+    ],
+    "correct": 2,
+    "explanation": "Greedy đưa ra quyết định tốt nhất tại mỗi bước mà không tính đến tác động lâu dài đến kết quả cuối cùng."
+  },
+  {
+    "id": "B3_013",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Đặc điểm của kỹ thuật 'Hai con trỏ' (Two Pointers) là gì?",
+    "options": [
+      "Hai con trỏ luôn dịch chuyển cùng chiều ở giữa mảng",
+      "Sử dụng hai biến trỏ dịch chuyển theo các hướng khác nhau",
+      "Hai con trỏ sẽ được gán các vị trí hoàn toàn ngẫu nhiên",
+      "Sử dụng hai con trỏ trỏ vào hai mảng dữ liệu riêng biệt"
+    ],
+    "correct": 1,
+    "explanation": "Kỹ thuật này giúp tối ưu hóa việc duyệt mảng, thường dùng để tìm cặp số có tổng cho trước trong mảng đã sắp xếp."
+  },
+  {
+    "id": "B3_014",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Trường hợp xấu nhất của tìm kiếm trên BST xảy ra khi nào?",
+    "options": [
+      "Cây bị lệch hoàn toàn về một phía (Skewed Tree)",
+      "Cây được xây dựng cân bằng một cách hoàn hảo",
+      "Cây nhị phân không chứa bất kỳ một nhánh trái nào",
+      "Không bao giờ có trường hợp độ phức tạp đạt mức O(n)"
+    ],
+    "correct": 0,
+    "explanation": "Khi cây bị lệch, nó trở thành một danh sách liên kết, làm mất đi lợi thế tìm kiếm logarit của cây nhị phân."
+  },
+  {
+    "id": "B3_015",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Cấu trúc dữ liệu Trie thường được ứng dụng cho bài toán nào?",
+    "options": [
+      "Thực hiện nhân các ma trận dữ liệu có kích thước lớn",
+      "Tìm kiếm lộ trình ngắn nhất trên các sơ đồ đồ thị",
+      "Tìm kiếm và gợi ý từ khóa tự động (Auto-complete)",
+      "Thực hiện sắp xếp các dữ liệu kiểu số với tốc độ cao"
+    ],
+    "correct": 2,
+    "explanation": "Trie (Cây tiền tố) cực kỳ hiệu quả trong việc tìm kiếm và quản lý tập hợp các chuỗi văn bản."
+  },
+  {
+    "id": "B3_016",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Thuật toán tìm kiếm theo chiều rộng (BFS) sử dụng cấu trúc nào?",
+    "options": [
+      "Ngăn xếp (Stack)",
+      "Hàng đợi (Queue)",
+      "Mảng một chiều (Array)",
+      "Bảng từ điển (Dictionary)"
+    ],
+    "correct": 1,
+    "explanation": "BFS sử dụng hàng đợi để duyệt qua toàn bộ các nút láng giềng trước khi tiến sâu vào các lớp tiếp theo."
+  },
+  {
+    "id": "B3_017",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Độ phức tạp O(N log N) là giới hạn của các thuật toán nào?",
+    "options": [
+      "Các thuật toán tìm kiếm phần tử trong mảng",
+      "Các thuật toán sắp xếp dựa trên phép so sánh",
+      "Các phép toán cộng hai ma trận toán học",
+      "Tính toán các số trong dãy Fibonacci"
+    ],
+    "correct": 1,
+    "explanation": "Đây là giới hạn dưới về mặt toán học cho tốc độ của các thuật toán sắp xếp như Merge Sort hay Quick Sort."
+  },
+  {
+    "id": "B3_018",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Cấu trúc Min-Heap thường được dùng để hiện thực hóa?",
+    "options": [
+      "Hàng đợi ưu tiên (Priority Queue)",
+      "Danh sách liên kết (Linked List)",
+      "Ngăn xếp dữ liệu (Stack)",
+      "Các đồ thị có nhiều liên kết (Graph)"
+    ],
+    "correct": 0,
+    "explanation": "Heap giúp truy xuất phần tử nhỏ nhất hoặc lớn nhất một cách cực kỳ nhanh chóng (O(1))."
+  },
+  {
+    "id": "B3_019",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Cấu trúc dữ liệu B-Tree thường được sử dụng nhiều nhất để?",
+    "options": [
+      "Đánh chỉ mục trong hệ quản trị cơ sở dữ liệu (RDBMS)",
+      "Thực hiện phân tích dữ liệu bằng thuật toán K-Means",
+      "Xây dựng và hiển thị các đồ họa không gian ba chiều",
+      "Xây dựng lõi của các engine trò chơi hiện đại"
+    ],
+    "correct": 0,
+    "explanation": "B-Tree tối ưu hóa số lượng phép đọc/ghi từ ổ cứng, do đó rất quan trọng trong việc xây dựng database index."
+  },
+  {
+    "id": "B3_020",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Điều kiện quan trọng nhất để hàm đệ quy không bị lỗi là?",
+    "options": [
+      "Hàm không được phép nhận về bất kỳ tham số đầu vào nào",
+      "Phải khai báo kiểu kết quả trả về là kiểu rỗng (void)",
+      "Phải có ít nhất một điều kiện dừng (base case)",
+      "Hệ thống yêu cầu gọi lại chính hàm đó ít nhất 100 lần"
+    ],
+    "correct": 2,
+    "explanation": "Nếu không có điều kiện dừng, hàm sẽ gọi đệ quy vô tận và gây ra lỗi tràn bộ nhớ ngăn xếp (Stack Overflow)."
+  },
+  {
+    "id": "B3_021",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Độ phức tạp của hai vòng lặp lồng nhau cùng duyệt N lần là?",
+    "options": [
+      "O(n²)",
+      "O(n)",
+      "O(n log n)",
+      "O(2n)"
+    ],
+    "correct": 0,
+    "explanation": "Tổng số phép toán tỷ lệ thuận với bình phương kích thước N."
+  },
+  {
+    "id": "B3_022",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Số lần so sánh tối đa của Binary Search trên 1024 phần tử?",
+    "options": [
+      "10",
+      "1024",
+      "512",
+      "100"
+    ],
+    "correct": 0,
+    "explanation": "Số phép tính tối đa tương ứng với log2(1024) = 10 lần chia đôi mảng."
+  },
+  {
+    "id": "B3_023",
+    "section": "B3: Cấu trúc dữ liệu & Thuật toán",
+    "question": "Dãy: push(5), push(3), pop(), push(2). Trạng thái Stack?",
+    "options": [
+      "[5, 2]",
+      "[5, 3]",
+      "[3, 2]",
+      "[5, 3, 2]"
+    ],
+    "correct": 0,
+    "explanation": "Sau push(5,3) stack là [5, *3]. Pop() lấy 3 ra. Sau đó push(2) thêm vào sau 5."
+  }
+]

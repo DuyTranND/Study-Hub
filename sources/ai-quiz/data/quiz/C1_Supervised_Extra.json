@@ -1,0 +1,106 @@
+[
+    {
+        "id": "C1_013",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Kỹ thuật Regularization (như L1 Lasso và L2 Ridge) giúp ích gì?",
+        "options": [
+            "Tăng số lượng các đặc trưng đầu vào cho mô hình",
+            "Thêm thành phần phạt vào hàm mất mát để giảm quá khớp",
+            "Tự động tăng cường tốc độ học sau mỗi vòng lặp",
+            "Thực hiện việc xóa bỏ các giá trị ngoại lai trong dữ liệu"
+        ],
+        "correct": 1,
+        "explanation": "Regularization giới hạn độ lớn của các trọng số, ngăn không cho mô hình quá phức tạp và nhạy cảm với nhiễu."
+    },
+    {
+        "id": "C1_014",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Việc thực hiện Feature Scaling là cần thiết khi nào?",
+        "options": [
+            "Kỹ thuật này hoàn toàn không cần thiết trong học máy",
+            "Khi sử dụng các thuật toán nhạy cảm với biên độ dữ liệu",
+            "Chỉ khi tập dữ liệu xuất hiện các giá trị bị thiếu (NaN)",
+            "Chỉ áp dụng dành riêng cho các bài toán hồi quy tuyến tính"
+        ],
+        "correct": 1,
+        "explanation": "Các thuật toán như KNN hay SVM dựa trên khoảng cách, nên các feature có tầm giá trị lớn sẽ áp đảo kết quả nếu không được chuẩn hóa."
+    },
+    {
+        "id": "C1_015",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Bản chất của kỹ thuật Ensemble Learning là gì?",
+        "options": [
+            "Sử dụng duy nhất một mô hình có kích thước cực lớn",
+            "Kết hợp nhiều mô hình yếu để tạo ra một mô hình mạnh mẽ",
+            "Kỹ thuật này chỉ được áp dụng cho bài toán phân loại",
+            "Thực hiện các kỹ thuật xử lý đặc trưng một cách tự động"
+        ],
+        "correct": 1,
+        "explanation": "Dựa trên triết lý 'trí tuệ đám đông', việc kết hợp nhiều dự đoán thường cho kết quả ổn định và chính xác hơn một mô hình đơn lẻ."
+    },
+    {
+        "id": "C1_016",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Mục đích của phương pháp Khuỷu tay (Elbow Method) là dùng để?",
+        "options": [
+            "Tăng tốc độ cho quá trình huấn luyện của mô hình",
+            "Xác định số lượng cụm (K) tối ưu cho thuật toán K-Means",
+            "Thực hiện loại bỏ các điểm dữ liệu ngoại lai khỏi tập hợp",
+            "Lựa chọn ra các đặc trưng quan trọng nhất của dữ liệu"
+        ],
+        "correct": 1,
+        "explanation": "Chúng ta tìm điểm mà tại đó việc tăng thêm số cụm không còn giúp giảm đáng kể tổng bình phương khoảng cách trong cụm (inertia)."
+    },
+    {
+        "id": "C1_017",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Quá trình Hyperparameter tuning được hiểu là?",
+        "options": [
+            "Mô hình sẽ tự động thực hiện việc học các tham số này",
+            "Tìm kiếm bộ tham số tối ưu thông qua các phương pháp tìm kiếm",
+            "Thực hiện thay đổi các giá trị của các đặc trưng đầu vào",
+            "Tăng cường kích thước của tập dữ liệu huấn luyện hiện có"
+        ],
+        "correct": 1,
+        "explanation": "Khác với tham số (weights) được học từ dữ liệu, siêu tham số (như learning rate) cần được người lập trình thiết lập và tối ưu thủ công."
+    },
+    {
+        "id": "C1_018",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Phân cụm phân cấp (Hierarchical Clustering) khác K-Means ở điểm nào?",
+        "options": [
+            "Hai phương pháp này hoàn toàn giống hệt nhau về bản chất",
+            "Tạo ra cấu trúc phân cấp dạng cây thay vì số cụm cố định",
+            "Thuật toán K-Means luôn mang lại kết quả chính xác hơn",
+            "Chỉ có thể áp dụng hiệu quả cho dữ liệu trong không gian 2D"
+        ],
+        "correct": 1,
+        "explanation": "Phân cụm phân cấp cho phép bạn quan sát mối quan hệ giữa các cụm ở nhiều mức độ khác nhau thông qua sơ đồ Dendrogram."
+    },
+    {
+        "id": "C1_019",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Kỹ thuật One-Hot Encoding thường dùng để biến đổi loại đặc trưng nào?",
+        "options": [
+            "Các đặc trưng dữ liệu đầu vào dưới dạng số học (Numerical)",
+            "Chuyển đổi các đặc trưng danh mục sang dạng nhị phân",
+            "Các đặc trưng dữ liệu dưới dạng văn bản thuần túy",
+            "Các tập hợp dữ liệu hình ảnh có kích thước lớn"
+        ],
+        "correct": 1,
+        "explanation": "Giúp chuyển đổi các giá trị chữ (như Màu sắc) thành các cột số 0 và 1 để máy tính có thể thực hiện các phép toán đại số."
+    },
+    {
+        "id": "C1_020",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Học bán giám sát (Semi-supervised Learning) là sự kết hợp giữa?",
+        "options": [
+            "Học có giám sát và kỹ thuật học tăng cường (Reinforcement)",
+            "Sử dụng kết hợp giữa dữ liệu có nhãn và không có nhãn",
+            "Sử dụng hoàn toàn các dữ liệu được sinh ra một cách nhân tạo",
+            "Kết hợp giữa học có giám sát và các thuật toán phân nhóm"
+        ],
+        "correct": 1,
+        "explanation": "Phương pháp này tận dụng lượng lớn dữ liệu không nhãn (vốn dễ thu thập) để hỗ trợ quá trình học từ lượng ít dữ liệu có nhãn."
+    }
+]

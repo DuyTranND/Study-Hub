@@ -1,0 +1,14 @@
+node_modules/
+.env
+.env.*
+!.env.example
+**/.git/
+**/_backups/
+**/work/
+*.log
+*.tgz
+*.zip
+.DS_Store
+Thumbs.db
+_qa/*
+!_qa/*.cjs

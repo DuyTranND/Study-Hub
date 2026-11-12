@@ -1,0 +1,379 @@
+[
+  {
+    "id": "A5_001",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Mean và Median khác biệt thế nào khi có giá trị ngoại lai (outlier)?",
+    "options": [
+      "Mean nhạy cảm với outlier hơn Median",
+      "Median nhạy cảm với outlier hơn Mean",
+      "Cả hai đều nhạy cảm như nhau đối với outlier",
+      "Cả hai đều hoàn toàn không bị ảnh hưởng bởi outlier"
+    ],
+    "correct": 0,
+    "explanation": "Median là giá trị ở giữa hàng, không bị ảnh hưởng bởi các con số cực cực lớn/nhỏ. Mean tính tổng tất cả nên bị các outlier 'kéo' đi rất mạnh."
+  },
+  {
+    "id": "A5_002",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "P-value trong kiểm định giả thuyết (Hypothesis testing) có ý nghĩa gì?",
+    "options": [
+      "Xác suất để giả thuyết null (H0) chắc chắn là đúng",
+      "Xác suất thấy kết quả này nếu giả thuyết Null là đúng",
+      "Xác suất giả thuyết đối (H1) chắc chắn bị sai",
+      "Toàn bộ tỷ lệ lỗi hiện có của mô hình phân loại"
+    ],
+    "correct": 1,
+    "explanation": "P-value thấp cho biết dữ liệu quan sát được rất khó có thể là do ngẫu nhiên, giúp ta có cơ sở để bác bỏ giả thuyết Null."
+  },
+  {
+    "id": "A5_003",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Lỗi loại 1 (Type I error) trong thống kê được hiểu là?",
+    "options": [
+      "Chấp nhận H0 trong khi thực tế giả thuyết đó sai",
+      "Bác bỏ H0 trong khi thực tế giả thuyết đó đúng",
+      "Lựa chọn sai kích thước mẫu dữ liệu ban đầu",
+      "Tính toán sai lệch giá trị p-value quan trọng"
+    ],
+    "correct": 1,
+    "explanation": "Lỗi loại 1 giống như một báo động giả: Kết luận có sự khác biệt (có bệnh, có hiệu ứng) trong khi thực tế không có gì xảy ra."
+  },
+  {
+    "id": "A5_004",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Mức ý nghĩa α phổ biến nhất trong nghiên cứu thực tế là bao nhiêu?",
+    "options": [
+      "0.50",
+      "0.05",
+      "0.99",
+      "1.00"
+    ],
+    "correct": 1,
+    "explanation": "Mức 0.05 nghĩa là ta chấp nhận rủi ro 5% kết luận sai (Lỗi loại 1) để đổi lấy sự khắt khe vừa đủ trong kiểm định khoa học."
+  },
+  {
+    "id": "A5_005",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Khoảng tin cậy 95% (95% Confidence Interval) được hiểu đúng là gì?",
+    "options": [
+      "95% xác suất Mean thực sự nằm trong khoảng này",
+      "95% các khoảng tin cậy sẽ chứa Mean thực sự",
+      "Khoảng này chứa đúng 95% dữ liệu của toàn quần thể",
+      "Khoảng chứa 95% các giá trị trung bình mẫu tính được"
+    ],
+    "correct": 1,
+    "explanation": "Đây là khái niệm về độ tin cậy của phương pháp: Nếu lặp lại thí nghiệm nhiều lần, 95% số lần cái khoảng ta tính được sẽ bao trùm đúng giá trị thực."
+  },
+  {
+    "id": "A5_006",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Trong A/B testing, Giả thuyết Null (H0) thường khẳng định điều gì?",
+    "options": [
+      "Phiên bản B chắc chắn tốt hơn phiên bản A ban đầu",
+      "Phiên bản A luôn luôn hoạt động ổn định và tốt nhất",
+      "Không có sự khác biệt giữa hai phiên bản A và B",
+      "Doanh thu tổng quát sẽ gia tăng mạnh sau khi đổi mới"
+    ],
+    "correct": 2,
+    "explanation": "Null (Vô hiệu) cho rằng mọi sự thay đổi bạn quan sát được chỉ là do ngẫu nhiên, không phải do thay đổi thiết kế thực tế."
+  },
+  {
+    "id": "A5_007",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Khi nào ta nên sử dụng T-test thay vì sử dụng Z-test?",
+    "options": [
+      "Khi kích thước mẫu cực lớn và đã biết độ lệch chuẩn",
+      "Khi ta muốn thực hiện so sánh đồng thời nhiều hơn 3 nhóm",
+      "Khi mẫu lớn và dữ liệu tuân theo phân phối chuẩn hoàn hảo",
+      "Khi mẫu nhỏ và chưa biết độ lệch chuẩn quần thể"
+    ],
+    "correct": 3,
+    "explanation": "Phân phối T có đuôi dày hơn Z, giúp bù đắp sự không chắc chắn khi ước lượng độ lệch chuẩn từ một tập dữ liệu ít quan sát."
+  },
+  {
+    "id": "A5_008",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Phương sai (Variance) mô tả đặc tính nào của tập dữ liệu?",
+    "options": [
+      "Sự chênh lệch giữa giá trị cực đại và giá trị cực tiểu",
+      "Toàn bộ các lỗi hệ thống của mô hình dự báo tương lai",
+      "Tổng tất cả các bình phương của các số hạng dữ liệu",
+      "Trung bình bình phương các khoảng cách tới Mean"
+    ],
+    "correct": 3,
+    "explanation": "Phương sai cho biết các điểm dữ liệu tụ sát hay phân tán rộng quanh giá trị trung tâm Mean."
+  },
+  {
+    "id": "A5_009",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Tại sao công thức Sample Variance thường chia cho (n - 1) thay vì n?",
+    "options": [
+      "Để công thức toán học trông gọn gàng và dễ nhớ hơn",
+      "Vì số lượng mẫu thử n luôn luôn phải là một số lẻ",
+      "Để ước lượng phương sai không chệch (unbiased)",
+      "Đây là một lỗi in ấn phổ biến trong các giáo trình cũ"
+    ],
+    "correct": 2,
+    "explanation": "Chia cho (n-1) giúp hiệu chỉnh thiên kiến, vì Sample Mean có xu hướng 'bám sát' các điểm dữ liệu mẫu hơn là Mean thật của quần thể."
+  },
+  {
+    "id": "A5_010",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Trong biểu đồ Box Plot, đường kẻ giữa hộp đại diện cho giá trị nào?",
+    "options": [
+      "Giá trị ngoại lai Outlier",
+      "Trung bình cộng của dữ liệu",
+      "Giá trị trung vị Median",
+      "Khoảng cách tứ phân vị IQR"
+    ],
+    "correct": 2,
+    "explanation": "Đường này chia tập dữ liệu thành hai phần có số lượng quan sát bằng nhau (Q2)."
+  },
+  {
+    "id": "A5_011",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Lỗi loại 2 (Type II error / β) là hiện tượng gì?",
+    "options": [
+      "Thực hiện đặt tên biến bị sai lệch trong lúc lập trình",
+      "Hành động bác bỏ sai một giả thuyết Null đang đúng",
+      "Không phát hiện được sự khác biệt dù nó thực sự tồn tại",
+      "Gây ra lỗi tràn bộ nhớ khi tính toán các số thập phân"
+    ],
+    "correct": 2,
+    "explanation": "Lỗi loại 2 là 'bỏ lọt': Có sự thay đổi thực tế nhưng model/kiểm định không đủ nhạy để nhận diện được."
+  },
+  {
+    "id": "A5_012",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Sức mạnh thống kê (Statistical Power) đại diện cho điều gì?",
+    "options": [
+      "Khả năng dự đoán các lỗi sai của mô hình trong tương lai",
+      "Toàn bộ tài chính dùng cho quá trình Testing sản phẩm",
+      "Xác suất phát hiện đúng sự khác biệt tồn tại",
+      "Xác suất tính toán sai lệch giá trị p-value mục tiêu"
+    ],
+    "correct": 2,
+    "explanation": "Power = 1 - β. Power càng cao thì khả năng bốc trần giả thuyết Null sai để tìm ra sự thật (H1) càng lớn."
+  },
+  {
+    "id": "A5_013",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Khi nào ta nên sử dụng ANOVA thay vì thực hiện nhiều phép T-Test?",
+    "options": [
+      "Khi muốn tính toán phương sai lặp lại liên tục nhiều lần",
+      "Khi so sánh trung bình của từ 3 nhóm trở lên",
+      "Khi ta không chắc chắn dữ liệu đầu vào là phân phối chuẩn",
+      "Dùng trong xử lý các mảng dữ liệu ảnh bị mờ hoặc nhiễu"
+    ],
+    "correct": 1,
+    "explanation": "Sử dụng nhiều T-test liên tiếp sẽ làm tăng nguy cơ gặp sai số Lỗi loại 1. ANOVA giúp kiểm định gộp tất cả các nhóm chỉ với một mức alpha duy nhất."
+  },
+  {
+    "id": "A5_014",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Nghịch lý Simpson (Simpson's Paradox) mô tả hiện tượng gì?",
+    "options": [
+      "Sự biến thiên đột ngột trên cùng một tập tin dữ liệu",
+      "Giá trị trung vị lớn hơn nhiều so với giá trị trung bình",
+      "Số dương biến thành số âm một cách vô cùng bí ẩn",
+      "Xu hướng ở các nhóm bị đảo ngược khi gộp chung lại"
+    ],
+    "correct": 3,
+    "explanation": "Hiện tượng này cảnh báo việc kết luận dựa trên số liệu tổng hợp mà không xem xét các yếu tố tác động tiềm ẩn trong từng phân đoạn dữ liệu."
+  },
+  {
+    "id": "A5_015",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Mối tương quan (Correlation) KHÔNG bao hàm điều gì sau đây?",
+    "options": [
+      "Mức độ kết nối tuyến tính giữa hai biến số khác nhau",
+      "Sự dao động đồng thời của hai tập hợp dữ liệu bất kỳ",
+      "Tính chất dịch chuyển ngược hướng của hai biến với nhau",
+      "Quan hệ nhân quả (Causation) giữa hai đại lượng"
+    ],
+    "correct": 3,
+    "explanation": "Hai sự kiện có thể tăng giảm cùng nhau nhưng chưa chắc cái này đã là nguyên nhân sinh ra cái kia. Có thể có một nguyên nhân thứ ba tác động lên cả hai."
+  },
+  {
+    "id": "A5_016",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Khoảng tứ phân vị IQR được tính toán thông qua công thức nào?",
+    "options": [
+      "Lấy giá trị lớn nhất trừ đi giá trị nhỏ nhất trong dãy",
+      "Hiệu số giữa phân vị thứ 4 và phân vị thứ 2 trong tập",
+      "Hiệu số giữa phân vị thứ 3 (Q3) và phân vị thứ 1 (Q1)",
+      "Lấy giá trị yếu vị Mode nhân với hệ số điều chỉnh 1.5"
+    ],
+    "correct": 2,
+    "explanation": "IQR đo độ phân tán của 50% dữ liệu ở phần trung tâm. Đây là công cụ hữu ích để xác định các giá trị ngoại lai (outliers)."
+  },
+  {
+    "id": "A5_017",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Mục tiêu quan trọng nhất của A/B Testing trong kinh doanh là gì?",
+    "options": [
+      "Thiết lập các giao thức máy chủ dự phòng để tránh lỗi",
+      "Thực hiện huấn luyện model với nhiều hàm gradient khác nhau",
+      "Kiểm định xem thay đổi có thực sự mang lại cải thiện hay không",
+      "Hiển thị ngẫu nhiên các lỗi tính năng để kiểm tra hệ thống"
+    ],
+    "correct": 2,
+    "explanation": "A/B test dùng bằng chứng thống kê để xác nhận xem một thay đổi (như màu nút bấm) có thực sự tăng conversion hay chỉ là may rủi ngẫu nhiên."
+  },
+  {
+    "id": "A5_018",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Hiện tượng biến ẩn nhiễu (Confounding Variable) nghĩa là gì?",
+    "options": [
+      "Sử dụng các bảng biến đổi dummy cho dữ liệu phân loại",
+      "Tạo tương quan giả do ảnh hưởng từ một biến thứ ba",
+      "Gây ra lỗi chia cho số 0 trong các phép tính toán ma trận",
+      "Xảy ra lỗi do nhập thiếu thông tin vào mô hình trí tuệ nhân tạo"
+    ],
+    "correct": 1,
+    "explanation": "Ví dụ: Ăn kem và đuối nước có tương quan cao, nhưng nguyên nhân thực sự là 'thời tiết nóng' tác động đến cả hai hành vi này."
+  },
+  {
+    "id": "A5_019",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Ước lượng không thiên lệch (Unbiased Estimator) có đặc điểm?",
+    "options": [
+      "Giá trị ước lượng luôn trùng khớp với giá trị của quần thể",
+      "Áp dụng cho các bộ dữ liệu đã được xử lý về mặt định kiến",
+      "Kỳ vọng của ước lượng bằng đúng giá trị của quần thể",
+      "Công thức tính không được chứa bất kỳ hàm điều kiện nào"
+    ],
+    "correct": 2,
+    "explanation": "Nghĩa là trung bình của các ước lượng từ vô số mẫu sẽ hội tụ chính xác về giá trị thực của toàn bộ quần thể."
+  },
+  {
+    "id": "A5_020",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Dữ liệu thứ bậc (Ordinal Data) khác dữ liệu định danh ở chỗ?",
+    "options": [
+      "Nó không thể đại diện bằng các con số thực trong thực tế",
+      "Nó có thứ tự hoặc phân cấp hạng mục một cách rõ ràng",
+      "Mọi người dùng đều phải trả các mức phí dịch vụ như nhau",
+      "Việc lấy dữ liệu được thực hiện ngẫu nhiên giữa các hạng"
+    ],
+    "correct": 1,
+    "explanation": "Ví dụ: 'Hài lòng, Bình thường, Không hài lòng' là Ordinal vì có cấp độ. 'Tên thành phố' là Nominal vì các thành phố không có thứ tự cao thấp tự nhiên."
+  },
+  {
+    "id": "A5_021",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Hệ số xác định R-squared trong hồi quy tuyến tính nói lên gì?",
+    "options": [
+      "Sai số tối thiểu MSE của đường thẳng hồi quy tìm được",
+      "Sự ảnh hưởng của số lượng quan sát n đến độ chính xác",
+      "Tỷ lệ phương sai của biến Y được giải thích bởi biến X",
+      "Cách chuyển đổi từ mô hình tuyến tính sang mô hình logistic"
+    ],
+    "correct": 2,
+    "explanation": "R² cho biết bộ tính năng (features) bạn đang dùng 'giải mã' được bao nhiêu phần trăm sự biến động của mục tiêu dự báo."
+  },
+  {
+    "id": "A5_022",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Kiểm định Chi-Square (X²) thường dùng để kiểm định gì?",
+    "options": [
+      "Kiểm định độc lập giữa các biến phân loại (categorical)",
+      "Mối liên hệ giữa chỉ số thời gian và tham số nhiệt độ môi trường",
+      "Sự phân hóa của các biến số dạng liên tục trong tập dữ liệu",
+      "Mối tương quan giữa hình ảnh và văn bản trong mô hình AI"
+    ],
+    "correct": 0,
+    "explanation": "Ví dụ: Kiểm tra xem thói quen uống trà/cà phê có phụ thuộc vào giới tính hay không dựa trên bảng tần suất đếm được."
+  },
+  {
+    "id": "A5_023",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Kỹ thuật Bootstrapping trong thống kê có mục đích là gì?",
+    "options": [
+      "Thực hiện làm sạch toàn bộ các cột dữ liệu bị thiếu giá trị",
+      "Khởi động lại các hệ thống máy chủ trước khi xử lý tập dữ liệu",
+      "Dùng để giải các bài toán T-test cho các phân phối phi chuẩn",
+      "Lấy mẫu lại có hoàn lại để ước lượng các tham số"
+    ],
+    "correct": 3,
+    "explanation": "Bootstrapping cho phép ước lượng sai số chuẩn và khoảng tin cậy của bất kỳ thống kê nào mà không cần biết phân phối lý thuyết của nó."
+  },
+  {
+    "id": "A5_024",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Giá trị yếu vị (Mode) trong một tập dữ liệu nghĩa là gì?",
+    "options": [
+      "Cấp độ cao nhất của quá trình tính toán Gradient mô hình",
+      "Giá trị nằm chính xác ở vị trí trung tâm của dãy số đã sắp",
+      "Điểm số trung bình tích lũy của toàn bộ quần thể dữ liệu",
+      "Giá trị xuất hiện với tần suất cao nhất trong tập dữ liệu"
+    ],
+    "correct": 3,
+    "explanation": "Một tập dữ liệu có thể có một mode (unimodal), nhiều mode (multimodal) hoặc không có mode nào."
+  },
+  {
+    "id": "A5_025",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Hành vi P-hacking (Data Dredging) trong thống kê nghĩa là?",
+    "options": [
+      "Sử dụng các công cụ tấn công để truy cập vào máy chủ dữ liệu",
+      "Trộm cắp mã nguồn của các model AI thông qua các cổng API",
+      "Thử nghiệm nhiều lần đến khi có kết quả p < 0.05 và chỉ báo cáo nó",
+      "Hành động xóa bỏ dữ liệu của các file bị nhiễm virus hệ thống"
+    ],
+    "correct": 2,
+    "explanation": "Đây là hành vi thiếu trung thực, dẫn đến các phát hiện khoa học không thể lặp lại được vì kết quả thu được chỉ là do may mắn ngẫu nhiên."
+  },
+  {
+    "id": "A5_026",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Tính Mean của tập dữ liệu: [2, 4, 4, 4, 5, 5, 7, 9]?",
+    "options": [
+      "5.0",
+      "4.5",
+      "5.5",
+      "4.0"
+    ],
+    "correct": 0,
+    "explanation": "Tổng = 40. Số lượng n = 8. Trung bình = 40 / 8 = 5."
+  },
+  {
+    "id": "A5_027",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Tính Median của tập dữ liệu: [2, 4, 4, 4, 5, 5, 7, 9]?",
+    "options": [
+      "4.5",
+      "5.0",
+      "4.0",
+      "5.5"
+    ],
+    "correct": 0,
+    "explanation": "Dãy đã sắp xếp. Hai số ở giữa là 4 và 5. Trung vị = (4 + 5) / 2 = 4.5."
+  },
+  {
+    "id": "A5_028",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Tính Mode của tập dữ liệu: [2, 4, 4, 4, 5, 5, 7, 9]?",
+    "options": [
+      "4",
+      "5",
+      "4.5",
+      "9"
+    ],
+    "correct": 0,
+    "explanation": "Giá trị 4 xuất hiện 3 lần (nhiều hơn tất cả các giá trị khác)."
+  },
+  {
+    "id": "A5_029",
+    "section": "A5: Thống kê mô tả & suy luận",
+    "question": "Tính phương sai quần thể của tập: [10, 12, 14, 16, 18]?",
+    "options": [
+      "8",
+      "10",
+      "4",
+      "16"
+    ],
+    "correct": 0,
+    "explanation": "Mean = 14. Các độ lệch: -4, -2, 0, 2, 4. Bình phương: 16, 4, 0, 4, 16. Tổng = 40. Phương sai = 40 / 5 = 8."
+  }
+]

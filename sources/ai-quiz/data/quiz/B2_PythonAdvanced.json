@@ -1,0 +1,327 @@
+[
+    {
+        "id": "B2_001",
+        "section": "B2: Python nâng cao",
+        "question": "Điểm khác biệt quan trọng nhất giữa Generator và List Comprehension là gì?",
+        "options": [
+            "Generator có tốc độ tính toán nhanh hơn gấp hàng trăm lần",
+            "Generator tạo phần tử theo cơ chế lazy để tiết kiệm bộ nhớ RAM",
+            "Generator chỉ có thể sử dụng được với các dữ liệu kiểu số",
+            "Generator không có khả năng thực hiện duyệt qua bằng vòng lặp"
+        ],
+        "correct": 1,
+        "explanation": "Generator không lưu trữ toàn bộ dữ liệu vào RAM mà chỉ tính toán giá trị tiếp theo khi được yêu cầu."
+    },
+    {
+        "id": "B2_002",
+        "section": "B2: Python nâng cao",
+        "question": "Từ khóa yield trong Python có tác dụng biến một hàm thông thường thành?",
+        "options": [
+            "Một hàm chạy ở chế độ bất đồng bộ (async function)",
+            "Generator function giúp hàm có thể tạm dừng và tiếp tục",
+            "Một hàm có khả năng thực hiện các thuật toán đệ quy phức tạp",
+            "Một phương thức thuộc lớp đối tượng (class method)"
+        ],
+        "correct": 1,
+        "explanation": "Khác với return, yield trả về một giá trị và lưu lại trạng thái của hàm để có thể tiếp tục chạy từ vị trí đó ở lần gọi sau."
+    },
+    {
+        "id": "B2_003",
+        "section": "B2: Python nâng cao",
+        "question": "Mục đích chính của việc sử dụng Context Manager (with statement) là gì?",
+        "options": [
+            "Cho phép tạo ra một luồng (thread) xử lý dữ liệu mới",
+            "Đảm bảo tự động giải phóng tài nguyên hệ thống sau khi sử dụng",
+            "Tự động thực hiện việc import các module từ thư viện ngoài",
+            "Thiết lập một môi trường thực thi ảo (virtual environment)"
+        ],
+        "correct": 1,
+        "explanation": "with giúp quản lý tài nguyên như file hoặc kết nối database một cách an toàn, ngay cả khi chương trình xảy ra lỗi."
+    },
+    {
+        "id": "B2_004",
+        "section": "B2: Python nâng cao",
+        "question": "Khái niệm Metaclass trong Python được hiểu như thế nào?",
+        "options": [
+            "Là một loại decorator đặc biệt dành cho các lớp đối tượng",
+            "Điều khiển cách thức các lớp (classes) được tạo ra",
+            "Một module chuyên dụng cho việc nhập dữ liệu từ các nguồn khác",
+            "Là lớp cơ sở trừa tượng dùng để định nghĩa các interface"
+        ],
+        "correct": 1,
+        "explanation": "Metaclass là 'lớp của các lớp'. Trong Python, type chính là metaclass mặc định dùng để tạo ra mọi class khác."
+    },
+    {
+        "id": "B2_005",
+        "section": "B2: Python nâng cao",
+        "question": "Decorator @property được sử dụng với mục đích chính là gì?",
+        "options": [
+            "Dùng để tạo ra các biến tĩnh (static variables) trong lớp",
+            "Truy cập các phương thức dưới dạng thuộc tính (attributes)",
+            "Thực hiện khóa các thuộc tính không cho phép thay đổi giá trị",
+            "Tạo ra các phương thức dùng chung cho toàn bộ lớp đối tượng"
+        ],
+        "correct": 1,
+        "explanation": "Property giúp bao bọc các phương thức getter/setter, khiến việc truy cập dữ liệu trở nên tự nhiên hơn dưới dạng thuộc tính."
+    },
+    {
+        "id": "B2_006",
+        "section": "B2: Python nâng cao",
+        "question": "Bản chất của khái niệm Closure trong Python là gì?",
+        "options": [
+            "Hàm cho phép ghi nhớ các biến từ phạm vi (scope) bên ngoài",
+            "Một loại hàm đặc biệt hoàn toàn không nhận vào bất kỳ đối số nào",
+            "Tên gọi cho phương thức thực hiện việc đóng các luồng dữ liệu",
+            "Kỹ thuật thực hiện việc import các module theo dạng lồng nhau"
+        ],
+        "correct": 0,
+        "explanation": "Closure cho phép một hàm truy cập vào các biến cục bộ của hàm bao ngoài ngay cả khi hàm bao ngoài đã thực thi xong."
+    },
+    {
+        "id": "B2_007",
+        "section": "B2: Python nâng cao",
+        "question": "Module abc (Abstract Base Class) được dùng để làm gì?",
+        "options": [
+            "Tăng tốc độ thực thi cho các hàm toán học cơ bản",
+            "Định nghĩa các interface bắt buộc cho các lớp kế thừa",
+            "Tự động thực hiện việc kiểm thử các đoạn mã nguồn trong dự án",
+            "Thiết kế các mẫu lập trình theo dạng Singleton thông dụng"
+        ],
+        "correct": 1,
+        "explanation": "ABC đảm bảo các lớp con phải triển khai đầy đủ các phương thức trừu tượng đã định nghĩa, nếu không sẽ báo lỗi ngay khi khởi tạo."
+    },
+    {
+        "id": "B2_008",
+        "section": "B2: Python nâng cao",
+        "question": "Sự khác biệt giữa phương thức __init__ và __new__ là?",
+        "options": [
+            "Hai phương thức này hoàn toàn giống hệt nhau về mọi mặt",
+            "__new__ tạo mới đối tượng, __init__ khởi tạo các thuộc tính",
+            "Phương thức __init__ luôn được hệ thống gọi trước __new__",
+            "__new__ là phương thức chỉ dành riêng cho việc tạo metaclass"
+        ],
+        "correct": 1,
+        "explanation": "__new__ là constructor thực sự (trả về instance), còn __init__ là initializer (thiết lập giá trị ban đầu cho instance đó)."
+    },
+    {
+        "id": "B2_009",
+        "section": "B2: Python nâng cao",
+        "question": "Công cụ functools.lru_cache có ưu điểm gì nổi bật?",
+        "options": [
+            "Thực hiện nén các file mã nguồn để giảm thiểu kích thước",
+            "Lưu trữ kết quả của hàm để tránh việc phải tính toán lại nhiều lần",
+            "Tự động sắp xếp các phần tử trong danh sách theo thuật toán LRU",
+            "Tạo ra các danh sách liên kết để tối ưu hóa việc lưu trữ dữ liệu"
+        ],
+        "correct": 1,
+        "explanation": "Đây là một kỹ thuật ghi nhớ (memoization) giúp tăng tốc đáng kể các hàm có tính toán lặp đi lặp lại với cùng bộ đối số."
+    },
+    {
+        "id": "B2_010",
+        "section": "B2: Python nâng cao",
+        "question": "Dataclass mang lại lợi ích gì so với các lớp đối tượng thông thường?",
+        "options": [
+            "Làm cho toàn bộ mã nguồn của chương trình chạy nhanh hơn gấp 10 lần",
+            "Tự động tạo các phương thức mặc định giúp giảm thiểu mã lặp",
+            "Không yêu cầu người dùng phải thực hiện việc import từ thư viện",
+            "Được thiết kế chuyên dụng cho việc liên kết với các cơ sở dữ liệu"
+        ],
+        "correct": 1,
+        "explanation": "Dataclass tự động sinh ra các phương thức như __init__, __repr__ và __eq__ dựa trên các thuộc tính bạn khai báo."
+    },
+    {
+        "id": "B2_011",
+        "section": "B2: Python nâng cao",
+        "question": "Cặp từ khóa async/await được sử dụng nhằm mục đích gì?",
+        "options": [
+            "Thực hiện chạy mã nguồn đồng thời trên nhiều lõi CPU vật lý",
+            "Hỗ trợ lập trình bất đồng bộ để xử lý nhiều tác vụ cùng một lúc",
+            "Tạo ra các tiến trình (processes) độc lập hoàn toàn với nhau",
+            "Biên dịch mã nguồn Python sang mã ngôn ngữ C để tăng tốc độ"
+        ],
+        "correct": 1,
+        "explanation": "Rất hiệu quả cho các tác vụ I/O-bound như gọi API hoặc truy vấn database, giúp chương trình không bị 'treo' khi đang chờ đợi."
+    },
+    {
+        "id": "B2_012",
+        "section": "B2: Python nâng cao",
+        "question": "Phương thức đặc biệt __getitem__ cho phép đối tượng làm gì?",
+        "options": [
+            "Thực hiện in toàn bộ thông tin đối tượng ra màn hình console",
+            "Hỗ trợ việc truy cập dữ liệu thông qua indexing hoặc slicing",
+            "Tự động tạo ra một iterator để duyệt qua các phần tử của lớp",
+            "Thực hiện các phép toán so sánh công bằng giữa hai đối tượng"
+        ],
+        "correct": 1,
+        "explanation": "Nhờ __getitem__, bạn có thể truy cập đối tượng bằng cú pháp obj[index] giống như cách làm việc với list hoặc dictionary."
+    },
+    {
+        "id": "B2_013",
+        "section": "B2: Python nâng cao",
+        "question": "Sự khác biệt cơ bản giữa @staticmethod và @classmethod là?",
+        "options": [
+            "Hai decorator này hoàn toàn giống hệt nhau về mặt chức năng",
+            "@staticmethod không nhận self/cls, @classmethod nhận cls làm tham số",
+            "Phương thức @staticmethod có tốc độ thực thi nhanh hơn đáng kể",
+            "Decorator @classmethod chỉ có tác dụng trong các lớp trừu tượng"
+        ],
+        "correct": 1,
+        "explanation": "@classmethod có thể truy cập các thuộc tính của lớp, thường dùng để tạo các 'factory method' tạo đối tượng mới."
+    },
+    {
+        "id": "B2_014",
+        "section": "B2: Python nâng cao",
+        "question": "Giao thức Descriptor trong Python bao gồm các phương thức nào?",
+        "options": [
+            "Bao gồm các phương thức khởi tạo __init__ và hủy __del__",
+            "Kiểm soát cách thức các thuộc tính được truy cập và chỉnh sửa",
+            "Chỉ bao gồm cặp phương thức quản lý ngữ cảnh __enter__ và __exit__",
+            "Bao gồm các phương thức __iter__ và __next__ dùng cho vòng lặp"
+        ],
+        "correct": 1,
+        "explanation": "Descriptor là nền tảng đứng sau property, classmethod và staticmethod, cho phép linh hoạt hóa việc quản lý thuộc tính lớp."
+    },
+    {
+        "id": "B2_015",
+        "section": "B2: Python nâng cao",
+        "question": "Kiểu gợi ý (Type hints) có được thực thi khi chạy chương trình không?",
+        "options": [
+            "Có, hệ thống sẽ báo lỗi ngay lập tức nếu dữ liệu truyền vào sai kiểu",
+            "Không, chúng chỉ mang tính chất gợi ý và tài liệu hóa mã nguồn",
+            "Chỉ thực hiện báo lỗi đối với các kiểu dữ liệu liên quan đến số học",
+            "Chỉ có hiệu lực khi người dùng kích hoạt chế độ kiểm tra nghiêm ngặt"
+        ],
+        "correct": 1,
+        "explanation": "Type hints giúp các công cụ lập trình hiểu mã nguồn tốt hơn, nhưng không ảnh hưởng đến logic thực thi thực tế của Python."
+    },
+    {
+        "id": "B2_016",
+        "section": "B2: Python nâng cao",
+        "question": "Thuật toán MRO trong đa kế thừa của Python hoạt động như thế nào?",
+        "options": [
+            "Sử dụng thuật toán duyệt theo chiều rộng (Breadth-First Search)",
+            "Sử dụng thuật toán C3 Linearization để xác định thứ tự ưu tiên",
+            "Sử dụng thuật toán duyệt theo chiều sâu (Depth-First Search) đơn thuần",
+            "Các phương thức được tìm kiếm theo một thứ tự hoàn toàn ngẫu nhiên"
+        ],
+        "correct": 1,
+        "explanation": "Thuật toán C3 đảm bảo thứ tự tìm kiếm phương thức là nhất quán và tôn trọng cấu trúc của hệ thống phân cấp lớp."
+    },
+    {
+        "id": "B2_017",
+        "section": "B2: Python nâng cao",
+        "question": "collections.defaultdict khác biệt gì so với một dictionary thông thường?",
+        "options": [
+            "Có tốc độ xử lý nhanh hơn gấp nhiều lần so với kiểu truyền thống",
+            "Tự động tạo giá trị mặc định khi truy cập một key chưa hề tồn tại",
+            "Chỉ cho phép lưu trữ các key dưới định dạng chuỗi ký tự (string)",
+            "Kích thước bộ nhớ của nó được cố định ngay tại thời điểm khởi tạo"
+        ],
+        "correct": 1,
+        "explanation": "Giúp code sạch hơn vì bạn không cần phải kiểm tra sự tồn tại của key trước khi thực hiện các phép toán (như append vào list)."
+    },
+    {
+        "id": "B2_018",
+        "section": "B2: Python nâng cao",
+        "question": "Module itertools trong thư viện chuẩn Python cung cấp điều gì?",
+        "options": [
+            "Cung cấp các kết nối tới các hệ quản trị cơ sở dữ liệu phổ biến",
+            "Cung cấp các công cụ xử lý iterator hiệu quả và tiết kiệm bộ nhớ",
+            "Chứa các tiện ích hỗ trợ cho việc đọc và ghi file trên ổ đĩa",
+            "Chứa các hàm hỗ trợ cho việc lập trình và quản lý mạng máy tính"
+        ],
+        "correct": 1,
+        "explanation": "Cung cấp các hàm mạnh mẽ như chain, groupby, product để xử lý các chuỗi dữ liệu lớn mà không tốn nhiều RAM."
+    },
+    {
+        "id": "B2_019",
+        "section": "B2: Python nâng cao",
+        "question": "Thuộc tính __slots__ trong khai báo lớp có tác dụng gì?",
+        "options": [
+            "Tự động tạo ra các phương thức tĩnh cho lớp đối tượng đó",
+            "Giới hạn các thuộc tính và giúp tiết kiệm đáng kể bộ nhớ RAM",
+            "Dùng để định nghĩa các thuộc tính an toàn cho việc đa luồng",
+            "Thực hiện việc ghi đè phương thức __init__ một cách tự động"
+        ],
+        "correct": 1,
+        "explanation": "Sử dụng __slots__ giúp loại bỏ __dict__ cho mỗi đối tượng, cực kỳ hiệu quả khi bạn cần tạo ra hàng triệu instance của một lớp."
+    },
+    {
+        "id": "B2_020",
+        "section": "B2: Python nâng cao",
+        "question": "Toán tử Walrus (:=) dùng để làm gì trong mã nguồn Python?",
+        "options": [
+            "Dùng để thực hiện các phép so sánh logic giữa hai biến số",
+            "Cho phép thực hiện phép gán ngay bên trong một biểu thức",
+            "Dùng để thông báo kiểu dữ liệu cho một biến số vừa khởi tạo",
+            "Dùng để khởi tạo các hằng số không thể thay đổi trong chương trình"
+        ],
+        "correct": 1,
+        "explanation": "Giúp mã nguồn ngắn gọn hơn bằng cách gán giá trị cho biến và sử dụng luôn kết quả đó trong cùng một dòng lệnh (như trong vòng lặp)."
+    },
+    {
+        "id": "B2_021",
+        "section": "B2: Python nâng cao",
+        "question": "Tính năng match/case (Python 3.10+) mang lại lợi ích gì?",
+        "options": [
+            "Thay thế hoàn toàn cho các câu lệnh if/elif truyền thống",
+            "Cung cấp khả năng so khớp mẫu mạnh mẽ và linh hoạt hơn switch",
+            "Thực hiện so khớp dựa trên các biểu thức chính quy (Regex)",
+            "Là một kỹ thuật nâng cao giúp xử lý các ngoại lệ trong chương trình"
+        ],
+        "correct": 1,
+        "explanation": "Nó không chỉ so sánh giá trị mà còn có thể phân rã (destructure) đối tượng để lấy dữ liệu bên trong một cách dễ dàng."
+    },
+    {
+        "id": "B2_022",
+        "section": "B2: Python nâng cao",
+        "question": "Mục đích sử dụng của Weak reference (weakref module) là gì?",
+        "options": [
+            "Dùng để tạo ra các tham chiếu dữ liệu với tốc độ xử lý nhanh hơn",
+            "Tạo tham chiếu mà không làm tăng số lượng biến đếm tham chiếu",
+            "Cho phép người dùng quản lý các con trỏ như trong ngôn ngữ C",
+            "Dùng để nén các đối tượng trong bộ nhớ để tiết kiệm dung lượng"
+        ],
+        "correct": 1,
+        "explanation": "Yếu tố này cho phép trình thu gom rác (GC) giải phóng đối tượng ngay cả khi vẫn còn 'tham chiếu yếu' trỏ tới nó."
+    },
+    {
+        "id": "B2_023",
+        "section": "B2: Python nâng cao",
+        "question": "Tác dụng của threading.Lock() trong lập trình đa luồng là gì?",
+        "options": [
+            "Thực hiện khóa các file dữ liệu để không cho phép truy cập",
+            "Ngăn chặn hiện tượng tranh chấp dữ liệu (race condition) khi đa luồng",
+            "Dùng để tạm dừng toàn bộ trình biên dịch mã nguồn của hệ thống",
+            "Ngăn chặn việc import thêm các module mới vào trong chương trình"
+        ],
+        "correct": 1,
+        "explanation": "Lock đảm bảo rằng tại một thời điểm chỉ có một luồng duy nhất được quyền truy cập và chỉnh sửa tài nguyên dùng chung."
+    },
+    {
+        "id": "B2_024",
+        "section": "B2: Python nâng cao",
+        "question": "Sự khác biệt thực tế giữa hai phương thức __repr__ và __str__ là?",
+        "options": [
+            "Hai phương thức này hoàn toàn giống hệt nhau về bản chất thực thi",
+            "__repr__ dùng cho lập trình viên, __str__ dùng cho người dùng cuối",
+            "__repr__ chỉ trả về kiểu số, trong khi __str__ trả về kiểu chuỗi",
+            "Phương thức __repr__ có tốc độ thực thi nhanh hơn nhiều so với __str__"
+        ],
+        "correct": 1,
+        "explanation": "__repr__ nên mang tính kỹ thuật và chi tiết để phục vụ quá trình debug, còn __str__ nên thân thiện và dễ đọc."
+    },
+    {
+        "id": "B2_025",
+        "section": "B2: Python nâng cao",
+        "question": "Khi nào ta nên ưu tiên sử dụng multiprocessing thay cho threading?",
+        "options": [
+            "Khi cần cải thiện hiệu suất cho các tác vụ liên quan đến I/O",
+            "Khi cần tận dụng tối đa sức mạnh của nhiều nhân CPU khác nhau",
+            "Khi các tiến trình cần phải chia sẻ biến số và dữ liệu với nhau",
+            "Trong lập trình Python thì threading luôn luôn tốt hơn multiprocessing"
+        ],
+        "correct": 1,
+        "explanation": "Do Python có GIL, chỉ có multiprocessing mới có thể thực hiện song song thực sự trên nhiều lõi cho các tác vụ tính toán nặng."
+    }
+]

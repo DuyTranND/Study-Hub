@@ -1,0 +1,132 @@
+[
+    {
+        "id": "A9_006",
+        "section": "A9: Distance metrics & Similarity",
+        "question": "Khi nào nên sử dụng Cosine Similarity thay vì Euclidean Distance?",
+        "options": [
+            "Khi các dữ liệu đầu vào đều là số nguyên dương",
+            "Khi quan tâm đến hướng của vector hơn là độ lớn",
+            "Khi tập dữ liệu xuất hiện quá nhiều giá trị ngoại lai",
+            "Cosine Similarity luôn mang lại kết quả tốt hơn"
+        ],
+        "correct": 1,
+        "explanation": "Trong NLP, hai văn bản cùng chủ đề nhưng độ dài khác nhau sẽ có vector độ lớn khác nhau nhưng hướng vector (cosine) rất giống nhau."
+    },
+    {
+        "id": "A9_007",
+        "section": "A9: Distance metrics & Similarity",
+        "question": "Mahalanobis Distance khác Euclidean Distance ở điểm mấu chốt nào?",
+        "options": [
+            "Mahalanobis có tốc độ tính toán nhanh hơn đáng kể",
+            "Mahalanobis tính đến tương quan và tỷ lệ giữa các đặc trưng",
+            "Hai khoảng cách này hoàn toàn giống hệt nhau về bản chất",
+            "Mahalanobis chỉ có hiệu lực trong không gian hai chiều"
+        ],
+        "correct": 1,
+        "explanation": "Mahalanobis sử dụng ma trận hiệp phương sai để chuẩn hóa dữ liệu, giúp loại bỏ ảnh hưởng của sự khác biệt về đơn vị và mối liên hệ giữa các cột."
+    },
+    {
+        "id": "A9_008",
+        "section": "A9: Distance metrics & Similarity",
+        "question": "Khoảng cách Edit Distance (Levenshtein) dùng để đo lường điều gì?",
+        "options": [
+            "Khoảng cách hình học ngắn nhất giữa hai tọa độ",
+            "Số phép biến đổi tối thiểu để chuyển chuỗi này sang chuỗi kia",
+            "Tổng các giá trị mã ASCII của các ký tự trong chuỗi",
+            "Số lượng các ký tự giống hệt nhau giữa hai văn bản"
+        ],
+        "correct": 1,
+        "explanation": "Edit distance đếm số lần chèn, xóa hoặc thay thế ký tự. Thường dùng trong kiểm tra chính tả hoặc so sánh chuỗi DNA."
+    },
+    {
+        "id": "A9_009",
+        "section": "A9: Distance metrics & Similarity",
+        "question": "Curse of Dimensionality ảnh hưởng thế nào đến các độ đo khoảng cách?",
+        "options": [
+            "Giúp tốc độ tính toán khoảng cách được thực hiện nhanh hơn",
+            "Khoảng cách giữa các điểm trở nên gần bằng nhau ở không gian chiều cao",
+            "Hiện tượng này chỉ gây ra ảnh hưởng tiêu cực cho chuẩn L1",
+            "Không gây ra bất kỳ ảnh hưởng nào đến kết quả thực tế"
+        ],
+        "correct": 1,
+        "explanation": "Khi số chiều quá lớn, mọi điểm dữ liệu đều trở nên 'xa lạ' và cách đều nhau, làm cho các thuật toán dựa trên khoảng cách như KNN mất tác dụng."
+    },
+    {
+        "id": "A9_010",
+        "section": "A9: Distance metrics & Similarity",
+        "question": "KL Divergence có được coi là một true distance metric không?",
+        "options": [
+            "Có, nó thỏa mãn đầy đủ các tính chất của một metric",
+            "Không, vì nó không có tính đối xứng và không thỏa bất đẳng thức tam giác",
+            "Nó chỉ mang tính đối xứng khi hai phân phối P và Q bằng nhau",
+            "KL Divergence luôn luôn mang tính đối xứng trong mọi trường hợp"
+        ],
+        "correct": 1,
+        "explanation": "KL(P||Q) khác KL(Q||P), do đó nó được gọi là độ phân kỳ (divergence) chứ không phải là khoảng cách (distance)."
+    },
+    {
+        "id": "A9_011",
+        "section": "A9: Distance metrics & Similarity",
+        "question": "Mối liên hệ giữa Pearson Correlation và Cosine Similarity là gì?",
+        "options": [
+            "Hai đại lượng này hoàn toàn giống hệt nhau về công thức",
+            "Pearson là Cosine Similarity trên dữ liệu đã chuẩn hóa trung bình",
+            "Pearson chỉ có thể nhận các giá trị là số thực dương",
+            "Cosine Similarity chỉ được sử dụng cho các dữ liệu nhị phân"
+        ],
+        "correct": 1,
+        "explanation": "Pearson Correlation chính là Cosine Similarity sau khi đã trừ đi giá trị trung bình (mean-centering) của từng vector."
+    },
+    {
+        "id": "A9_012",
+        "section": "A9: Distance metrics & Similarity",
+        "question": "Khi nào ta nên ưu tiên sử dụng Jaccard Index thay vì Cosine?",
+        "options": [
+            "Khi dữ liệu đầu vào là các con số liên tục có độ lớn khác nhau",
+            "Khi dữ liệu ở dạng tập hợp hoặc nhị phân (0/1)",
+            "Jaccard Index luôn mang lại kết quả tốt hơn trong mọi bài toán",
+            "Cosine Similarity không thể sử dụng cho các dữ liệu văn bản"
+        ],
+        "correct": 1,
+        "explanation": "Jaccard đo lường mức độ giao thoa giữa các tập hợp (ví dụ: các sản phẩm người dùng đã mua), không quan tâm đến tần suất hay độ lớn vector."
+    },
+    {
+        "id": "A9_013",
+        "section": "A9: Distance metrics & Similarity",
+        "question": "Thuật toán Dynamic Time Warping (DTW) phù hợp cho loại dữ liệu nào?",
+        "options": [
+            "Dữ liệu dạng bảng (tabular) với các đặc trưng độc lập",
+            "Khi so sánh các chuỗi thời gian lệch pha hoặc khác tốc độ",
+            "So sánh các khối dữ liệu hình ảnh trong không gian ba chiều",
+            "Dữ liệu dạng đồ thị (graph) với các mối liên kết phức tạp"
+        ],
+        "correct": 1,
+        "explanation": "DTW cho phép co giãn trục thời gian để tìm ra sự tương đồng giữa hai tín hiệu có nhịp điệu khác nhau (như giọng nói nhanh/chậm)."
+    },
+    {
+        "id": "A9_014",
+        "section": "A9: Distance metrics & Similarity",
+        "question": "Khoảng cách Chebyshev (L∞ norm) được định nghĩa như thế nào?",
+        "options": [
+            "Tính giá trị trung bình cộng của các khoảng cách thành phần",
+            "Giá trị chênh lệch lớn nhất giữa các chiều tương ứng",
+            "Giá trị chênh lệch nhỏ nhất giữa các chiều của hai điểm",
+            "Kết quả của phép tích vô hướng giữa hai vector đầu vào"
+        ],
+        "correct": 1,
+        "explanation": "Khoảng cách Chebyshev là trường hợp giới hạn của Minkowski khi p tiến đến vô cùng, chỉ quan tâm đến biến số biến động mạnh nhất."
+    },
+    {
+        "id": "A9_015",
+        "section": "A9: Distance metrics & Similarity",
+        "question": "Mục tiêu của Locality-Sensitive Hashing (LSH) là gì?",
+        "options": [
+            "Tăng tối đa độ chính xác của các phép đo khoảng cách",
+            "Tìm kiếm láng giềng gần nhất xấp xỉ với tốc độ cao",
+            "Giảm thiểu kích thước lưu trữ của toàn bộ bộ dữ liệu",
+            "Loại bỏ các giá trị ngoại lai (outliers) khỏi tập dữ liệu"
+        ],
+        "correct": 1,
+        "explanation": "LSH băm các điểm dữ liệu gần nhau vào cùng một 'thùng' (bucket), giúp giảm đáng kể số lượng phép so sánh cần thực hiện."
+    }
+]

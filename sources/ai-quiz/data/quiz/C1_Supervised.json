@@ -1,0 +1,158 @@
+[
+    {
+        "id": "C1_001",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Học có giám sát (Supervised Learning) yêu cầu dữ liệu đầu vào phải có?",
+        "options": [
+            "Chỉ cần các tập hợp đặc trưng (features) đầu vào",
+            "Tập hợp các đặc trưng (features) và nhãn (labels)",
+            "Chỉ cần các nhãn (labels) tương ứng của dữ liệu",
+            "Không cần dữ liệu, mô hình sẽ tự thực hiện việc học"
+        ],
+        "correct": 1,
+        "explanation": "Học có giám sát cần có nhãn đúng để mô hình có thể đối chiếu và tối ưu hóa các tham số trong quá trình huấn luyện."
+    },
+    {
+        "id": "C1_002",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Thuật toán K-Means Clustering thuộc loại hình học máy nào?",
+        "options": [
+            "Học có giám sát (Supervised Learning)",
+            "Học không giám sát (Unsupervised Learning)",
+            "Học tăng cường (Reinforcement Learning)",
+            "Học bán giám sát (Semi-supervised Learning)"
+        ],
+        "correct": 1,
+        "explanation": "K-Means gom nhóm các điểm dữ liệu dựa trên sự tương đồng (khoảng cách) mà không cần dùng đến bất kỳ nhãn dữ liệu nào."
+    },
+    {
+        "id": "C1_003",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Hiện tượng quá khớp (Overfitting) xảy ra trong trường hợp nào?",
+        "options": [
+            "Mô hình quá đơn giản khiến hiệu quả dự báo luôn ở mức kém",
+            "Mô hình học thuộc lòng nhiễu của tập huấn luyện",
+            "Mô hình không thể hội tụ về được điểm tối ưu sau nhiều lần lặp",
+            "Dữ liệu đầu vào không cung cấp đủ các đặc trưng quan trọng"
+        ],
+        "correct": 1,
+        "explanation": "Overfitting khiến mô hình có độ chính xác cực cao trên tập huấn luyện nhưng lại dự báo rất sai trên tập dữ liệu thực tế."
+    },
+    {
+        "id": "C1_004",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Random Forest cải thiện hiệu quả của Decision Tree bằng cách nào?",
+        "options": [
+            "Sử dụng các cây quyết định có độ sâu tối đa lớn hơn",
+            "Sử dụng kỹ thuật Bagging và chọn đặc trưng ngẫu nhiên",
+            "Sử dụng thuật toán Gradient Descent để tối ưu hóa từng cây",
+            "Chỉ lấy duy nhất một đặc trưng quan trọng để phân tách nút"
+        ],
+        "correct": 1,
+        "explanation": "Bằng cách kết hợp nhiều cây độc lập, Random Forest giúp giảm thiểu biến động (variance) và tránh được overfitting."
+    },
+    {
+        "id": "C1_005",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Gradient Boosting khác biệt như thế nào so với Random Forest?",
+        "options": [
+            "Hai thuật toán này hoàn toàn giống hệt nhau về bản chất",
+            "Boosting xây dựng các cây tuần tự để sửa lỗi cho nhau",
+            "Boosting chỉ được sử dụng cho các bài toán hồi quy (Regression)",
+            "Random Forest luôn cho kết quả chính xác hơn trong mọi trường hợp"
+        ],
+        "correct": 1,
+        "explanation": "Trong Boosting, mỗi cây mới cố gắng 'sửa sai' cho những phần mà các cây trước đó đã dự báo không chính xác."
+    },
+    {
+        "id": "C1_006",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Thuật toán Logistic Regression thường được sử dụng cho mục đích gì?",
+        "options": [
+            "Dự đoán các giá trị số thực liên tục (Regression)",
+            "Phân loại các đối tượng (Classification)",
+            "Thực hiện phân nhóm các điểm dữ liệu tương đồng",
+            "Sử dụng để giảm số lượng các chiều của tập dữ liệu"
+        ],
+        "correct": 1,
+        "explanation": "Dù có tên là 'Regression', nhưng nó dùng hàm Sigmoid để đưa đầu ra về dạng xác suất, phục vụ cho việc phân loại."
+    },
+    {
+        "id": "C1_007",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "svm (Support Vector Machine) thực hiện tìm kiếm điều gì khi phân loại?",
+        "options": [
+            "Cây quyết định có chỉ số Information Gain tốt nhất",
+            "Tìm siêu phẳng phân tách có lề (margin) lớn nhất",
+            "Tâm của các cụm dữ liệu (centroids) trong không gian",
+            "Bộ trọng số tối ưu nhất cho các tầng mạng neural"
+        ],
+        "correct": 1,
+        "explanation": "SVM cố gắng tạo ra một 'hành lang' rộng nhất có thể giữa hai lớp dữ liệu để tăng khả năng tổng quát hóa."
+    },
+    {
+        "id": "C1_008",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Kỹ thuật phân tích PCA thuộc loại hình học máy nào?",
+        "options": [
+            "Học có giám sát (Supervised Learning)",
+            "Học không giám sát (Unsupervised Learning)",
+            "Học tăng cường (Reinforcement Learning)",
+            "Kỹ thuật học chủ động (Active Learning)"
+        ],
+        "correct": 1,
+        "explanation": "PCA tìm cách chiếu dữ liệu xuống không gian ít chiều hơn mà vẫn giữ được nhiều thông tin (phương sai) nhất mà không cần nhãn."
+    },
+    {
+        "id": "C1_009",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Tại sao thuật toán Naive Bayes lại có thuật ngữ 'Naive' (ngây thơ)?",
+        "options": [
+            "Vì cấu trúc toán học của mô hình được thiết kế quá đơn giản",
+            "Giả định tất cả các đặc trưng độc lập với nhau",
+            "Mô hình thường gặp phải hiện tượng quá khớp cực kỳ nghiêm trọng",
+            "Vì nó hoàn toàn không sử dụng các khái niệm về xác suất"
+        ],
+        "correct": 1,
+        "explanation": "Nó giả định các tính năng (như màu sắc và hình dạng) không liên quan đến nhau, dù thực tế chúng thường có tương quan."
+    },
+    {
+        "id": "C1_010",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Sự khác biệt lớn nhất giữa DBSCAN và K-Means là gì?",
+        "options": [
+            "Hai thuật toán này hoàn toàn giống hệt nhau về mọi đặc điểm",
+            "DBSCAN nhận diện cluster theo mật độ và hình dạng bất kỳ",
+            "DBSCAN có tốc độ thực thi nhanh hơn nhiều so với K-Means",
+            "K-Means có khả năng nhận diện các điểm dữ liệu nhiễu tốt hơn"
+        ],
+        "correct": 1,
+        "explanation": "DBSCAN không cần bạn cung cấp số lượng cụm (K) trước và có thể tìm thấy các cụm có hình dạng phức tạp."
+    },
+    {
+        "id": "C1_011",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Vấn đề Bias-Variance Tradeoff trong học máy có ý nghĩa gì?",
+        "options": [
+            "Là sự lựa chọn giữa tốc độ tính toán và độ chính xác dự báo",
+            "Cân bằng giữa sai số hệ thống và sự biến động",
+            "Bias và Variance là hai đại lượng không có sự liên quan đến nhau",
+            "Khái niệm này chỉ được áp dụng trong lĩnh vực Deep Learning"
+        ],
+        "correct": 1,
+        "explanation": "Mô hình quá đơn giản thì Bias cao, mô hình quá phức tạp thì Variance cao. Mục tiêu là tìm điểm cân bằng tốt nhất."
+    },
+    {
+        "id": "C1_012",
+        "section": "C1: Học CÓ giám sát & KHÔNG giám sát",
+        "question": "Thuật toán KNN (K-Nearest Neighbors) thuộc loại mô hình nào?",
+        "options": [
+            "Mô hình tham số (Parametric model)",
+            "Thuật toán học lười (Lazy Learning)",
+            "Mô hình học theo dạng sinh (Generative model)",
+            "Kiến trúc của một mạng nơ-ron sâu (Deep Learning)"
+        ],
+        "correct": 1,
+        "explanation": "KNN không học một mô hình cụ thể nào, nó chỉ đơn giản là lưu trữ dữ liệu và tính toán khoảng cách khi có yêu cầu dự báo."
+    }
+]

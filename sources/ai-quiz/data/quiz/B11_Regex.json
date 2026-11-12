@@ -1,0 +1,197 @@
+[
+    {
+        "id": "B11_001",
+        "section": "B11: Regex & File Formats",
+        "question": "Regex quantifier * vs + vs ? khác nhau thế nào?",
+        "options": [
+            "* = 1 hoặc nhiều, + = 0 hoặc nhiều, ? = đúng 1",
+            "* = 0 hoặc nhiều, + = 1 hoặc nhiều, ? = 0 hoặc 1",
+            "* = 0 hoặc 1, + = 1 hoặc nhiều, ? = 0 hoặc nhiều",
+            "* = đúng 1, + = đúng 2, ? = đúng 3"
+        ],
+        "correct": 1,
+        "explanation": "* (0 hoặc nhiều), + (ít nhất 1), ? (optional 0 hoặc 1). VD: \\d+ match '123' nhưng không match '', \\d* match cả '' lẫn '123'. Lazy versions (*?, +?, ??): match ít nhất có thể (non-greedy)."
+    },
+    {
+        "id": "B11_002",
+        "section": "B11: Regex & File Formats",
+        "question": "Character class [a-zA-Z0-9_] tương đương shorthand nào?",
+        "options": [
+            "\\d (match digit)",
+            "\\w (match word character)",
+            "\\s (match whitespace)",
+            "\\b (match boundary)"
+        ],
+        "correct": 1,
+        "explanation": "\\w = [a-zA-Z0-9_]. \\d = [0-9]. \\s = [ \\t\\n\\r\\f\\v]. Uppercase = negation: \\W = NOT word char. \\b = word boundary (điểm chuyển tiếp giữa \\w và \\W)."
+    },
+    {
+        "id": "B11_003",
+        "section": "B11: Regex & File Formats",
+        "question": "Lookahead (?=...) trong regex dùng khi nào?",
+        "options": [
+            "Dùng để thay thế text trong string",
+            "Assert pattern theo sau phải match nhưng không consume",
+            "Dùng để lặp lại pattern trước đó n lần",
+            "Dùng để capture group vào một biến nhớ"
+        ],
+        "correct": 1,
+        "explanation": "Positive lookahead (?=): yêu cầu pattern theo sau phải khớp nhưng không bao gồm nó trong kết quả match. VD: \\d+(?=%) match '100' trong '100%' nhưng không lấy dấu %. Negative lookahead (?!): yêu cầu pattern theo sau KHÔNG khớp."
+    },
+    {
+        "id": "B11_004",
+        "section": "B11: Regex & File Formats",
+        "question": "Capture group () trong regex dùng để làm gì?",
+        "options": [
+            "Tạo comment không thực thi trong regex",
+            "Nhóm pattern và trích xuất phần match riêng biệt",
+            "Đánh dấu pattern đó là optional (không bắt buộc)",
+            "Thoát (escape) các ký tự đặc biệt như . hoặc *"
+        ],
+        "correct": 1,
+        "explanation": "Dùng để nhóm các phần của pattern lại và extract kết quả match riêng theo nhóm. VD: (\\d{4})-(\\d{2}) match '2024-03' → group(1)='2024', group(2)='03'. Named groups: (?P<name>...). Non-capturing: (?:...)."
+    },
+    {
+        "id": "B11_005",
+        "section": "B11: Regex & File Formats",
+        "question": "Parquet vs CSV vs JSON: khi nào dùng Parquet tốt nhất?",
+        "options": [
+            "Khi cần format dễ đọc bằng mắt thường (human-readable)",
+            "Khi xử lý Big Data, cần nén tốt và truy vấn theo cột",
+            "Khi cần trao đổi dữ liệu nhỏ qua API hoặc file config",
+            "Khi dữ liệu có cấu trúc phân cấp (nested) cực kỳ phức tạp"
+        ],
+        "correct": 1,
+        "explanation": "Parquet là columnar format (lưu theo cột) → cực nhanh cho analytics (column pruning), nén tốt, schema enforcement. CSV: đơn giản, universal. JSON: phù hợp API và config."
+    },
+    {
+        "id": "B11_006",
+        "section": "B11: Regex & File Formats",
+        "question": "Avro khác Parquet ở storage layout nào?",
+        "options": [
+            "Avro là binary format còn Parquet là text format",
+            "Avro lưu theo hàng (row-based), Parquet lưu theo cột (column-based)",
+            "Avro không hỗ trợ nén còn Parquet nén rất tốt",
+            "Avro dành cho SQL còn Parquet dành cho NoSQL"
+        ],
+        "correct": 1,
+        "explanation": "Avro (row-based): tốt cho write-heavy, streaming (Kafka). Parquet (column-based): tốt cho read-heavy, phân tích dữ liệu (Spark, Data Lake). Cả hai đều hỗ trợ schema và nén."
+    },
+    {
+        "id": "B11_007",
+        "section": "B11: Regex & File Formats",
+        "question": "Tại sao UTF-8 encoding lại phổ biến nhất hiện nay?",
+        "options": [
+            "Vì nó có tốc độ đọc ghi nhanh nhất mọi thời đại",
+            "Tương thích ASCII, độ dài biến thiên, hỗ trợ mọi ký tự",
+            "Vì nó dùng cố định 2 bytes cho mọi ký tự Unicode",
+            "Vì nó chỉ hỗ trợ các ký tự tiếng Anh và Tây Âu"
+        ],
+        "correct": 1,
+        "explanation": "UTF-8 tương thích ngược với ASCII (1 byte), hỗ trợ đầy đủ Unicode (tiếng Việt, Emoji, CJK) bằng 1-4 bytes. UTF-16 dùng 2 hoặc 4 bytes. UTF-32 dùng cố định 4 bytes (lãng phí)."
+    },
+    {
+        "id": "B11_008",
+        "section": "B11: Regex & File Formats",
+        "question": "JSON Lines (JSONL) có điểm gì khác biệt so với JSON chuẩn?",
+        "options": [
+            "JSONL là format nén của JSON gốc để giảm dung lượng",
+            "JSONL cho phép streaming/append vì mỗi dòng là 1 object",
+            "JSONL chỉ chứa các con số chứ không chứa được string",
+            "JSONL yêu cầu phải parse toàn bộ file mới đọc được dữ liệu"
+        ],
+        "correct": 1,
+        "explanation": "JSONL: mỗi dòng là một JSON object hợp lệ. Phù hợp cho log, streaming data hoặc dataset cực lớn vì không cần load toàn bộ file vào memory để parse (khác với JSON array chuẩn)."
+    },
+    {
+        "id": "B11_009",
+        "section": "B11: Regex & File Formats",
+        "question": "Sử dụng module `pickle` trong Python tiềm ẩn nguy cơ bảo mật gì?",
+        "options": [
+            "Nó có thể làm hỏng file system nếu dung lượng quá lớn",
+            "Có thể thực thi mã độc tùy ý khi deserialize dữ liệu",
+            "Dữ liệu pickle không thể đọc được trên hệ điều hành Linux",
+            "Pickle chỉ cho phép mã hóa dữ liệu dạng số nguyên"
+        ],
+        "correct": 1,
+        "explanation": "Pickle có thể thực thi code arbitrary (như os.system) trong quá trình unpickling. KHÔNG BAO GIỜ load pickle từ nguồn không tin cậy. Hãy dùng JSON hoặc MessagePack để trao đổi dữ liệu an toàn."
+    },
+    {
+        "id": "B11_010",
+        "section": "B11: Regex & File Formats",
+        "question": "Protocol Buffers (Protobuf) ưu điểm gì nổi bật so với JSON?",
+        "options": [
+            "Dễ dàng đọc và chỉnh sửa bằng trình soạn thảo văn bản",
+            "Dạng binary: dung lượng nhỏ, tốc độ serialize cực nhanh",
+            "Không cần định nghĩa schema trước khi sử dụng",
+            "Hỗ trợ tốt hơn cho việc hiển thị trên trình duyệt web"
+        ],
+        "correct": 1,
+        "explanation": "Protobuf (Google) là binary format: nhỏ hơn 3-10x, nhanh hơn 10x so với JSON. Yêu cầu .proto file để định nghĩa schema. Dùng mạnh trong gRPC và microservices."
+    },
+    {
+        "id": "B11_011",
+        "section": "B11: Regex & File Formats",
+        "question": "Hàm `re.compile()` trong Python mang lại lợi ích gì?",
+        "options": [
+            "Nó là cách duy nhất để thực thi regex trong Python",
+            "Biên dịch pattern một lần để tái sử dụng hiệu quả hơn",
+            "Giúp regex có thể khớp được cả các ký tự ẩn",
+            "Tự động sửa lỗi cú pháp trong pattern regex"
+        ],
+        "correct": 1,
+        "explanation": "Sử dụng compiled pattern giúp tăng hiệu năng khi dùng cùng một regex trong loop nhiều lần vì Python không phải compile lại pattern đó ở mỗi vòng lặp."
+    },
+    {
+        "id": "B11_012",
+        "section": "B11: Regex & File Formats",
+        "question": "Khi chọn format cho configuration files (YAML, JSON, TOML), nhận định nào đúng?",
+        "options": [
+            "YAML không hỗ trợ comment nhưng rất dễ parse",
+            "YAML thân thiện với người dùng, TOML đang phổ biến trong Python",
+            "JSON luôn là lựa chọn tốt nhất vì hỗ trợ comment chi tiết",
+            "TOML là format duy nhất hỗ trợ cấu trúc dữ liệu lồng nhau"
+        ],
+        "correct": 1,
+        "explanation": "YAML: dễ đọc, có comment, nhưng nhạy cảm với thụt lề (indent). JSON: chuẩn hóa cao, không comment. TOML: cân bằng tốt, dùng trong pyproject.toml."
+    },
+    {
+        "id": "B11_013",
+        "section": "B11: Regex & File Formats",
+        "question": "Greedy vs Lazy matching trong regex khác nhau thế nào?",
+        "options": [
+            "Greedy luôn cho kết quả match dài nhất có thể",
+            "Lazy luôn cho kết quả match dài nhất có thể",
+            "Greedy chỉ hoạt động với chữ cái, Lazy chỉ hoạt động với số",
+            "Hai chế độ này hoàn toàn giống nhau về kết quả trả về"
+        ],
+        "correct": 0,
+        "explanation": "Greedy (*, +): cố gắng lấy nhiều nhất. Lazy (*?, +?): lấy ít nhất có thể. VD: '<a><b>' match <.*> (greedy) lấy toàn bộ, <.*?> (lazy) chỉ lấy '<a>'."
+    },
+    {
+        "id": "B11_014",
+        "section": "B11: Regex & File Formats",
+        "question": "Định dạng file HDF5 thường được sử dụng cho mục đích gì?",
+        "options": [
+            "Lưu trữ các đoạn hội thoại ngắn trong ứng dụng Chat",
+            "Lưu trữ dữ liệu số/khoa học quy mô lớn, cấu trúc phân cấp",
+            "Dùng làm file cấu hình cho các project web đơn giản",
+            "Chỉ dùng để lưu trữ file thực thi (binary) trên Windows"
+        ],
+        "correct": 1,
+        "explanation": "HDF5 (Hierarchical Data Format) như một filesystem trong 1 file, hỗ trợ nén, đọc subset dữ liệu lớn mà không load hết vào RAM. Dùng nhiều trong khoa học và Deep Learning."
+    },
+    {
+        "id": "B11_015",
+        "section": "B11: Regex & File Formats",
+        "question": "Khái niệm Data Serialization được hiểu là gì?",
+        "options": [
+            "Quá trình mã hóa dữ liệu để bảo mật tuyệt đối",
+            "Chuyển data structure thành format có thể lưu trữ/truyền tải",
+            "Quá trình xóa sạch dữ liệu khỏi bộ nhớ RAM",
+            "Nén dữ liệu về dạng nhỏ nhất để tiết kiệm ổ cứng"
+        ],
+        "correct": 1,
+        "explanation": "Chuyển object/dict thành string/bytes (JSON, Pickle, Protobuf) để lưu file hoặc gửi mạng. Quá trình ngược lại gọi là Deserialization."
+    }
+]

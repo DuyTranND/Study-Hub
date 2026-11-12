@@ -1,0 +1,241 @@
+/* Browser-first layout. Loaded after the historical stylesheets. */
+:root {
+  color-scheme: light;
+  --web-gap: clamp(22px, 2.35vw, 38px);
+}
+
+html, body { min-width: 0; }
+.app-shell, .content, .view, .practice-layout, .practice-main {
+  min-width: 0;
+}
+.content { width: auto; }
+.topbar { padding-inline: var(--web-gap); }
+.view {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 28px var(--web-gap) 76px;
+}
+
+/* Tight, consistent type scale for desktop screens. */
+.section-intro, .page-heading { margin-bottom: 22px; }
+.section-intro h1, .page-heading h1,
+#view-practice .practice-heading h1 {
+  font-size: clamp(25px, 1.7vw, 30px);
+  line-height: 1.25;
+  letter-spacing: -.024em;
+}
+.section-intro p, .page-heading p,
+#view-practice .practice-heading p {
+  font-size: 14px;
+  line-height: 1.55;
+}
+.section-header h3, .study-actions-head h3, .panel-title h3 {
+  font-size: 19px;
+  letter-spacing: -.015em;
+}
+.section-header p, .study-actions-head p,
+.overview-bottom .panel > p, .reference-shortcut > p {
+  font-size: 14px;
+  line-height: 1.55;
+}
+.section-header { margin-top: 32px; }
+.focus-feature { min-height: 0; padding: 24px 26px; border-radius: 3px; }
+.focus-feature h2 { font-size: clamp(27px, 2vw, 34px); line-height: 1.2; }
+.focus-feature > p { font-size: 14px; line-height: 1.6; max-width: 680px; }
+.study-action { padding-block: 14px; }
+.study-action-body strong { font-size: 14px; }
+.study-action-body small, .study-actions-foot { font-size: 12px; }
+.stat-grid { margin-bottom: 26px; padding-bottom: 20px; }
+.stat-value { font-size: clamp(25px, 2vw, 32px); }
+.stat-label, .stat-foot { font-size: 12px; }
+.collection-info h4 { font-size: 16px; }
+.collection-info p { font-size: 13px; }
+.collection-card { min-height: 100px; padding-block: 17px; }
+.overview-bottom { gap: 24px; margin-top: 32px; }
+.btn, .text-link, .focus-link { font-size: 14px; }
+
+/* Exam library fills the available main area instead of a center column. */
+#view-practice .practice-heading,
+#view-practice .set-explorer,
+#view-practice .practice-layout,
+#view-practice .practice-main,
+#view-practice .page-heading {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+#view-practice .practice-heading { margin-bottom: 22px; }
+#view-practice .set-explorer-header { margin-bottom: 10px; }
+#view-practice .set-explorer-header p { font-size: 13px; }
+#view-practice .set-mode-tabs { gap: 23px; margin-bottom: 20px; }
+#view-practice .set-mode-tab { min-height: 44px; padding: 8px 0 11px; }
+#view-practice .set-mode-tab strong { font-size: 14px; }
+#view-practice .set-mode-tab span { font-size: 12px; }
+#view-practice .set-explorer-toolbar { margin-bottom: 18px; gap: 12px; }
+#view-practice .set-search { min-height: 42px; padding: 8px 12px; }
+#view-practice .set-search input { font-size: 14px; }
+#view-practice .set-filter { min-width: 150px; }
+#view-practice .set-filter select { min-height: 42px; font-size: 13px; }
+#view-practice .set-filter-reset { min-height: 42px; font-size: 13px; }
+#view-practice .set-browser-heading { margin-bottom: 13px; }
+#view-practice .set-browser-heading h2 { font-size: 19px; }
+#view-practice .set-explorer-total { font-size: 12px; }
+#view-practice .set-library-layout {
+  display: block;
+  width: 100%;
+}
+#view-practice .set-list-column {
+  width: 100%;
+  min-width: 0;
+  container-type: inline-size;
+}
+#view-practice .set-groups,
+#view-practice .set-group { width: 100%; min-width: 0; max-width: none; }
+#view-practice .set-group { margin-bottom: 22px; }
+#view-practice .set-group-heading { padding-bottom: 10px; }
+#view-practice .set-group-heading h3 { font-size: 16px; }
+#view-practice .set-rows {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: stretch;
+  gap: 18px;
+}
+/* Columns follow the catalogue's actual space after the sidebar and gutters. */
+@container (min-width: 610px) {
+  #view-practice .set-rows { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container (min-width: 920px) {
+  #view-practice .set-rows { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@container (min-width: 1260px) {
+  #view-practice .set-rows { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+#view-practice .set-row {
+  min-height: 179px;
+  padding: 15px 17px 13px;
+  border-radius: 2px;
+  box-shadow: none;
+}
+#view-practice .set-row-code, #view-practice .set-card-source { font-size: 11px; }
+#view-practice .set-card-title {
+  margin: 8px 0;
+  font-size: 16px;
+  line-height: 1.4;
+}
+#view-practice .set-card-meta { gap: 14px; }
+#view-practice .set-card-meta > span { font-size: 12px; }
+#view-practice .set-card-progress { margin: 11px 0 5px; font-size: 11px; }
+#view-practice .set-row .set-row-actions { gap: 10px; padding-top: 8px; }
+#view-practice .set-card-details summary { padding: 8px 0; font-size: 12px; }
+#view-practice .set-card-details p { font-size: 13px; }
+#view-practice .set-row-launch {
+  min-height: 37px;
+  padding: 7px 12px;
+  font-size: 12px !important;
+  border-radius: 2px;
+}
+#view-practice .set-row-custom { font-size: 12px !important; }
+#view-practice .custom-study { margin-top: 17px; }
+
+/* Left-aligned reading surface; code and tables remain locally scrollable. */
+#view-practice #session-panel,
+#view-practice #setup-panel {
+  width: 100%;
+  max-width: none;
+}
+#view-practice .session-top h3 { font-size: 18px; }
+.question-title {
+  width: 100%;
+  max-width: min(100%, 1180px);
+  font-size: 19px;
+  font-weight: 620;
+  line-height: 1.55;
+  margin-bottom: 20px;
+}
+.options, .feedback, .hint-box {
+  width: 100%;
+  max-width: min(100%, 1180px);
+}
+.option {
+  min-height: 55px;
+  padding: 12px 15px;
+  font-size: 14px;
+  line-height: 1.55;
+  gap: 13px;
+}
+.option-letter { font-size: 12px; }
+.rich-text, .lesson-body, .lesson-body p {
+  font-size: 14px;
+  line-height: 1.72;
+}
+.rich-text pre, .lesson-body pre, .question-title pre {
+  max-width: 100%;
+  overflow-x: auto;
+  font-size: 13px;
+}
+.lesson-header h2 { font-size: 21px; }
+.lesson-body h1 { font-size: 23px; }
+.lesson-body h2 { font-size: 19px; }
+.lesson-body h3 { font-size: 17px; }
+.formula-main h3 { font-size: 15px; }
+.formula-main p { font-size: 13px; }
+.question-row-main strong { font-size: 14px; }
+.question-row-index, .question-row-meta { font-size: 12px; }
+.library-toolbar select, .searchbox input, .cheat-search input { font-size: 14px; }
+
+@media (min-width: 1700px) {
+  .workspace-lead { grid-template-columns: minmax(0, 1.5fr) minmax(320px, .7fr); }
+}
+
+@media (max-width: 1260px) {
+  #view-practice .set-explorer-toolbar { display: flex; flex-direction: column; align-items: stretch; }
+  #view-practice .set-explorer-filters { width: 100%; }
+}
+
+@media (max-width: 1060px) {
+  .view { padding-inline: 25px; }
+  .topbar { padding-inline: 25px; }
+}
+
+@media (max-width: 840px) {
+  #view-practice .set-row { min-height: 0; }
+  .workspace-lead { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 620px) {
+  .view { padding: 20px 15px 60px; }
+  .topbar { padding-inline: 15px; }
+  .side-nav { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .nav-item { min-width: 0; padding-inline: 3px; }
+  /* Compact mobile labels are supplied by the existing ::after rules. */
+  .nav-item span { font-size: 0; }
+  .nav-item span::after { font-size: 10px; }
+  .section-intro h1, .page-heading h1,
+  #view-practice .practice-heading h1 { font-size: 24px; }
+  .section-intro p, .page-heading p,
+  #view-practice .practice-heading p { font-size: 13px; }
+  .focus-feature { padding: 21px 18px; }
+  .focus-feature h2 { font-size: 27px; }
+  .focus-feature > p { font-size: 13px; }
+  .stat-value { font-size: 25px; }
+  .section-header h3, .study-actions-head h3, .panel-title h3 { font-size: 18px; }
+  #view-practice .practice-heading { margin-bottom: 18px; }
+  #view-practice .set-explorer-header p { font-size: 12px; }
+  #view-practice .set-mode-tabs { gap: 0 12px; margin-bottom: 16px; }
+  #view-practice .set-mode-tab { min-height: 42px; }
+  #view-practice .set-mode-tab strong { font-size: 13px; }
+  #view-practice .set-mode-tab span { font-size: 11px; }
+  #view-practice .set-explorer-filters { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #view-practice .set-filter { min-width: 0; }
+  #view-practice .set-filter select { font-size: 12px; }
+  #view-practice .set-row { padding: 13px; }
+  #view-practice .set-card-title { font-size: 15px; }
+  #view-practice .set-card-meta > span { font-size: 12px; }
+  #view-practice .set-row .set-row-actions { flex-wrap: wrap; align-items: center; }
+  #view-practice .set-row-launch { font-size: 12px !important; }
+  .question-title { font-size: 17px; line-height: 1.58; }
+  .option { font-size: 13.5px; line-height: 1.55; padding: 12px 9px; min-height: 52px; }
+  .rich-text, .lesson-body, .lesson-body p { font-size: 13.5px; }
+}

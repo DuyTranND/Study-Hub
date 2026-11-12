@@ -1,0 +1,147 @@
+[
+  {
+    "file": "A1.json",
+    "title": "📐 Đại số tuyến tính",
+    "count": 9
+  },
+  {
+    "file": "A10.json",
+    "title": "💻 Numerical Stability",
+    "count": 3
+  },
+  {
+    "file": "A2.json",
+    "title": "🔢 Eigenvalue & Decomposition",
+    "count": 6
+  },
+  {
+    "file": "A3.json",
+    "title": "🎲 Xác suất",
+    "count": 7
+  },
+  {
+    "file": "A4.json",
+    "title": "📊 Phân phối xác suất",
+    "count": 6
+  },
+  {
+    "file": "A5.json",
+    "title": "📈 Thống kê",
+    "count": 6
+  },
+  {
+    "file": "A6.json",
+    "title": "∫ Giải tích & Tối ưu",
+    "count": 6
+  },
+  {
+    "file": "A9.json",
+    "title": "📏 Distance Metrics",
+    "count": 5
+  },
+  {
+    "file": "B1.json",
+    "title": "🐍 Python Basics",
+    "count": 6
+  },
+  {
+    "file": "B10.json",
+    "title": "📊 Visualization & Reporting",
+    "count": 5
+  },
+  {
+    "file": "B11.json",
+    "title": "📄 Regular Expressions & Files",
+    "count": 5
+  },
+  {
+    "file": "B2.json",
+    "title": "🐍 Python Advanced",
+    "count": 6
+  },
+  {
+    "file": "B3.json",
+    "title": "⚡ DSA & Complexity",
+    "count": 6
+  },
+  {
+    "file": "B4.json",
+    "title": "🐼 Numpy & Pandas",
+    "count": 6
+  },
+  {
+    "file": "B5.json",
+    "title": "🗄️ SQL & DB Basics",
+    "count": 6
+  },
+  {
+    "file": "B6.json",
+    "title": "🔧 Data Pipelines & Airflow",
+    "count": 6
+  },
+  {
+    "file": "B9.json",
+    "title": "🐛 Testing & Debugging",
+    "count": 5
+  },
+  {
+    "file": "C1.json",
+    "title": "🤖 ML Supervised Learning",
+    "count": 6
+  },
+  {
+    "file": "C10.json",
+    "title": "🎮 Reinforcement Learning",
+    "count": 4
+  },
+  {
+    "file": "C11.json",
+    "title": "📈 Time Series & RecSys",
+    "count": 4
+  },
+  {
+    "file": "C12.json",
+    "title": "⚙️ Feature Engineering & AutoML",
+    "count": 4
+  },
+  {
+    "file": "C2.json",
+    "title": "📋 Model Evaluation",
+    "count": 6
+  },
+  {
+    "file": "C3.json",
+    "title": "🧠 Deep Learning",
+    "count": 6
+  },
+  {
+    "file": "C4.json",
+    "title": "📝 NLP & Computer Vision",
+    "count": 5
+  },
+  {
+    "file": "C9.json",
+    "title": "🤖 LLM & Foundations",
+    "count": 4
+  },
+  {
+    "file": "D1.json",
+    "title": "⚖️ Logic & Ethics",
+    "count": 3
+  },
+  {
+    "file": "D10.json",
+    "title": "💬 Communication & Soft Skills in AI",
+    "count": 4
+  },
+  {
+    "file": "D8.json",
+    "title": "⚖️ AI Regulations & ISO",
+    "count": 3
+  },
+  {
+    "file": "D9.json",
+    "title": "🌍 AI in Society & Intellectual Property",
+    "count": 3
+  }
+]

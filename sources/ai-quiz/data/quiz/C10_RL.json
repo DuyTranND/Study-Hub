@@ -1,0 +1,171 @@
+[
+    {
+        "id": "C10_001",
+        "section": "C10: Reinforcement Learning",
+        "question": "Mô hình toán học MDP (Markov Decision Process) bao gồm những thành phần cơ bản nào?",
+        "options": [
+            "Input, Output, Loss function",
+            "States, Actions, Transition probabilities, Rewards và Discount factor",
+            "Features, Labels, Model parameters",
+            "Encoder, Decoder, Attention weights"
+        ],
+        "correct": 1,
+        "explanation": "MDP là khung làm việc toán học để mô tả các bài toán ra quyết định tuần tự, nơi hành động của agent ảnh hưởng đến trạng thái tương lai."
+    },
+    {
+        "id": "C10_002",
+        "section": "C10: Reinforcement Learning",
+        "question": "Khái niệm Policy (π) trong Reinforcement Learning được hiểu như thế nào?",
+        "options": [
+            "Là hàm tính toán sai số của mô hình",
+            "Hàm ánh xạ từ một trạng thái sang một hành động cụ thể",
+            "Hàm tính toán tổng điểm thưởng nhận được",
+            "Dữ liệu huấn luyện được gắn nhãn từ trước"
+        ],
+        "correct": 1,
+        "explanation": "Policy giống như một 'chiến lược' hướng dẫn agent nên thực hiện hành động nào khi đang ở một trạng thái nhất định để tối đa hóa phần thưởng."
+    },
+    {
+        "id": "C10_003",
+        "section": "C10: Reinforcement Learning",
+        "question": "Bản chất của thuật toán Q-Learning trong RL là gì?",
+        "options": [
+            "Là một loại thuật toán học có giám sát (Supervised Learning)",
+            "Thuật toán học giá trị hành động trong từng trạng thái",
+            "Thuật toán dùng để phân nhóm dữ liệu tự động",
+            "Kỹ thuật dùng để giảm số chiều của dữ liệu"
+        ],
+        "correct": 1,
+        "explanation": "Q-Learning học giá trị Q(s,a), đại diện cho tổng phần thưởng kỳ vọng mà agent nhận được nếu thực hiện hành động a tại trạng thái s."
+    },
+    {
+        "id": "C10_004",
+        "section": "C10: Reinforcement Learning",
+        "question": "Sự cân bằng giữa Exploration và Exploitation có nghĩa là?",
+        "options": [
+            "Phân chia tập dữ liệu thành hai phần Training và Testing",
+            "Cân bằng giữa việc thử cái mới và chọn cái tốt nhất đã biết",
+            "Tối ưu hóa sự khác biệt giữa tốc độ nhanh và chậm",
+            "Lựa chọn giữa việc huấn luyện trực tuyến hay ngoại tuyến"
+        ],
+        "correct": 1,
+        "explanation": "Agent cần khám phá (exploration) để tìm ra những chiến lược mới tốt hơn, nhưng cũng cần khai thác (exploitation) những gì đã biết để đạt điểm cao."
+    },
+    {
+        "id": "C10_005",
+        "section": "C10: Reinforcement Learning",
+        "question": "Tại sao kỹ thuật Reward Shaping lại quan trọng trong huấn luyện RL?",
+        "options": [
+            "Nó hoàn toàn không mang lại giá trị nào cho quá trình học",
+            "Bổ sung các phần thưởng trung gian để định hướng cho agent",
+            "Làm cho cấu trúc phần thưởng luôn ở mức đơn giản nhất",
+            "Chỉ được sử dụng để giới hạn phần thưởng trong khoảng +/- 1"
+        ],
+        "correct": 1,
+        "explanation": "Trong các bài toán có phần thưởng thưa thớt (sparse rewards), reward shaping giúp agent nhanh chóng hiểu được mình đang đi đúng hướng hay không."
+    },
+    {
+        "id": "C10_006",
+        "section": "C10: Reinforcement Learning",
+        "question": "Hệ số Discount factor γ (gamma) có vai trò gì trong MDP?",
+        "options": [
+            "Dùng để thay thế cho tốc độ học (learning rate)",
+            "Xác định mức độ ưu tiên của các phần thưởng trong tương lai",
+            "Quy định kích thước của batch dữ liệu khi huấn luyện",
+            "Xác định tổng số lượng tập phim (episodes) cần chạy"
+        ],
+        "correct": 1,
+        "explanation": "Gamma gần 0 khiến agent chỉ quan tâm đến lợi ích tức thời, gamma gần 1 khiến agent có tầm nhìn xa và coi trọng các phần thưởng trong tương lai."
+    },
+    {
+        "id": "C10_007",
+        "section": "C10: Reinforcement Learning",
+        "question": "Tại sao thuật toán PPO lại được sử dụng rất phổ biến hiện nay?",
+        "options": [
+            "Vì nó là thuật toán có tốc độ thực thi nhanh nhất hiện nay",
+            "Giới hạn mức độ cập nhật policy để đảm bảo sự ổn định",
+            "Vì PPO thực chất là một dạng của học có giám sát",
+            "PPO là thuật toán duy nhất không cần sử dụng đến reward"
+        ],
+        "correct": 1,
+        "explanation": "PPO sử dụng kỹ thuật 'clipping' để ngăn không cho policy thay đổi quá đột ngột, giúp quá trình huấn luyện diễn ra ổn định và hiệu quả."
+    },
+    {
+        "id": "C10_008",
+        "section": "C10: Reinforcement Learning",
+        "question": "Sự khác biệt giữa Model-based và Model-free RL là gì?",
+        "options": [
+            "Hai phương pháp này hoàn toàn giống hệt nhau về bản chất",
+            "Model-free học từ thực tế, Model-based học qua mô hình mô phỏng",
+            "Phương pháp Model-based luôn cho kết quả tốt hơn Model-free",
+            "Phương pháp Model-free yêu cầu phải có một mô hình môi trường"
+        ],
+        "correct": 1,
+        "explanation": "Model-free học trực tiếp từ trải nghiệm thực tế, trong khi Model-based cố gắng học quy luật của môi trường để lập kế hoạch (planning)."
+    },
+    {
+        "id": "C10_009",
+        "section": "C10: Reinforcement Learning",
+        "question": "Bài toán Multi-armed Bandit liên quan đến RL như thế nào?",
+        "options": [
+            "Đây là một dạng toán đặc biệt của bài toán Classification",
+            "Bài toán RL đơn giản chỉ có một trạng thái duy nhất",
+            "Được coi là một bài toán phân nhóm dữ liệu (Clustering)",
+            "Là một dạng mở rộng của bài toán hồi quy (Regression)"
+        ],
+        "correct": 1,
+        "explanation": "Multi-armed bandit tập trung vào việc cân bằng giữa thăm dò và khai thác mà không quan tâm đến sự thay đổi trạng thái của môi trường."
+    },
+    {
+        "id": "C10_010",
+        "section": "C10: Reinforcement Learning",
+        "question": "Reinforcement Learning khác biệt CỐT LÕI với Supervised Learning ở điểm nào?",
+        "options": [
+            "Thuật toán RL có tốc độ tính toán nhanh hơn học có giám sát",
+            "Trong RL, agent học từ sự tương tác và phần thưởng trễ",
+            "Hai phương pháp này hoàn toàn không có sự khác biệt rõ rệt",
+            "Lập trình cho RL dễ thực hiện hơn nhiều so với học có giám sát"
+        ],
+        "correct": 1,
+        "explanation": "RL không có nhãn đúng/sai ngay lập tức. Agent phải tự mày mò thông qua thử-và-sai và đôi khi kết quả của hành động chỉ nhận được rất lâu sau đó."
+    },
+    {
+        "id": "C10_011",
+        "section": "C10: Reinforcement Learning",
+        "question": "Thuật ngữ Sim-to-real trong Robotics RL có nghĩa là gì?",
+        "options": [
+            "Thực hiện sao chép toàn bộ mã nguồn từ môi trường giả lập",
+            "Chuyển đổi mô hình đã huấn luyện từ giả lập sang thực tế",
+            "Chỉ sử dụng duy nhất các robot thật để huấn luyện từ đầu",
+            "Sử dụng môi trường giả lập để thay thế hoàn toàn robot thật"
+        ],
+        "correct": 1,
+        "explanation": "Do huấn luyện trên robot thật tốn kém và nguy hiểm, người ta train trong giả lập rồi dùng các kỹ thuật để giúp model hoạt động tốt ngoài đời thực."
+    },
+    {
+        "id": "C10_012",
+        "section": "C10: Reinforcement Learning",
+        "question": "Mục tiêu của thuật toán Inverse Reinforcement Learning (IRL) là gì?",
+        "options": [
+            "Tìm cách giúp mô hình thực hiện việc học policy nhanh hơn",
+            "Suy diễn ra hàm phần thưởng từ các hành động của chuyên gia",
+            "Thực hiện đảo ngược các quyết định của một policy có sẵn",
+            "Học cách để quên đi những hành vi xấu đã được huấn luyện"
+        ],
+        "correct": 1,
+        "explanation": "IRL được dùng khi chúng ta không biết cách viết hàm reward như thế nào cho đúng, nên ta nhìn chuyên gia làm để đoán xem họ đang tối ưu cái gì."
+    },
+    {
+        "id": "C10_013",
+        "section": "C10: Reinforcement Learning",
+        "question": "Cơ chế Experience Replay trong thuật toán DQN dùng để làm gì?",
+        "options": [
+            "Cho phép người dùng xem lại các thước phim về quá trình học",
+            "Lưu dữ liệu vào bộ nhớ đệm và lấy mẫu ngẫu nhiên để huấn luyện",
+            "Dùng để tăng tốc độ xem lại kết quả của các tập phim",
+            "Thực hiện xóa bỏ toàn bộ các trải nghiệm cũ không còn giá trị"
+        ],
+        "correct": 1,
+        "explanation": "Giúp phá bỏ sự tương quan giữa các trải nghiệm liên tiếp, giúp mạng neural học ổn định và hiệu quả hơn trong việc sử dụng lại dữ liệu cũ."
+    }
+]

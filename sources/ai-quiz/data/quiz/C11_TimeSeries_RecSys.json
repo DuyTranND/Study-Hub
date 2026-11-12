@@ -1,0 +1,132 @@
+[
+    {
+        "id": "C11_001",
+        "section": "C11: Time Series & Recommender Systems",
+        "question": "Ba thành phần Trend, Seasonality và Residual trong chuỗi thời gian là?",
+        "options": [
+            "Ba thuật toán mô hình hóa dữ liệu khác nhau",
+            "Trend (xu hướng), Seasonality (tính chu kỳ) và Residual (nhiễu)",
+            "Ba chỉ số đánh giá độ chính xác của mô hình dự báo",
+            "Ba loại đặc trưng đầu vào trong mạng nơ-ron tuần hoàn"
+        ],
+        "correct": 1,
+        "explanation": "Trend mô tả hướng đi dài hạn, Seasonality mô tả các biến động lặp lại định kỳ, và Residual là phần ngẫu nhiên còn lại."
+    },
+    {
+        "id": "C11_002",
+        "section": "C11: Time Series & Recommender Systems",
+        "question": "Chỉ số Autocorrelation trong chuỗi thời gian dùng để đo lường điều gì?",
+        "options": [
+            "Mức độ tương quan giữa hai biến số độc lập khác nhau",
+            "Tương quan của chuỗi thời gian với chính nó tại các độ trễ",
+            "Tốc độ tăng trưởng trung bình của dữ liệu theo thời gian",
+            "Sai số dự báo của mô hình so với giá trị thực tế quan sát"
+        ],
+        "correct": 1,
+        "explanation": "Đo lường mối quan hệ giữa giá trị hiện tại và các giá trị trong quá khứ, giúp xác định các tham số cho mô hình ARIMA."
+    },
+    {
+        "id": "C11_003",
+        "section": "C11: Time Series & Recommender Systems",
+        "question": "Ưu điểm nổi bật của mô hình Prophet (phát triển bởi Meta) là gì?",
+        "options": [
+            "Có tốc độ thực thi các phép tính dự báo nhanh nhất hiện nay",
+            "Xử lý tốt các giá trị thiếu, ngoại lai và các ngày lễ",
+            "Prophet luôn đảm bảo cho ra kết quả dự báo chính xác tuyệt đối",
+            "Mô hình này chỉ được thiết kế dành riêng cho dự báo chứng khoán"
+        ],
+        "correct": 1,
+        "explanation": "Prophet rất linh hoạt và dễ sử dụng cho các dữ liệu kinh doanh nhờ khả năng tự động nhận diện các điểm thay đổi và tính chu kỳ."
+    },
+    {
+        "id": "C11_004",
+        "section": "C11: Time Series & Recommender Systems",
+        "question": "Cơ chế Collaborative Filtering trong hệ thống đề xuất hoạt động thế nào?",
+        "options": [
+            "Thực hiện phân tích nội dung chi tiết của từng sản phẩm",
+            "Dự đoán dựa trên hành vi của các người dùng tương tự",
+            "Sử dụng các thuật toán NLP để phân tích mô tả sản phẩm",
+            "Sử dụng đồ thị tri thức để tìm kiếm các mối liên hệ dữ liệu"
+        ],
+        "correct": 1,
+        "explanation": "Dựa trên triết lý: nếu người dùng A và B có hành vi giống nhau trong quá khứ, họ có xu hướng thích những thứ giống nhau trong tương lai."
+    },
+    {
+        "id": "C11_005",
+        "section": "C11: Time Series & Recommender Systems",
+        "question": "Lọc dựa trên nội dung (Content-based) khác gì so với lọc cộng tác (CF)?",
+        "options": [
+            "Hai phương pháp này hoàn toàn giống hệt nhau về bản chất",
+            "Content-based dựa trên thuộc tính vật lý của sản phẩm",
+            "Phương pháp lọc dựa trên nội dung luôn cho kết quả tốt hơn",
+            "Lọc cộng tác không yêu cầu sử dụng bất kỳ dữ liệu người dùng nào"
+        ],
+        "correct": 1,
+        "explanation": "Content-based đề xuất phim hành động cho người thích phim hành động, còn CF đề xuất phim mà các người dùng có cùng sở thích đã xem."
+    },
+    {
+        "id": "C11_006",
+        "section": "C11: Time Series & Recommender Systems",
+        "question": "Vấn đề 'Cold Start' trong các hệ thống đề xuất được hiểu là gì?",
+        "options": [
+            "Hiện tượng máy chủ bị khởi động chậm do dung lượng dữ liệu lớn",
+            "Thiếu dữ liệu ban đầu cho người dùng hoặc sản phẩm mới",
+            "Chỉ xảy ra khi thời tiết quá lạnh làm ảnh hưởng đến sensor",
+            "Mô hình dự báo gặp phải hiện tượng quá khớp (overfitting)"
+        ],
+        "correct": 1,
+        "explanation": "Khi một người dùng mới tham gia, hệ thống chưa có lịch sử hành vi để so sánh, dẫn đến khó khăn trong việc đưa ra đề xuất chính xác."
+    },
+    {
+        "id": "C11_007",
+        "section": "C11: Time Series & Recommender Systems",
+        "question": "Cơ chế của phương pháp San bằng mũ (Exponential Smoothing) là gì?",
+        "options": [
+            "Thực hiện lấy giá trị trung bình cộng đơn giản của toàn bộ dữ liệu",
+            "Gán trọng số giảm dần theo hàm mũ cho các dữ liệu cũ",
+            "Gán các trọng số tăng dần theo thời gian cho các dữ liệu cũ",
+            "Sử dụng các mạng nơ-ron nhân tạo phức tạp để làm mượt dữ liệu"
+        ],
+        "correct": 1,
+        "explanation": "Phương pháp này ưu tiên các quan sát gần đây hơn, vì chúng thường mang nhiều thông tin hữu ích cho tương lai hơn các dữ liệu cổ xưa."
+    },
+    {
+        "id": "C11_008",
+        "section": "C11: Time Series & Recommender Systems",
+        "question": "Kỹ thuật Matrix Factorization (như SVD) trong hệ thống đề xuất giúp?",
+        "options": [
+            "Thực hiện nhân các ma trận dữ liệu có kích thước khổng lồ",
+            "Phân tách ma trận đánh giá thành các nhân tố tiềm ẩn",
+            "Thay thế toàn bộ ma trận hiện tại bằng các giá trị trung bình",
+            "Kỹ thuật này chỉ được thiết kế dành riêng cho xử lý hình ảnh"
+        ],
+        "correct": 1,
+        "explanation": "Phân tích ma trận đánh giá (User-Item) thành các vector biểu diễn sở thích tiềm ẩn (như thể loại phim, phong cách đạo diễn)."
+    },
+    {
+        "id": "C11_009",
+        "section": "C11: Time Series & Recommender Systems",
+        "question": "Lag features trong mô hình hóa chuỗi thời gian có nghĩa là gì?",
+        "options": [
+            "Các đặc trưng được lấy từ các bộ dữ liệu hoàn toàn độc lập",
+            "Sử dụng các giá trị trong quá khứ làm đặc trưng dự báo",
+            "Các đặc trưng được đánh giá là không quan trọng đối với mô hình",
+            "Các đặc trưng được lấy từ các giá trị tương lai của chuỗi"
+        ],
+        "correct": 1,
+        "explanation": "Ví dụ: dùng doanh thu của ngày hôm qua và ngày này tuần trước để dự báo doanh thu cho ngày hôm nay."
+    },
+    {
+        "id": "C11_010",
+        "section": "C11: Time Series & Recommender Systems",
+        "question": "Thách thức đặc biệt khi thực hiện A/B testing cho hệ thống đề xuất là gì?",
+        "options": [
+            "Hoàn toàn không có bất kỳ thách thức nào đáng kể khi triển khai",
+            "Sự sai lệch do các đề xuất ảnh hưởng ngược lại hành vi",
+            "Chỉ cần thực hiện so sánh các chỉ số độ chính xác truyền thống",
+            "Cần phải triển khai đồng thời cả hai mô hình trên một máy chủ"
+        ],
+        "correct": 1,
+        "explanation": "Các đề xuất hiện tại có thể định hướng hành vi người dùng, tạo ra một vòng lặp khiến dữ liệu mới bị thiên kiến bởi chính mô hình."
+    }
+]

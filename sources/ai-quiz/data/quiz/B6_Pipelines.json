@@ -1,0 +1,132 @@
+[
+    {
+        "id": "B6_001",
+        "section": "B6: Data Pipelines & Processing",
+        "question": "Thuật ngữ ETL pipeline được hiểu là gì?",
+        "options": [
+            "Tên gọi của một ngôn ngữ lập trình dữ liệu mới",
+            "Quy trình trích xuất, biến đổi và nạp dữ liệu",
+            "Một loại hệ quản trị cơ sở dữ liệu chuyên dụng",
+            "Giao thức bảo mật và truyền tải dữ liệu an toàn"
+        ],
+        "correct": 1,
+        "explanation": "ETL là viết tắt của Extract (Trích xuất), Transform (Biến đổi) và Load (Nạp), là quy trình cốt lõi để chuẩn bị dữ liệu cho phân tích."
+    },
+    {
+        "id": "B6_002",
+        "section": "B6: Data Pipelines & Processing",
+        "question": "Điểm khác biệt chính giữa Batch và Stream processing là?",
+        "options": [
+            "Hai phương pháp này hoàn toàn giống hệt nhau về bản chất",
+            "Xử lý theo lô định kỳ so với xử lý thời gian thực",
+            "Xử lý Batch luôn mang lại tốc độ nhanh hơn Stream",
+            "Stream processing chỉ dành riêng cho dữ liệu video"
+        ],
+        "correct": 1,
+        "explanation": "Batch xử lý một lượng lớn dữ liệu tại các thời điểm định kỳ, trong khi Stream xử lý dữ liệu ngay lập tức khi chúng được sinh ra."
+    },
+    {
+        "id": "B6_003",
+        "section": "B6: Data Pipelines & Processing",
+        "question": "Công cụ Apache Airflow thường được sử dụng để?",
+        "options": [
+            "Dùng để trực tiếp quản lý các hệ thống database lớn",
+            "Điều phối và quản lý các luồng công việc tự động",
+            "Xây dựng các giao diện web cho ứng dụng dữ liệu",
+            "Huấn luyện trực tiếp các mô hình Machine Learning"
+        ],
+        "correct": 1,
+        "explanation": "Airflow sử dụng DAG để định nghĩa các bước trong pipeline, giúp quản lý sự phụ thuộc giữa các tác vụ và lên lịch thực hiện."
+    },
+    {
+        "id": "B6_004",
+        "section": "B6: Data Pipelines & Processing",
+        "question": "Data Lake khác gì so với hệ thống Data Warehouse?",
+        "options": [
+            "Về mặt bản chất, hai hệ thống này hoàn toàn giống nhau",
+            "Lưu trữ dữ liệu thô so với dữ liệu đã được cấu trúc",
+            "Sơ đồ Data Lake chỉ hỗ trợ lưu trữ các tệp hình ảnh",
+            "Data Warehouse là nơi lưu trữ mọi loại dữ liệu thô ban đầu"
+        ],
+        "correct": 1,
+        "explanation": "Data Lake lưu dữ liệu ở dạng nguyên bản (thô), trong khi Data Warehouse yêu cầu dữ liệu phải được làm sạch và cấu trúc trước khi nạp."
+    },
+    {
+        "id": "B6_005",
+        "section": "B6: Data Pipelines & Processing",
+        "question": "Tính chất Idempotency trong data pipeline có nghĩa là gì?",
+        "options": [
+            "Pipeline sẽ chạy nhanh hơn sau mỗi lần thực hiện lại",
+            "Đảm bảo kết quả không đổi khi chạy lại nhiều lần",
+            "Hệ thống pipeline sẽ tự xóa sau khi kết thúc quá trình",
+            "Cấu hình pipeline chỉ cho phép chạy duy nhất một lần"
+        ],
+        "correct": 1,
+        "explanation": "Nếu một tác vụ bị lỗi và chạy lại, nó sẽ không gây ra dữ liệu trùng lặp hoặc các lỗi logic khác trong hệ thống."
+    },
+    {
+        "id": "B6_006",
+        "section": "B6: Data Pipelines & Processing",
+        "question": "Khái niệm Schema Evolution được hiểu là?",
+        "options": [
+            "Hành động xóa bỏ hoàn toàn dữ liệu của database cũ",
+            "Khả năng thay đổi cấu trúc dữ liệu một cách linh hoạt",
+            "Tạo lập một hệ thống quản trị cơ sở dữ liệu mới hoàn toàn",
+            "Chuyển đổi dữ liệu từ dạng SQL sang các dạng NoSQL"
+        ],
+        "correct": 1,
+        "explanation": "Cho phép thay đổi định nghĩa bảng (như thêm cột) mà không làm hỏng các ứng dụng hiện tại đang sử dụng dữ liệu đó."
+    },
+    {
+        "id": "B6_007",
+        "section": "B6: Data Pipelines & Processing",
+        "question": "Ưu điểm của định dạng Parquet so với CSV cho dữ liệu lớn là?",
+        "options": [
+            "Parquet là định dạng văn bản thuần túy nên rất dễ đọc",
+            "Định dạng lưu trữ theo cột giúp tối ưu hóa truy vấn",
+            "Định dạng CSV luôn cho tốc độ đọc nhanh hơn Parquet",
+            "Parquet là định dạng chỉ dành riêng cho dữ liệu hình ảnh"
+        ],
+        "correct": 1,
+        "explanation": "Lưu trữ theo cột giúp nén dữ liệu tốt hơn và chỉ cần đọc các cột cần thiết, thay vì đọc toàn bộ dòng như CSV."
+    },
+    {
+        "id": "B6_008",
+        "section": "B6: Data Pipelines & Processing",
+        "question": "Hệ thống Dead Letter Queue (DLQ) dùng để làm gì?",
+        "options": [
+            "Lưu trữ các thông điệp đã được xử lý một cách thành công",
+            "Nơi lưu trữ các thông điệp xử lý lỗi để xử lý sau",
+            "Dùng để xóa bỏ các thông điệp đã cũ khỏi hệ thống",
+            "Thực hiện việc mã hóa các thông điệp truyền tải trong luồng"
+        ],
+        "correct": 1,
+        "explanation": "Khi một thông điệp không thể xử lý được, nó được đẩy vào DLQ để kỹ sư có thể kiểm tra lỗi mà không làm tắc nghẽn luồng chính."
+    },
+    {
+        "id": "B6_009",
+        "section": "B6: Data Pipelines & Processing",
+        "question": "Khái niệm Data lineage có ý nghĩa gì?",
+        "options": [
+            "Thực hiện các bản sao lưu dữ liệu theo định kỳ hàng tuần",
+            "Theo dõi nguồn gốc và lịch sử biến đổi của dữ liệu",
+            "Hành động xóa dữ liệu cũ để tiết kiệm không gian lưu trữ",
+            "Thực hiện việc mã hóa dữ liệu tại nơi lưu trữ đích"
+        ],
+        "correct": 1,
+        "explanation": "Giúp người quản trị biết được một mẩu dữ liệu cụ thể đến từ đâu và đã trải qua những bước xử lý nào trước đó."
+    },
+    {
+        "id": "B6_010",
+        "section": "B6: Data Pipelines & Processing",
+        "question": "Trong kĩ thuật xử lí dữ liệu, 'Backfill' được hiểu là?",
+        "options": [
+            "Hành động xóa sạch các dữ liệu đã cũ trong hệ thống",
+            "Hành động chạy lại dữ liệu cho một khoảng thời gian",
+            "Thực hiện thêm mới các cột vào trong cơ sở dữ liệu",
+            "Thực hiện nén nhỏ các dữ liệu cũ để tối ưu tài nguyên"
+        ],
+        "correct": 1,
+        "explanation": "Sử dụng khi cần chạy lại các logic mới cho dữ liệu cũ hoặc khi cần bổ sung dữ liệu bị thiếu do sự cố trong quá khứ."
+    }
+]
