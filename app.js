@@ -72,7 +72,7 @@
   const displayGroup = group => GROUP_ALIASES[group] || group || '';
   const displayCheatTitle = (file, title) => CHEAT_TITLE_ALIASES[file] || title || '';
   const todayKey = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; };
-  const titleOf = { overview: 'Overview', practice: 'Practice', library: 'Question Bank', roadmap: 'Lessons & Formulas', 'tfg-guide': 'TFG27 Study Guide', 'tfg-tests': 'TFG27 Practice Tests', 'shl-practice': 'SHL Sample Practice' };
+  const titleOf = { overview: 'Overview', practice: 'Practice', community: 'Study Groups', library: 'Question Bank', roadmap: 'Lessons & Formulas', 'tfg-guide': 'TFG27 Study Guide', 'tfg-tests': 'TFG27 Practice Tests', 'shl-practice': 'SHL Sample Practice' };
   const tryStore = () => { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; } };
   const persisted = tryStore();
   const state = {
@@ -234,6 +234,7 @@
     $('current-nav').textContent = titleOf[view];
     if (view === 'overview') refreshDashboard();
     if (view === 'practice') renderPractice();
+    if (view === 'community') window.StudyCommunity?.activate();
     if (view === 'library') renderLibrary();
     if (view === 'roadmap') { renderRoadmap(); renderCheatIndex(); }
     if (view === 'tfg-guide') loadTfgGuide();
@@ -462,7 +463,7 @@
   function startSession(questions, mode = 'learn', minutes = 0) {
     const qs = [...questions];
     if (!qs.length) { toast('No questions match these filters.'); return; }
-    state.session = { ids: qs.map(q => q.id), index: 0, answers: {}, revealed: {}, mode, startedAt: Date.now(), minutes: mode === 'exam' ? (minutes || Math.max(10, qs.length * 1.5)) : 0, submitted: false, review: false };
+    state.session = { id: crypto.randomUUID(), ids: qs.map(q => q.id), index: 0, answers: {}, revealed: {}, mode, startedAt: Date.now(), minutes: mode === 'exam' ? (minutes || Math.max(10, qs.length * 1.5)) : 0, submitted: false, review: false };
     save(); showView('practice');
   }
   function startFromSetup() {
@@ -551,7 +552,7 @@
     s.answers[id] = input.value; save();
   }
   function submitSession() {
-    const s = state.session; if (!s) return;
+    const s = state.session; if (!s || s.submitted) return;
     storeTextAnswer();
     s.submitted = true; s.review = false;
     for (const id of s.ids) {
@@ -561,6 +562,7 @@
       if (q && state.results[id] && ['mcq', 'numeric', 'output'].includes(q.type)) recordResult(q, value);
     }
     save(); renderSession();
+    if (s.mode === 'exam') void window.StudyCommunity?.submitSession(s);
   }
   function renderResults() {
     const s = state.session; $('session-label').textContent = 'SESSION RESULTS'; $('session-heading').textContent = 'Session complete!';
@@ -571,7 +573,7 @@
     const scored = s.ids.map(id => ({ id, q: byId.get(id), val: s.answers[id] })).filter(x => x.q);
     const objective = scored.filter(x => ['mcq', 'numeric', 'output'].includes(x.q.type) && String(x.val ?? '').trim());
     const correct = objective.filter(x => answerOk(x.q, x.val)).length;
-    $('question-stage').innerHTML = `<div class="result-grid"><div class="result-stat"><b>${correct}/${objective.length}</b><small>Correct / graded</small></div><div class="result-stat"><b>${scored.filter(x => String(x.val ?? '').trim()).length}</b><small>Answered</small></div><div class="result-stat"><b>${objective.length ? Math.round(correct / objective.length * 100) : 0}%</b><small>Accuracy</small></div></div><p>Select a question to review its answer and explanation. Written and coding responses require self-assessment.</p><div class="result-list">${scored.map((x, i) => `<div class="result-line"><button data-review="${i}">Question ${i + 1}: ${escapeHtml(x.q.prompt.slice(0, 65))}${x.q.prompt.length > 65 ? '…' : ''}</button><span>${String(x.val ?? '').trim() ? answerOk(x.q, x.val) === true ? '✓ Correct' : answerOk(x.q, x.val) === false ? '✗ Incorrect' : 'Written response' : '— Skipped'}</span></div>`).join('')}</div>`;
+    $('question-stage').innerHTML = `<div class="result-grid"><div class="result-stat"><b>${correct}/${objective.length}</b><small>Correct / graded</small></div><div class="result-stat"><b>${scored.filter(x => String(x.val ?? '').trim()).length}</b><small>Answered</small></div><div class="result-stat"><b>${objective.length ? Math.round(correct / objective.length * 100) : 0}%</b><small>Accuracy</small></div></div><p>Select a question to review its answer and explanation. Written and coding responses require self-assessment.</p>${s.mode === 'exam' && s.ids.length >= 10 ? '<div class="community-result-link"><button type="button" class="btn outline" data-community-share>Share exam score with study group →</button><span id="community-sync-hint" aria-live="polite"></span></div>' : ''}<div class="result-list">${scored.map((x, i) => `<div class="result-line"><button data-review="${i}">Question ${i + 1}: ${escapeHtml(x.q.prompt.slice(0, 65))}${x.q.prompt.length > 65 ? '…' : ''}</button><span>${String(x.val ?? '').trim() ? answerOk(x.q, x.val) === true ? '✓ Correct' : answerOk(x.q, x.val) === false ? '✗ Incorrect' : 'Written response' : '— Skipped'}</span></div>`).join('')}</div>`;
   }
   function updateClock() {
     const s = state.session;
@@ -679,6 +681,8 @@
       const study = event.target.closest('[data-study-tab]'); if (study) { setStudyTab(study.dataset.studyTab); return; }
       const cheat = event.target.closest('[data-cheat]'); if (cheat) { openCheat(cheat.dataset.cheat); return; }
       const nav = event.target.closest('[data-nav]'); if (nav) { event.preventDefault(); showView(nav.dataset.nav); return; }
+      const share = event.target.closest('[data-community-share]');
+      if (share) { void window.StudyCommunity?.submitSession(state.session, { manual: true }); return; }
       const guideAnchor = event.target.closest('#tfg-guide-toc a'); if (guideAnchor) { event.preventDefault(); $(guideAnchor.getAttribute('href').slice(1))?.scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
       const day = event.target.closest('[data-day]'); if (day) { openLesson(Number(day.dataset.day)); return; }
       const qbtn = event.target.closest('[data-question]'); if (qbtn) { startSession([byId.get(qbtn.dataset.question)]); return; }

@@ -30,10 +30,12 @@
   <link rel="stylesheet" href="/reading.css?v=20261102c">
   <link rel="stylesheet" href="/tfg27.css?v=20261102d">
   <link rel="stylesheet" href="/shl-practice.css?v=20261102a">
+  <link rel="stylesheet" href="/community.css?v=20261112a">
   <script>window.MathJax={tex:{inlineMath:[['$','$'],['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},svg:{fontCache:'global'},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},startup:{typeset:false}};</script>
   <script defer src="/sources/ai20k-exam-prep/vendor/mathjax/es5/tex-svg.js"></script>
   <script defer src="/sources/ai20k-exam-prep/vendor/mermaid/mermaid.min.js"></script>
-  <script defer src="/app.js?v=20261102e"></script>
+  <script defer src="/community.js?v=20261112a"></script>
+  <script defer src="/app.js?v=20261112a"></script>
 </head>
 <body>
   <a class="skip-link" href="#view-overview">Skip to main content</a>
@@ -60,6 +62,7 @@
         <button class="nav-item" data-nav="practice"><svg><use href="#i-check"/></svg><span>Practice</span></button>
         <button class="nav-item" data-nav="library"><svg><use href="#i-search"/></svg><span>Question Bank</span></button>
         <button class="nav-item" data-nav="roadmap"><svg><use href="#i-calendar"/></svg><span>Lessons & Formulas</span></button>
+        <button class="nav-item" data-nav="community"><svg><use href="#i-star"/></svg><span>Study Groups</span></button>
         <div class="side-caption tfg-nav-caption">TECHCOMBANK FUTURE GEN 2027</div>
         <button class="nav-item" data-nav="tfg-guide"><svg><use href="#i-book"/></svg><span>TFG27 Study Guide</span></button>
         <button class="nav-item" data-nav="tfg-tests"><svg><use href="#i-check"/></svg><span>TFG27 Practice Tests</span></button>
@@ -135,6 +138,21 @@
       </section>
 
       <section class="view hidden" id="view-library"><div class="page-heading"><div><div class="muted small">QUESTION EXPLORER</div><h1>Question Bank</h1><p>Search every question across all collections.</p></div><button class="btn primary" data-action="quick-start">Random practice <svg><use href="#i-arrow"/></svg></button></div><div class="library-toolbar"><label class="searchbox"><svg><use href="#i-search"/></svg><input id="search-input" type="search" placeholder="Search questions, topics or keywords..."></label><select id="library-bank" aria-label="Source"><option value="all">All sources</option><option value="shl">SHL Sample Practice</option><option value="tfg27">TFG27 Exam Prep</option><option value="mixed">Mixed mock exams</option><option value="ai20k">AI20K</option><option value="vin20k">Vin20K</option><option value="hirin">Hirin AI Quiz</option></select><select id="library-set" aria-label="Question set"><option value="all">All question sets</option></select><select id="library-status" aria-label="Status"><option value="all">All statuses</option><option value="todo">Not attempted</option><option value="correct">Correct</option><option value="wrong">Needs review</option><option value="star">Bookmarked</option></select></div><div class="library-summary"><b id="library-count">3,301 questions</b><span>Select a question to start practicing</span></div><div class="question-list" id="question-list"></div><div class="paging"><button class="btn outline" id="lib-prev">← Previous</button><span id="lib-page">1 / 1</span><button class="btn outline" id="lib-next">Next →</button></div></section>
+
+      <section class="view hidden" id="view-community">
+        <div class="page-heading community-heading"><div><div class="section-kicker">STUDY TOGETHER</div><h1>Study Groups</h1><p>Challenge your friends, compare exam scores and keep each other practicing.</p></div><button class="btn outline hidden" type="button" id="community-refresh">Refresh scores ↻</button></div>
+        <div id="community-status" class="community-status" role="status" aria-live="polite">Connecting to the study group service…</div>
+        <div id="community-setup" class="community-setup hidden">
+          <div class="community-intro"><div class="section-kicker">START WITH FRIENDS</div><h2>One group. A shared goal.</h2><p>Create a group and invite friends with a code, or join a group using its invite code. Scores from timed exams appear automatically after submission.</p><div class="community-explainer"><span>01 · Join a group</span><span>02 · Take a timed exam</span><span>03 · Climb the leaderboard</span></div></div>
+          <form id="community-create" class="community-form"><h3>Create a study group</h3><label>Group name<input name="name" required minlength="2" maxlength="48" placeholder="AI20K study crew" autocomplete="off"></label><label>Your nickname<input name="nickname" required minlength="2" maxlength="28" placeholder="How friends will see you" autocomplete="nickname"></label><button class="btn primary" type="submit">Create group →</button></form>
+          <form id="community-join" class="community-form"><h3>Join your friends</h3><label>Invite code<input name="code" required maxlength="8" minlength="8" autocapitalize="characters" placeholder="8-character code" autocomplete="off"></label><label>Your nickname<input name="nickname" required minlength="2" maxlength="28" placeholder="Your display name" autocomplete="nickname"></label><button class="btn outline" type="submit">Join group →</button></form>
+        </div>
+        <div id="community-board" class="community-board hidden">
+          <div class="community-hero"><div><div class="section-kicker">YOUR STUDY GROUP</div><h2 id="community-group-name"></h2><p>Share the invite code with friends to study together.</p><div class="community-invite"><span id="community-code"></span><button id="community-copy" type="button">Copy invite link ↗</button></div></div><div class="community-hero-actions"><button type="button" class="btn primary" data-action="mode-start" data-mode="exam">Take a timed exam →</button><button type="button" id="community-leave" class="community-leave">Leave group</button></div></div>
+          <div class="community-metrics"><article><span id="community-score-label">YOUR WEEKLY SCORE</span><strong id="community-you-points">0</strong><small>Unique correct answers</small></article><article><span>GROUP MEMBERS</span><strong id="community-members">0</strong><small>Learners in your group</small></article><article><span id="community-goal-label">WEEKLY GROUP CHALLENGE</span><strong id="community-total">0 / 200</strong><div class="community-progress"><span id="community-goal-progress"></span></div></article></div>
+          <div class="community-layout"><section class="community-ranking"><header><div><div class="section-kicker">GROUP RANKINGS</div><h3>Leaderboard</h3></div><div class="community-period" aria-label="Leaderboard period"><button type="button" data-community-period="week" class="active" aria-pressed="true">This week</button><button type="button" data-community-period="all" aria-pressed="false">All time</button></div></header><div class="community-table-wrap"><table><thead><tr><th>Rank</th><th>Learner</th><th>Points</th><th>Exams</th><th>Accuracy</th><th>Days</th></tr></thead><tbody id="community-ranking-rows"></tbody></table></div><p class="community-caption">One point per unique correct question per learner, per week. Retakes help you learn, but cannot farm the same points.</p></section><aside class="community-activity"><div class="section-kicker">RECENT WORK</div><h3>Group activity</h3><div id="community-feed"></div><p class="community-caption">Exam answers are scored on the server. Your individual answers remain private.</p></aside></div>
+        </div>
+      </section>
 
       <section class="view hidden" id="view-roadmap">
         <div class="page-heading"><div><div class="muted small">LEARNING RESOURCES FROM THREE SOURCES</div><h1>Lessons & Formulas</h1><p>Follow the Vin20K study plan or browse Hirin cheat sheets. Practice at any time.</p></div></div>

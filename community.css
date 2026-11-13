@@ -1,0 +1,191 @@
+/* Study Groups: aligned to the light, full-width Study Hub layout. */
+#view-community {
+  color: #1d3037;
+  font-size: 14px;
+}
+#view-community .community-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+#view-community .community-heading p { max-width: 720px; }
+#view-community .community-status {
+  padding: 15px 18px;
+  border-left: 3px solid #597b8a;
+  background: #eef4f5;
+  color: #334e57;
+  line-height: 1.6;
+  margin: 16px 0 22px;
+}
+#view-community .community-status[data-kind="error"] { background: #fff1ef; border-color: #c45f53; color: #873b35; }
+#view-community .community-status[data-kind="success"] { background: #edf5ee; border-color: #56866e; color: #345843; }
+#view-community .community-status[data-kind="warning"] { background: #faf5e9; border-color: #ba9751; color: #735927; }
+#view-community .community-setup {
+  display: grid;
+  grid-template-columns: minmax(230px, 1.35fr) repeat(2, minmax(230px, 1fr));
+  gap: 22px;
+  align-items: stretch;
+}
+#view-community .community-intro,
+#view-community .community-form {
+  background: #fff;
+  border: 1px solid #dbe4e5;
+  padding: clamp(20px, 2vw, 32px);
+  min-width: 0;
+}
+#view-community .community-intro { background: #f3f7f7; }
+#view-community .community-intro h2 {
+  font-size: clamp(22px, 1.8vw, 28px);
+  letter-spacing: -.035em;
+  margin: 14px 0 11px;
+}
+#view-community .community-intro p { font-size: 14px; line-height: 1.7; max-width: 460px; }
+#view-community .community-explainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 30px;
+  padding-top: 23px;
+  border-top: 1px solid #d2ddde;
+  font-size: 13px;
+  font-weight: 600;
+}
+#view-community .community-form { display: flex; flex-direction: column; gap: 19px; }
+#view-community .community-form h3 { font-size: 18px; margin-bottom: 5px; }
+#view-community .community-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 13px;
+}
+#view-community .community-form input {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 13px;
+  min-height: 44px;
+  border: 1px solid #cbd8dc;
+  border-radius: 3px;
+  background: #fff;
+  color: #1d3037;
+  font-size: 14px;
+  outline-offset: 2px;
+}
+#view-community .community-form .btn { width: fit-content; min-height: 42px; margin-top: auto; }
+#view-community .community-hero {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-content: space-between;
+  background: #eff5f5;
+  border-top: 3px solid #426c70;
+  padding: 26px 30px;
+}
+#view-community .community-hero h2 { font-size: clamp(24px, 2vw, 30px); margin: 7px 0; letter-spacing: -.025em; }
+#view-community .community-hero p { margin: 0 0 14px; font-size: 13px; }
+#view-community .community-hero-actions { display: flex; align-items: flex-end; gap: 12px; flex-direction: column; }
+#view-community .community-invite { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+#view-community #community-code {
+  font: 700 16px/1.4 ui-monospace, SFMono-Regular, Consolas, monospace;
+  letter-spacing: .14em;
+  color: #1b4144;
+  user-select: all;
+}
+#view-community .community-invite button,
+#view-community .community-leave {
+  background: transparent;
+  border: 0;
+  padding: 5px 0;
+  font-size: 13px;
+  color: #235d69;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+#view-community .community-leave { color: #865651; }
+#view-community .community-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  background: #fff;
+  margin: 18px 0 24px;
+  border: 1px solid #dbe4e5;
+}
+#view-community .community-metrics article {
+  min-width: 0;
+  padding: 21px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+#view-community .community-metrics article + article { border-left: 1px solid #dbe4e5; }
+#view-community .community-metrics article > span {
+  font-size: 11px;
+  letter-spacing: .065em;
+  font-weight: 700;
+  color: #5a727a;
+}
+#view-community .community-metrics strong {
+  font-size: clamp(24px, 2vw, 31px);
+  font-weight: 700;
+  letter-spacing: -.025em;
+  line-height: 1.3;
+}
+#view-community .community-metrics small { color: #6e858b; font-size: 12px; }
+#view-community .community-progress {
+  height: 5px;
+  margin-top: 7px;
+  background: #e4eded;
+  width: 100%;
+}
+#view-community .community-progress > span { display: block; height: 100%; background: #597e7d; width: 0; transition: width .2s ease; }
+#view-community .community-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, .95fr);
+  gap: 22px;
+  align-items: start;
+}
+#view-community .community-ranking,
+#view-community .community-activity { min-width: 0; padding: 23px 26px; background: white; border: 1px solid #dbe4e5; }
+#view-community .community-ranking header { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 19px; flex-wrap: wrap; }
+#view-community .community-ranking h3,
+#view-community .community-activity h3 { font-size: 19px; margin: 5px 0; }
+#view-community .community-period { display: flex; gap: 18px; border-bottom: 1px solid #d6e0e1; }
+#view-community .community-period button { font-size: 13px; padding: 8px 0; border: 0; border-bottom: 2px solid transparent; background: transparent; color: #627983; }
+#view-community .community-period button.active { color: #1d3e47; border-color: #30636c; font-weight: 700; }
+#view-community .community-table-wrap { overflow-x: auto; }
+#view-community table { width: 100%; border-collapse: collapse; min-width: 475px; font-size: 13px; text-align: left; }
+#view-community th, #view-community td { border-bottom: 1px solid #e5eded; padding: 13px 10px; }
+#view-community thead th { font-size: 11px; text-transform: uppercase; letter-spacing: .055em; color: #668087; font-weight: 700; }
+#view-community tbody th { font-weight: 500; color: #5c7581; }
+#view-community tbody td:nth-child(2) { font-weight: 600; overflow-wrap: anywhere; }
+#view-community tbody td:nth-child(3) { font-weight: 700; color: #244e52; }
+#view-community tr.community-is-you { background: #f0f6f3; }
+#view-community .community-caption { color: #74858b; font-size: 12px; line-height: 1.6; margin: 17px 0 0; }
+#view-community .community-activity h3 { margin-bottom: 17px; }
+#view-community .community-feed-item { display: flex; flex-direction: column; gap: 5px; border-bottom: 1px solid #e4ecec; padding: 13px 0; font-size: 13px; }
+#view-community .community-feed-item strong { font-size: 14px; overflow-wrap: anywhere; }
+#view-community .community-feed-item span { color: #49656c; }
+#view-community .community-feed-item time { color: #84969d; font-size: 12px; }
+#view-community .community-empty { font-size: 13px; padding: 18px 0; }
+.community-result-link { margin: 18px 0 20px; display: flex; align-items: center; flex-wrap: wrap; gap: 12px; }
+#community-sync-hint { font-size: 13px; color: #446452; }
+#community-sync-hint[data-kind="error"] { color: #a04638; }
+@media (max-width: 1250px) {
+  #view-community .community-setup { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #view-community .community-intro { grid-column: 1 / -1; }
+  #view-community .community-explainer { flex-direction: row; flex-wrap: wrap; margin-top: 18px; }
+}
+@media (max-width: 950px) {
+  #view-community .community-layout { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  #view-community .community-setup, #view-community .community-metrics { grid-template-columns: 1fr; }
+  #view-community .community-intro { grid-column: auto; }
+  #view-community .community-hero { align-items: stretch; flex-direction: column; padding: 20px; }
+  #view-community .community-hero-actions { align-items: flex-start; }
+  #view-community .community-metrics article + article { border-left: 0; border-top: 1px solid #dbe4e5; }
+  #view-community .community-metrics article { padding: 17px 20px; }
+  #view-community .community-ranking, #view-community .community-activity { padding: 18px 15px; }
+  #view-community .community-heading { flex-wrap: wrap; }
+  #view-community .community-explainer { flex-direction: column; }
+}
