@@ -99,9 +99,17 @@ export default async function handler(req, res) {
   const pathname = '/api/groups/' + action;
   if (!/^\/api\/groups\/(?:status|create|join|view|submit|leave)$/.test(pathname))
     return reply(res, 404, { error: 'Unknown group action.' });
-  if (req.method === 'GET' && pathname === '/api/groups/status')
-    return reply(res, 200, { enabled: Boolean(process.env.UPSTASH_REDIS_REST_URL || process.env.KV_REST_API_URL) &&
-      Boolean(process.env.UPSTASH_REDIS_REST_TOKEN || process.env.KV_REST_API_TOKEN) });
+  if (req.method === 'GET' && pathname === '/api/groups/status') {
+    try {
+      const config = credentials();
+      if (!config) return reply(res, 200, { enabled: false, reason: 'not_configured' });
+      if (await redis(config, ['PING']) !== 'PONG') throw Error('Redis health check returned an unexpected result.');
+      return reply(res, 200, { enabled: true });
+    } catch (error) {
+      console.error('Study Group health check error:', error.message);
+      return reply(res, 200, { enabled: false, reason: 'storage_unavailable' });
+    }
+  }
   if (req.method !== 'POST') return reply(res, 405, { error: 'POST required.' });
   try {
     const config = credentials();

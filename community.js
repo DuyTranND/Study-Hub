@@ -128,14 +128,27 @@
     refreshing = (async () => {
       try {
         const response = await fetch('/api/groups/status', { cache: 'no-store', signal: AbortSignal.timeout(12000) });
-        if (!response.ok || !(await response.json()).enabled) throw Error('Study Groups needs the Node.js Study Hub server with shared storage. This static website cannot synchronize scores.');
+        if (!response.ok) throw Error('Unable to reach Study Groups. Please try again.');
+        const status = await response.json();
+        if (!status.enabled) throw Error(status.reason === 'storage_unavailable'
+          ? 'Study Groups storage is temporarily unavailable. Please try again shortly.'
+          : 'Study Groups requires a shared server or Upstash Redis connection to synchronize scores.');
         if (!identity) {
           showSetup();
           showStatus();
           return;
         }
-        const data = await request('view', { period });
-        render(data.group);
+        // If the learner switches ranking periods mid-request, fetch the latest
+        // selection before showing the scoreboard.
+        let requestedPeriod;
+        do {
+          requestedPeriod = period;
+          const data = await request('view', { period: requestedPeriod });
+          if (requestedPeriod === period) {
+            render(data.group);
+            break;
+          }
+        } while (true);
       } catch (error) {
         if (error.status === 401 || error.status === 404) {
           storeIdentity(null);

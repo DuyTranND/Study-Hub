@@ -27,6 +27,7 @@ async function main() {
     assert.equal(url, process.env.UPSTASH_REDIS_REST_URL);
     assert.equal(options.headers.Authorization, `Bearer ${process.env.UPSTASH_REDIS_REST_TOKEN}`);
     const command = JSON.parse(options.body);
+    if (command[0] === 'PING') return Response.json({ result: 'PONG' });
     if (command[0] === 'GET') return Response.json({ result: state });
     if (command[0] === 'EVAL') {
       const before = command[4];
@@ -61,6 +62,15 @@ async function main() {
   try {
     let response = await call('status', undefined, 'GET');
     assert.equal(response.payload.enabled, true);
+    const workingFetch = global.fetch;
+    global.fetch = async () => Response.json({ error: 'Invalid Redis token' }, { status: 401 });
+    response = await call('status', undefined, 'GET');
+    assert.equal(response.status, 200);
+    assert.deepEqual(response.payload, { enabled: false, reason: 'storage_unavailable' },
+      'Configured but inaccessible Redis must not be reported as healthy');
+    global.fetch = workingFetch;
+    response = await call('status', undefined, 'GET');
+    assert.equal(response.payload.enabled, true, 'Health check should recover after Redis returns');
     const creator = await call('create', { name: 'Study Friends', nickname: 'Anna' });
     assert.equal(creator.status, 200, JSON.stringify(creator));
     const code = creator.payload.identity.code;
@@ -95,10 +105,10 @@ async function main() {
     assert(conflicts >= 1, 'Concurrent joins must retry on Redis CAS conflicts');
     delete process.env.UPSTASH_REDIS_REST_URL;
     response = await call('status', undefined, 'GET');
-    assert.equal(response.payload.enabled, false);
+    assert.deepEqual(response.payload, { enabled: false, reason: 'not_configured' });
     response = await call('create', { name: 'Other', nickname: 'Dave' });
     assert.equal(response.status, 503);
-    console.log('Vercel deploy: PASS (static assets, privacy, concurrent joins, leaderboard, persistence, missing-storage error).');
+    console.log('Vercel deploy: PASS (static assets, privacy, Redis health, concurrent joins, leaderboard, persistence, missing-storage error).');
   } finally {
     global.fetch = originalFetch;
     if (originalUrl === undefined) delete process.env.UPSTASH_REDIS_REST_URL;

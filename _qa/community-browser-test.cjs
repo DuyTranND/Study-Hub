@@ -148,8 +148,25 @@ async function main() {
   assert.equal(ranking.points, '10');
   assert.equal(ranking.activity, 1);
   assert.ok(ranking.width <= ranking.viewport + 2, 'Desktop board overflow');
+  // Hold the first weekly request while switching to all-time, then verify
+  // that the board also requests the new period instead of keeping stale data.
+  await evaluate('(' + function() {
+    window.__groupViewCalls = [];
+    window.__originalGroupFetch = window.fetch;
+    window.fetch = async function(...args) {
+      if (String(args[0]).includes('/api/groups/view')) {
+        const requestedPeriod = JSON.parse(args[1].body).period;
+        window.__groupViewCalls.push(requestedPeriod);
+        if (requestedPeriod === 'week') await new Promise(resolve => setTimeout(resolve, 400));
+      }
+      return window.__originalGroupFetch.apply(this, args);
+    };
+  }.toString() + ')()');
+  await evaluate('document.querySelector("[data-community-period=week]").click()');
+  await until(() => evaluate('window.__groupViewCalls.includes("week")'));
   await evaluate('document.querySelector("[data-community-period=all]").click()');
-  await until(() => evaluate('document.querySelector("[data-community-period=all]").getAttribute("aria-pressed") === "true"'));
+  await until(() => evaluate('window.__groupViewCalls.includes("all") && document.querySelector("[data-community-period=all]").getAttribute("aria-pressed") === "true"'));
+  await evaluate('window.fetch = window.__originalGroupFetch');
   assert.equal(await evaluate('document.querySelector("#community-you-points").textContent'), '10');
   await cdp('Emulation.setDeviceMetricsOverride', { width: 430, height: 932, deviceScaleFactor: 1, mobile: true });
   const mobile = await evaluate('(' + function() {
