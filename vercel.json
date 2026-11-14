@@ -1,0 +1,26 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "node build-vercel.cjs",
+  "outputDirectory": "dist",
+  "functions": {
+    "api/groups.mjs": {
+      "includeFiles": "data/*.json",
+      "maxDuration": 30
+    }
+  },
+  "regions": ["sin1"],
+  "redirects": [
+    { "source": "/hirin", "destination": "/hirin/", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/api/groups/:action", "destination": "/api/groups?action=:action" },
+    { "source": "/ai20k", "destination": "/sources/ai20k-exam-prep/offline.html" },
+    { "source": "/vin20k", "destination": "/sources/vin20k-ai-phase1-quiz/offline.html" },
+    { "source": "/hirin/", "destination": "/sources/ai-quiz/index.html" },
+    { "source": "/hirin/:path*", "destination": "/sources/ai-quiz/:path*" },
+    { "source": "/assets/:path*", "destination": "/sources/vin20k-ai-phase1-quiz/assets/:path*" },
+    { "source": "/vendor/fonts/:path*", "destination": "/sources/vin20k-ai-phase1-quiz/vendor/fonts/:path*" },
+    { "source": "/course/:path*", "destination": "/sources/vin20k-ai-phase1-quiz/course/:path*" }
+  ]
+}

@@ -22,6 +22,16 @@ The shared scoreboard runs in the Node server (`server.cjs` + `group-api.cjs`). 
 
 To study with friends outside this computer, deploy the **entire Node app** to an HTTPS host with persistent writable storage. Configure `HOST=0.0.0.0` and `PORT` for your hosting environment, and share the hosted URL. A loopback address such as `127.0.0.1` only works on your own machine. **GitHub Pages alone hosts only static files** and cannot operate this shared leaderboard; scores will not sync on a Pages-only deployment. The service is suitable for small, trusted study groups and is not a proctored or cheating-resistant exam system.
 
+## Deploy to Vercel (public HTTPS website)
+
+1. Sign into [Vercel](https://vercel.com/new) with your GitHub account and **Import** `DuyTranND/Study-Hub`. Use the repository root, with **Framework Preset: Other**. `vercel.json` supplies the build command (`node build-vercel.cjs`), output directory (`dist`) and Node API function. Deploy; Vercel gives you a public `*.vercel.app` URL.
+2. To enable shared Study Groups, open the new Vercel project's **Storage** or **Marketplace**, add an **Upstash Redis** database, and connect it to the project. Configure the *server-side* environment variables `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` from the Upstash Redis REST connection details. The Vercel KV aliases `KV_REST_API_URL` / `KV_REST_API_TOKEN` also work. **Never** expose the Redis token in client scripts or variables prefixed `NEXT_PUBLIC_` / `VITE_`.
+3. **Redeploy** after configuring storage. Open `https://YOUR-SITE.vercel.app/api/groups/status` to check for `{"enabled":true}`. Open the site, create a group under **Study Groups**, and share the group's invite code with friends. A Vercel deployment without Redis still serves the public quiz website, but returns `{"enabled":false}` for shared scoring.
+
+Vercel Functions have no durable local filesystem. For the hosted version, `api/groups.mjs` stores the group database in Upstash Redis using an atomic compare-and-swap so concurrent submissions do not overwrite each other. Local `node server.cjs` continues storing groups in `storage/groups.json`; the two databases are independent. Browser membership tokens and practice progress are scoped to their origin, so the hosted URL starts with fresh browser-local progress.
+
+The build publishes **only** public assets from `dist/` and excludes server code, test files and private storage. To check the hosted build locally, run `node build-vercel.cjs` and `node _qa/vercel-deploy-test.cjs`. Connecting the GitHub repository to Vercel enables deployments after future pushes to `main`.
+
 ## Layout
 
 - `app.js`, `index.html`, `*.css`: application and interface.
