@@ -102,6 +102,8 @@ async function main() {
   await until(() => evaluate('!!document.querySelector("[data-launch-set=mixed-mock-01]")'));
   await evaluate('document.querySelector("[data-launch-set=mixed-mock-01]").click()');
   await until(() => evaluate('document.querySelectorAll("#session-question-list [data-jump-q]").length===60'));
+  assert.equal(await evaluate('document.querySelectorAll("[data-session-question]").length'),60,'Full exam is a continuous question list');
+  assert.equal(await evaluate('document.querySelector("#session-question-0 .answer-prompt").getBoundingClientRect().top >= document.querySelector("#session-question-0 .question-title").getBoundingClientRect().bottom'),true,'Choices follow the prompt vertically');
   const exam = await evaluate('(' + async function() {
     const identity = window.StudyAccount.identity();
     const state = JSON.parse(localStorage.getItem('ai20k-study-hub-v1:'+identity.memberId));
@@ -109,7 +111,7 @@ async function main() {
     const answers = Object.fromEntries(bank.questions.map(q => [q.id,q.answer]));
     for(let i=0;i<10;i++){
       document.querySelector('[data-jump-q="'+i+'"]').click();
-      document.querySelector('[data-answer="'+answers[state.session.ids[i]]+'"]').click();
+      document.querySelector('#session-question-'+i+' [data-answer="'+answers[state.session.ids[i]]+'"]').click();
     }
     document.querySelector('#flag-current-question').click();
     await window.StudyAccount.flush();
@@ -136,8 +138,24 @@ async function main() {
   await evaluate('window.fetch=window.__originalFetch');
   await cdp('Emulation.setDeviceMetricsOverride',{width:430,height:932,deviceScaleFactor:1,mobile:true});
   assert.equal(await evaluate('document.documentElement.scrollWidth>innerWidth+2'),false,'Mobile overflow');
+  await evaluate('document.querySelector("[data-nav=practice]").click()');
+  await until(()=>evaluate('!!document.querySelector("[data-set-mode=code]")'));
+  await evaluate('document.querySelector("[data-set-mode=code]").click();document.querySelector("[data-action=code-all]").click()');
+  await until(()=>evaluate('document.querySelectorAll("[data-session-question]").length===14'));
+  await evaluate('('+async function(){
+    for(const [index,value]of [[0,'def first_solution():\n    return 1'],[1,'def second_solution():\n    return 2']]){
+      const input=document.querySelector('#answer-'+index);input.value=value;input.dispatchEvent(new Event('input',{bubbles:true}));
+    }
+    await window.StudyAccount.flush();
+  }.toString()+')()');
+  await cdp('Page.reload');
+  await until(()=>evaluate('document.querySelector("#answer-0")?.value.includes("first_solution") && document.querySelector("#answer-1")?.value.includes("second_solution")'));
+  await evaluate('document.querySelector("#session-question-1 [data-action=check]").click();document.querySelector("#session-question-1 [data-action=self-right]").click()');
+  const codeState=await evaluate('('+async function(){await StudyAccount.flush();const id=StudyAccount.identity();const state=JSON.parse(localStorage.getItem('ai20k-study-hub-v1:'+id.memberId));return{first:state.results[state.session.ids[0]]?.ok??null,second:state.results[state.session.ids[1]]?.ok,choice:state.results[state.session.ids[1]]?.choice,answered:document.querySelector('#nav-answered-count').textContent};}.toString()+')()');
+  assert.deepEqual(codeState,{first:null,second:true,choice:'def second_solution():\n    return 2',answered:'2'},'Code drafts and actions belong to their own question');
+  assert.equal(await evaluate('document.documentElement.scrollWidth>innerWidth+2'),false,'Mobile code list overflow');
   assert.deepEqual(errors,[],'Chrome JavaScript errors');
-  console.log('StudyHub profiles and Leaderboard browser: PASS '+JSON.stringify({ranking,profileReload:true,reviewFlags:true,earlyScore:'10/60',leaderboardAccuracy:17,mobile:true,errors}));
+  console.log('StudyHub profiles and Leaderboard browser: PASS '+JSON.stringify({ranking,profileReload:true,reviewFlags:true,continuousQuestions:true,independentCodeDrafts:true,earlyScore:'10/60',leaderboardAccuracy:17,mobile:true,errors}));
 }
 main().catch(error => { console.error(error.stack || error); process.exitCode = 1; }).finally(async () => {
   try { socket?.close(); } catch {}

@@ -16,7 +16,7 @@ Anonymous progress is stored in this browser. Named profiles synchronize through
 
 ## Practice and code writing
 
-Practice separates full exams into **ĐGNL** and **AI Test**; all six integrated mock exams are under ĐGNL. On desktop, the question and answer panes scroll independently alongside the timer, early submission and numbered question navigator. Phone layouts stack the panes. Answered questions and review flags are saved with the session. Unanswered objective questions count as incorrect when an exam is submitted early.
+Practice separates full exams into **ĐGNL** and **AI Test**; all six integrated mock exams are under ĐGNL. Questions are arranged in a continuous vertical list, with each prompt followed by its answer choices or writing field. On desktop, the list scrolls alongside the timer, early submission and numbered question navigator. Phone layouts use the same single-column question order. Answered questions and review flags are saved with the session. Unanswered objective questions count as incorrect when an exam is submitted early.
 
 **Code tay** contains 14 Python, pandas, algorithm and SQL problems. Drafts save automatically, Tab inserts four spaces, and Escape then Tab leaves the editor. Reference solutions are available for comparison and self-assessment. The website does not execute code or award automatic scores for code-writing sessions. Ten complete reference functions and corrected complexity/API explanations were verified in the content review; `tools/content-corrections.cjs` keeps those reviewed edits reproducible without changing question IDs or answer keys.
 

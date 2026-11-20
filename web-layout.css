@@ -367,5 +367,5 @@ body:has(#view-practice:not(.hidden) #session-panel:not(.hidden)) .topbar,
 #view-practice .hand-code-toolbar { display: flex; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #dce8df; font-size: 12px; }
 #view-practice .hand-code-input { display: block; margin: 0; border: 0; border-radius: 0; width: 100%; min-height: 340px; padding: 18px; resize: vertical; background: #fbfdfc; color: #19392b; font: 14px/1.75 Consolas, 'Courier New', monospace; white-space: pre; overflow-wrap: normal; tab-size: 4; }
 #view-practice .hand-code-input:focus { outline: 2px solid #2d7858; outline-offset: -2px; }
-#view-practice #hand-code-help { margin: 0; padding: 12px 16px; font-size: 11px; line-height: 1.7; color: #586f63; border-top: 1px solid #dce8df; }
+#view-practice .hand-code-help { margin: 0; padding: 12px 16px; font-size: 11px; line-height: 1.7; color: #586f63; border-top: 1px solid #dce8df; }
 @media(max-width:700px) { #view-practice .code-library-intro, #view-practice .code-task-card { flex-direction: column; align-items: stretch; gap: 14px; padding: 18px; } #view-practice .hand-code-input { font-size: 16px; min-height: 300px; } }

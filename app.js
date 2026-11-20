@@ -87,10 +87,11 @@
     toastTimer = null, mathTimer = null, ticking = null, mermaidReady = false, loadingLesson = false;
   const save = () => { try { localStorage.setItem(localKey(), JSON.stringify(state)); } catch { toast('Could not save your progress. Check your browser storage.'); } window.StudyAccount?.save(state); };
   function toast(message) { const el = $('toast'); el.textContent = message; el.classList.add('visible'); clearTimeout(toastTimer); toastTimer = setTimeout(() => el.classList.remove('visible'), 2400); }
-  function typeset() {
+  function typeset(afterMath = null) {
     clearTimeout(mathTimer);
     mathTimer = setTimeout(() => {
-      if (window.MathJax?.typesetPromise) window.MathJax.typesetPromise().catch(() => {});
+      const math = window.MathJax?.typesetPromise ? window.MathJax.typesetPromise().catch(() => {}) : Promise.resolve();
+      if (typeof afterMath === 'function') void math.then(afterMath).catch(() => {});
       const nodes = [...document.querySelectorAll('.study-diagram .mermaid:not([data-processed])')]
         .filter(node => !node.closest('details:not([open])') && node.getClientRects().length);
       if (!nodes.length || !window.mermaid?.run) return;
@@ -365,9 +366,10 @@
     $('set-empty').classList.toggle('hidden', qs.length > 0);
     $('set-groups').innerHTML = '<div class="code-library-intro"><div><h3>Đọc đề, tự viết, rồi đối chiếu</h3><p>Mỗi bài có yêu cầu và dữ liệu hoặc quy tắc đầu vào/đầu ra. Bài nháp tự lưu. Xem lời giải tham khảo và tự đánh giá khi bạn sẵn sàng.</p><small>Chế độ viết tay: không thực thi code hoặc chấm bằng test tự động.</small></div><button class="btn primary" data-action="code-all">Luyện cả bộ (' + codeQuestions().length + ' bài)</button></div><div class="code-task-list">' + qs.map(q => '<article class="code-task-card"><div><span class="mini-tag">' + escapeHtml(q.id.replace('a:', '')) + ' · ' + (q.id.startsWith('a:T08') ? 'SQL' : 'Python') + '</span><h3>' + escapeHtml(q.topic) + '</h3><p>' + escapeHtml(q.prompt.replace(/\*\*/g, '').split('\n')[0]) + '</p><small>' + (state.results[q.id] ? 'Đã tự đánh giá' : 'Chưa tự đánh giá') + '</small></div><button class="btn outline" data-code-question="' + escapeHtml(q.id) + '">Viết code →</button></article>').join('') + '</div>';
   }
-  function codeAnswerInput(q, val, submitted) {
+  function codeAnswerInput(q, val, submitted, index) {
     const language = q.id.startsWith('a:T08') ? 'SQL' : 'Python';
-    return '<div class="hand-code-editor"><div class="hand-code-toolbar"><label for="free-answer">Bài làm của bạn · ' + language + '</label><span>Code tay</span></div><textarea class="free-answer hand-code-input" id="free-answer" aria-label="Viết code ' + language + '" aria-describedby="hand-code-help" maxlength="10000" spellcheck="false" autocapitalize="off" autocorrect="off" placeholder="Viết lời giải của bạn ở đây…" ' + (submitted ? 'disabled' : '') + '>' + escapeHtml(val) + '</textarea><p id="hand-code-help">Bản nháp tự lưu · Tab: thụt 4 dấu cách · Esc rồi Tab: rời ô code. Tối đa 10.000 ký tự. Không chạy code tự động.</p></div>';
+    const inputId = 'answer-' + index, helpId = 'hand-code-help-' + index;
+    return '<div class="hand-code-editor"><div class="hand-code-toolbar"><label for="' + inputId + '">Bài làm của bạn · ' + language + '</label><span>Code tay</span></div><textarea class="free-answer hand-code-input" id="' + inputId + '" data-free-answer="' + escapeHtml(q.id) + '" aria-label="Viết code ' + language + ' cho câu ' + (index + 1) + '" aria-describedby="' + helpId + '" maxlength="10000" spellcheck="false" autocapitalize="off" autocorrect="off" placeholder="Viết lời giải của bạn ở đây…" ' + (submitted ? 'disabled' : '') + '>' + escapeHtml(val) + '</textarea><p class="hand-code-help" id="' + helpId + '">Bản nháp tự lưu · Tab: thụt 4 dấu cách · Esc rồi Tab: rời ô code. Tối đa 10.000 ký tự. Không chạy code tự động.</p></div>';
   }
   function renderSetExplorer() {
     if (!data) return;
@@ -549,8 +551,7 @@
   function optionMarkup(q, s, val, key, text) {
     const revealed = s.revealed[q.id] || s.submitted;
     const selected = val === key, good = revealed && q.answer === key, bad = revealed && selected && q.answer !== key;
-    const content = displayOptionText(text);
-    return `<button type="button" class="option ${selected ? 'selected' : ''} ${good ? 'correct' : ''} ${bad ? 'wrong' : ''}" data-answer="${escapeHtml(key)}" ${revealed ? 'disabled' : ''}><span class="option-letter">${escapeHtml(key)}</span><div class="option-copy">${optionContentHtml(content)}</div></button>`;
+    return `<label class="option ${selected ? 'selected' : ''} ${good ? 'correct' : ''} ${bad ? 'wrong' : ''}"><input type="radio" name="question-${escapeHtml(q.id)}" data-answer="${escapeHtml(key)}" ${selected ? 'checked' : ''} ${revealed ? 'disabled' : ''}><span class="option-letter">${escapeHtml(key)}.</span><div class="option-copy">${optionContentHtml(displayOptionText(text))}</div></label>`;
   }
   function renderQuestionNavigator(s) {
     const flagged = new Set(s.flagged || []);
@@ -579,54 +580,124 @@
     const message = 'Bạn đã trả lời ' + answered + '/' + s.ids.length + ' câu.' + (unanswered ? '\nCòn ' + unanswered + ' câu chưa trả lời.' : '') + '\nNộp bài ngay? Sau khi nộp, bạn chỉ có thể xem lại đáp án.';
     if (window.confirm(message)) submitSession();
   }
+  function questionSignature(q, s) {
+    return JSON.stringify([s.answers[q.id] ?? '', !!s.revealed[q.id], !!s.submitted,
+      state.bookmarks.includes(q.id), (s.flagged || []).includes(q.id), state.results[q.id]?.ok]);
+  }
+  function sessionQuestionMarkup(q, s, index) {
+    const val = s.answers[q.id] ?? '', revealed = s.revealed[q.id] || s.submitted;
+    const objective = ['mcq', 'numeric', 'output'].includes(q.type), saved = state.bookmarks.includes(q.id);
+    const flagged = (s.flagged || []).includes(q.id), inputId = 'answer-' + index;
+    const input = q.type === 'mcq'
+      ? `<div class="options" role="radiogroup" aria-label="Đáp án câu ${index + 1}">${q.options.map(o => optionMarkup(q, s, val, o.key, o.text)).join('')}</div>`
+      : q.type === 'code' ? codeAnswerInput(q, val, s.submitted, index)
+      : ['numeric', 'output'].includes(q.type)
+        ? `<input type="text" class="free-answer short-answer" id="${inputId}" data-free-answer="${escapeHtml(q.id)}" aria-label="Câu trả lời câu ${index + 1}" maxlength="10000" autocomplete="off" value="${escapeHtml(val)}" ${revealed ? 'disabled' : ''}>`
+        : `<textarea class="free-answer" id="${inputId}" data-free-answer="${escapeHtml(q.id)}" aria-label="Bài làm câu ${index + 1}" maxlength="10000" placeholder="Viết bài làm của bạn…" ${revealed ? 'disabled' : ''}>${escapeHtml(val)}</textarea>`;
+    const feedback = revealed ? `<div class="feedback ${answerOk(q, val) === false && objective ? 'error' : ''}"><h4>${objective ? (answerOk(q, val) === true ? '✓ Correct!' : 'Answer and explanation') : 'Example solution'}</h4>${objective && q.type === 'mcq' ? `<p><strong>Correct answer: ${escapeHtml(q.answer || '—')}</strong></p>` : ''}${objective && q.type !== 'mcq' ? `<p><strong>Expected result: ${escapeHtml(q.value ?? '—')}</strong></p>` : ''}<div class="rich-text">${markdown(q.explanation)}</div>${q.detail ? `<details><summary>Show detailed explanation</summary><div class="rich-text">${markdown(q.detail)}</div></details>` : ''}${!objective && !s.submitted ? `<div class="session-actions"><button class="btn outline" data-action="self-wrong">Needs review</button><button class="btn primary" data-action="self-right">I understand this question</button></div>` : ''}</div>` : '';
+    return `<article class="session-question" id="session-question-${index}" data-session-question="${index}" data-question-id="${escapeHtml(q.id)}" aria-label="Câu ${index + 1}"><header class="session-question-header"><span class="session-question-number" aria-hidden="true">${index + 1}</span><div class="question-title">${markdown(q.prompt)}</div><div class="question-tools"><button type="button" class="bookmark-btn ${saved ? 'saved' : ''}" data-action="bookmark" aria-label="${saved ? 'Bỏ lưu' : 'Lưu'} câu ${index + 1}" aria-pressed="${saved}" title="${saved ? 'Bỏ lưu câu' : 'Lưu câu'}">${icon('star')}</button><button type="button" class="question-review-flag ${flagged ? 'flagged' : ''}" data-action="flag-question" aria-label="${flagged ? 'Bỏ dấu' : 'Đánh dấu'} xem lại câu ${index + 1}" aria-pressed="${flagged}" title="Đánh dấu xem lại"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 21V4m0 0c5-4 9 4 14 0v10c-5 4-9-4-14 0"/></svg></button></div></header><section class="answer-prompt" aria-label="${q.type === 'mcq' ? 'Đáp án' : 'Bài làm'} câu ${index + 1}">${input}</section><div class="question-actions session-actions">${!revealed && s.mode === 'learn' ? `<button class="btn primary" data-action="check">${objective ? 'Check answer' : q.type === 'code' ? 'Xem lời giải tham khảo' : 'View solution'}</button>` : ''}${q.hint && !revealed ? '<button class="link-button" data-action="hint">Show hint</button>' : ''}</div><div class="question-hint hint-box hidden rich-text">${markdown(q.hint)}</div>${feedback}</article>`;
+  }
+  function updateSessionPosition(s) {
+    $('session-progress').style.width = `${(s.index + 1) / s.ids.length * 100}%`;
+    $('session-step').textContent = `${s.index + 1}/${s.ids.length}`;
+    $('prev-q').disabled = s.index === 0;
+    $('next-q').innerHTML = s.index === s.ids.length - 1
+      ? (s.submitted ? 'View results →' : s.mode === 'exam' ? 'Submit exam →' : 'Finish →')
+      : `Next question ${icon('arrow')}`;
+    renderQuestionNavigator(s);
+  }
+  function activateSessionQuestion(index, persist = true) {
+    const s = state.session;
+    if (!s || !Number.isInteger(index) || index < 0 || index >= s.ids.length || s.index === index) return;
+    s.index = index;
+    if (persist) save();
+    updateSessionPosition(s);
+  }
+  function scrollToSessionQuestion(index) {
+    const card = $('session-question-' + index), stage = $('question-stage');
+    if (!card) return;
+    if (getComputedStyle(stage).overflowY === 'auto') stage.scrollTo({ top: stage.scrollTop + card.getBoundingClientRect().top - stage.getBoundingClientRect().top - 8, behavior: 'instant' });
+    else card.scrollIntoView({ block: 'start', behavior: 'instant' });
+  }
   function renderSession() {
     const s = state.session; if (!s) return;
     if (s.submitted && !s.review) { renderResults(); return; }
-    $('session-question-map').classList.remove('hidden');
     if (s.mode === 'exam' && !s.submitted && s.minutes && Date.now() >= s.startedAt + s.minutes * 60000) { submitSession(); return; }
-    const q = byId.get(s.ids[s.index]); if (!q) { state.session = null; save(); renderPractice(); return; }
-    const previousId = $('question-stage').dataset.questionId;
-    const oldReadingScroll = document.querySelector('.session-reading-pane')?.scrollTop || 0;
-    const oldResponseScroll = document.querySelector('.session-response-pane')?.scrollTop || 0;
-    const oldDetails = [...document.querySelectorAll('.session-response-pane details')].map(node => node.open);
-    $('question-stage').classList.remove('showing-results');
-    const val = s.answers[q.id] ?? '', revealed = s.revealed[q.id] || s.submitted;
-    $('session-label').textContent = s.submitted ? 'REVIEW ANSWERS' : (s.mode === 'exam' ? 'MOCK EXAM' : s.ids.every(id => byId.get(id)?.type === 'code') ? 'CODE TAY' : 'PRACTICE MODE');
+    if (s.ids.some(id => !byId.has(id))) { state.session = null; save(); renderPractice(); return; }
+    const q = byId.get(s.ids[s.index]), stage = $('question-stage');
     const matchingMock = [...mockSets.values()].find(set => set.questionIds.length === s.ids.length && s.ids.every(id => set.questionIds.includes(id)));
+    const codeOnly = s.ids.every(id => byId.get(id)?.type === 'code');
     const multipleTopics = new Set(s.ids.map(id => byId.get(id)?.setId)).size > 1;
-    $('session-heading').textContent = s.ids.every(id => byId.get(id)?.type === 'code') ? 'Code tay · ' + (q.id.startsWith('a:T08') ? 'SQL' : 'Python & pandas') : matchingMock ? displaySetTitle(matchingMock.title) : multipleTopics ? 'Phiên luyện tập tổng hợp' : displaySetTitle(q.setTitle);
-    $('session-progress').style.width = `${(s.index + 1) / s.ids.length * 100}%`;
-    renderQuestionNavigator(s);
-    $('session-step').textContent = `${s.index + 1}/${s.ids.length}`;
-    $('prev-q').disabled = s.index === 0;
-    $('next-q').innerHTML = s.index === s.ids.length - 1 ? (s.submitted ? 'View results →' : s.mode === 'exam' ? 'Submit exam →' : 'Finish →') : `Next question ${icon('arrow')}`;
-    const saved = state.bookmarks.includes(q.id), objective = ['mcq', 'numeric', 'output'].includes(q.type);
-    const input = q.type === 'mcq'
-      ? `<div class="options">${q.options.map(o => optionMarkup(q, s, val, o.key, o.text)).join('')}</div>`
-      : q.type === 'code' ? codeAnswerInput(q, val, s.submitted)
-      : `<textarea class="free-answer" id="free-answer" placeholder="${q.type === 'numeric' ? 'Enter a numeric answer...' : q.type === 'output' ? 'Enter the program output...' : 'Enter your solution or ideas...'}" ${revealed ? 'disabled' : ''}>${escapeHtml(val)}</textarea>`;
-    const feedback = revealed ? `<div class="feedback ${answerOk(q, val) === false && objective ? 'error' : ''}"><h4>${objective ? (answerOk(q, val) === true ? '✓ Correct!' : 'Answer and explanation') : 'Example solution'}</h4>${objective && q.type === 'mcq' ? `<p><strong>Correct answer: ${escapeHtml(q.answer || '—')}</strong></p>` : ''}${objective && q.type !== 'mcq' ? `<p><strong>Expected result: ${escapeHtml(q.value ?? '—')}</strong></p>` : ''}<div class="rich-text">${markdown(q.explanation)}</div>${q.detail ? `<details><summary>Show detailed explanation</summary><div class="rich-text">${markdown(q.detail)}</div></details>` : ''}${!objective && !s.submitted ? `<div class="session-actions"><button class="btn outline" data-action="self-wrong">Needs review</button><button class="btn primary" data-action="self-right">I understand this question</button></div>` : ''}</div>` : '';
-    $('question-stage').innerHTML = `<div class="session-reading-pane" tabindex="0" role="region" aria-label="Đề bài"><section class="question-prompt" aria-label="Question ${s.index + 1}"><div class="question-heading-row"><div class="question-section-label">${q.type === 'code' ? 'YÊU CẦU ĐỀ · BÀI' : 'QUESTION'} ${s.index + 1} <span>/ ${s.ids.length}</span></div><button class="bookmark-btn ${saved ? 'saved' : ''}" data-action="bookmark">${icon('star')} ${saved ? 'Saved' : 'Bookmark'}</button></div><div class="question-title">${markdown(q.prompt)}</div></section></div><div class="session-response-pane" tabindex="0" role="region" aria-label="Bài làm và lời giải"><section class="answer-prompt" aria-label="${q.type === 'mcq' ? 'Answer choices' : 'Your answer'}"><div class="answer-section-header"><h4>${q.type === 'mcq' ? 'Answer choices' : q.type === 'code' ? 'Viết code tay' : 'Your answer'}</h4><span>${q.type === 'mcq' ? 'Select one option' : q.type === 'code' ? 'Tự viết theo yêu cầu đề' : 'Enter your response below'}</span></div>${input}</section><div class="session-actions">${!revealed && (s.mode === 'learn' || s.submitted) ? `<button class="btn primary" data-action="check">${objective ? 'Check answer' : q.type === 'code' ? 'Xem lời giải tham khảo' : 'View solution'}</button>` : ''}${q.hint && !revealed ? '<button class="link-button" data-action="hint">Show hint</button>' : ''}</div><div id="question-hint" class="hint-box hidden rich-text">${markdown(q.hint)}</div>${feedback}</div>`;
-    $('question-stage').dataset.questionId = q.id;
-    if (previousId === q.id) {
-      document.querySelectorAll('.session-response-pane details').forEach((node, index) => { node.open = oldDetails[index] || false; });
-      document.querySelector('.session-reading-pane').scrollTop = oldReadingScroll;
-      document.querySelector('.session-response-pane').scrollTop = oldResponseScroll;
+    $('session-label').textContent = s.submitted ? 'REVIEW ANSWERS' : s.mode === 'exam' ? 'MOCK EXAM' : codeOnly ? 'CODE TAY' : 'PRACTICE MODE';
+    $('session-heading').textContent = codeOnly ? (s.ids.length > 1 ? 'Code tay · ' + s.ids.length + ' bài' : 'Code tay · ' + (q.id.startsWith('a:T08') ? 'SQL' : 'Python & pandas')) : matchingMock ? displaySetTitle(matchingMock.title) : multipleTopics ? 'Phiên luyện tập tổng hợp' : displaySetTitle(q.setTitle);
+    const newList = stage.dataset.sessionId !== s.id || stage.classList.contains('showing-results') || stage.querySelectorAll('[data-session-question]').length !== s.ids.length;
+    stage.classList.remove('showing-results');
+    if (newList) {
+      window.MathJax?.typesetClear?.([stage]);
+      stage.innerHTML = s.ids.map((id, index) => sessionQuestionMarkup(byId.get(id), s, index)).join('');
+      stage.dataset.sessionId = s.id;
+      stage.scrollTop = 0;
+      stage.querySelectorAll('[data-session-question]').forEach(card => { card._questionSignature = questionSignature(byId.get(card.dataset.questionId), s); });
+    } else {
+      const scroll = stage.scrollTop;
+      stage.querySelectorAll('[data-session-question]').forEach(card => {
+        const item = byId.get(card.dataset.questionId), signature = questionSignature(item, s);
+        if (card._questionSignature === signature) return;
+        const index = Number(card.dataset.sessionQuestion), focus = document.activeElement;
+        const focused = card.contains(focus), answerKey = focus?.dataset?.answer;
+        const selection = focused && focus.matches('[data-free-answer]') ? [focus.selectionStart, focus.selectionEnd] : null;
+        const details = [...card.querySelectorAll('details')].map(node => node.open);
+        const hintOpen = !card.querySelector('.question-hint').classList.contains('hidden');
+        window.MathJax?.typesetClear?.([card]);
+        card.outerHTML = sessionQuestionMarkup(item, s, index);
+        const next = $('session-question-' + index); next._questionSignature = signature;
+        next.querySelectorAll('details').forEach((node, i) => { node.open = details[i] || false; });
+        if (hintOpen) next.querySelector('.question-hint').classList.remove('hidden');
+        const nextFocus = selection ? next.querySelector('[data-free-answer]') : answerKey ? next.querySelector('[data-answer="' + answerKey + '"]') : null;
+        if (focused && nextFocus && !nextFocus.disabled) {
+          nextFocus.focus({ preventScroll: true });
+          if (selection) nextFocus.setSelectionRange(...selection);
+        }
+      });
+      stage.scrollTop = scroll;
     }
-    if (s.submitted) $('next-q').textContent = s.index === s.ids.length - 1 ? 'View results →' : 'Next question →';
-    updateClock(); typeset();
+    updateSessionPosition(s); updateClock();
+    const restoreIndex = s.index, initialStageScroll = stage.scrollTop, initialPageScroll = window.scrollY;
+    typeset(newList && restoreIndex > 0 ? () => {
+      if (state.session?.id === s.id && state.session.index === restoreIndex && activeView === 'practice' && !stage.classList.contains('showing-results') && stage.scrollTop === initialStageScroll && window.scrollY === initialPageScroll) scrollToSessionQuestion(restoreIndex);
+    } : null);
+  }
+  function jumpToSessionQuestion(index) {
+    const s = state.session; if (!s || index < 0 || index >= s.ids.length) return;
+    storeTextAnswer(); s.index = index; if (s.submitted) s.review = true;
+    save(); renderSession();
+    scrollToSessionQuestion(index);
+    const stage = $('question-stage'), initialStageScroll = stage.scrollTop, initialPageScroll = window.scrollY;
+    typeset(() => {
+      if (state.session?.id === s.id && state.session.index === index && activeView === 'practice' && !stage.classList.contains('showing-results') && stage.scrollTop === initialStageScroll && window.scrollY === initialPageScroll) scrollToSessionQuestion(index);
+    });
   }
   function answerQuestion(answer) {
-    const s = state.session, q = byId.get(s.ids[s.index]); if (!q || s.submitted || s.revealed[q.id]) return;
+    const s = state.session, q = byId.get(s?.ids[s?.index]); if (!q || s.submitted || s.revealed[q.id]) return;
     s.answers[q.id] = answer;
     if (s.mode === 'learn' && q.type === 'mcq') { s.revealed[q.id] = true; recordResult(q, answer); }
     save(); renderSession();
   }
-  function storeTextAnswer() {
-    const s = state.session, input = $('free-answer'); if (!s || !input) return;
-    const id = s.ids[s.index]; if (s.submitted || (s.revealed[id] && byId.get(id)?.type !== 'code')) return;
-    s.answers[id] = input.value; save(); renderQuestionNavigator(s);
+  function storeTextAnswer(input = null) {
+    const s = state.session; if (!s || s.submitted) return;
+    let changed = false;
+    const inputs = input ? [input] : [...$('question-stage').querySelectorAll('[data-free-answer]')];
+    for (const node of inputs) {
+      const id = node.dataset.freeAnswer;
+      if (!s.ids.includes(id) || (s.revealed[id] && byId.get(id)?.type !== 'code')) continue;
+      if (s.answers[id] !== node.value) { s.answers[id] = node.value; changed = true; }
+      const card = node.closest('[data-session-question]');
+      if (card) card._questionSignature = questionSignature(byId.get(id), s);
+    }
+    if (changed) save();
+    renderQuestionNavigator(s);
   }
+
   function submitSession() {
     const s = state.session; if (!s || s.submitted) return;
     storeTextAnswer();
@@ -672,7 +743,7 @@
     const s = state.session; if (!s) return;
     storeTextAnswer();
     if (s.submitted && s.index === s.ids.length - 1) { s.review = false; save(); renderSession(); return; }
-    if (s.index < s.ids.length - 1) { s.index++; save(); renderSession(); return; }
+    if (s.index < s.ids.length - 1) { jumpToSessionQuestion(s.index + 1); return; }
     if (s.submitted) { s.review = false; save(); renderSession(); return; }
     submitSession();
   }
@@ -704,7 +775,8 @@
     document.addEventListener('click', event => {
       const modeTab = event.target.closest('[data-set-mode]'); if (modeTab) { setBrowserAssessment = 'all'; setBrowserMode = modeTab.dataset.setMode; setBrowserDomain = 'all'; setBrowserBank = 'all'; setBrowserPage = 0; $('set-search').value = ''; renderSetExplorer(); return; }
       const pageButton = event.target.closest('[data-set-page]'); if (pageButton) { setBrowserPage += pageButton.dataset.setPage === 'next' ? 1 : -1; renderSetExplorer(); $('set-result-heading').scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
-      const jumpButton = event.target.closest('[data-jump-q]'); if (jumpButton && state.session) { storeTextAnswer(); state.session.index = Number(jumpButton.dataset.jumpQ); if (state.session.submitted) state.session.review = true; save(); renderSession(); return; }
+      const jumpButton = event.target.closest('[data-jump-q]'); if (jumpButton && state.session) { jumpToSessionQuestion(Number(jumpButton.dataset.jumpQ)); return; }
+      const questionCard = event.target.closest('[data-session-question]'); if (questionCard) activateSessionQuestion(Number(questionCard.dataset.sessionQuestion));
       const pick = event.target.closest('[data-pick-set]'); if (pick) { pickSet(pick.dataset.pickSet); return; }
       const codeTask = event.target.closest('[data-code-question]'); if (codeTask) { const q = byId.get(codeTask.dataset.codeQuestion); if (q?.type === 'code') startSession([q]); return; }
       const launch = event.target.closest('[data-launch-set]'); if (launch) { launchSet(launch.dataset.launchSet); return; }
@@ -713,8 +785,8 @@
       if (share) { void window.StudyCommunity?.submitSession(state.session, { manual: true }); return; }
       const day = event.target.closest('[data-day]:not([data-action])'); if (day) { openLesson(Number(day.dataset.day)); return; }
       const qbtn = event.target.closest('[data-question]'); if (qbtn) { startSession([byId.get(qbtn.dataset.question)]); return; }
-      const review = event.target.closest('[data-review]'); if (review && state.session) { state.session.index = Number(review.dataset.review); state.session.review = true; save(); renderSession(); return; }
-      const answer = event.target.closest('[data-answer]'); if (answer) { answerQuestion(answer.dataset.answer); return; }
+      const review = event.target.closest('[data-review]'); if (review && state.session) { jumpToSessionQuestion(Number(review.dataset.review)); return; }
+      const answer = event.target.closest('[data-answer]'); if (answer) return; // Native radio change handles this question's answer.
       const act = event.target.closest('[data-action]'); if (!act) return;
       switch (act.dataset.action) {
         case 'show-question-map': storeTextAnswer(); $('session-question-map').scrollIntoView({ behavior: 'smooth', block: 'start' }); break;
@@ -724,7 +796,7 @@
           storeTextAnswer();
           const id = s.ids[s.index], marked = new Set(s.flagged || []);
           if (marked.has(id)) marked.delete(id); else marked.add(id);
-          s.flagged = [...marked]; save(); renderQuestionNavigator(s); break;
+          s.flagged = [...marked]; save(); renderSession(); break;
         }
         case 'code-all': startSession(codeQuestions()); break;
         case 'quick-start': startSession(shuffled(data.questions).slice(0, 20)); break;
@@ -733,7 +805,7 @@
         case 'restart-setup': state.session = null; $('custom-study').open = false; save(); showView('practice'); break;
         case 'clear-set-filters': setBrowserAssessment = 'all'; setBrowserBank = 'all'; setBrowserDomain = 'all'; setBrowserPage = 0; $('set-search').value = ''; renderSetExplorer(); break;
         case 'bookmark': { const id = state.session.ids[state.session.index], i = state.bookmarks.indexOf(id); if (i >= 0) state.bookmarks.splice(i, 1); else state.bookmarks.push(id); save(); renderSession(); toast(i >= 0 ? 'Bookmark removed.' : 'Question bookmarked for review.'); break; }
-        case 'hint': $('question-hint').classList.remove('hidden'); break;
+        case 'hint': $('session-question-' + state.session.index)?.querySelector('.question-hint').classList.remove('hidden'); break;
         case 'check': storeTextAnswer(); checkAndReveal(); break;
         case 'self-right': case 'self-wrong': { const q = byId.get(state.session.ids[state.session.index]); recordResult(q, state.session.answers[q.id], act.dataset.action === 'self-right'); renderSession(); toast('Self-assessment saved.'); break; }
         case 'day-practice': { const id = 'vin-day-' + String(act.dataset.day).padStart(2, '0'); startSession(shuffled(data.questions.filter(q => q.setId === id)).slice(0, 100)); break; }
@@ -746,9 +818,38 @@
     $('practice-bank').addEventListener('change', () => { const bank = $('practice-bank').value; chooseSetOptions(bank, 'practice-set', 'All topics'); refreshSetupCount(); renderSetExplorer(); });
     ['practice-set', 'practice-count', 'practice-mode', 'practice-wrong', 'practice-star'].forEach(id => $(id).addEventListener('change', () => { refreshSetupCount(); if (id === 'practice-set') renderSetExplorer(); }));
     $('start-session').addEventListener('click', startFromSetup);
-    $('prev-q').addEventListener('click', () => { if (state.session?.index > 0) { storeTextAnswer(); state.session.index--; save(); renderSession(); } });
+    $('prev-q').addEventListener('click', () => { if (state.session?.index > 0) jumpToSessionQuestion(state.session.index - 1); });
     $('next-q').addEventListener('click', () => { if (state.session?.submitted && !state.session.review) { state.session = null; save(); renderPractice(); } else moveNext(); });
-    document.addEventListener('input', e => { if (e.target.id === 'free-answer') storeTextAnswer(); });
+    document.addEventListener('input', e => {
+      if (e.target.matches('[data-free-answer]')) {
+        activateSessionQuestion(Number(e.target.closest('[data-session-question]').dataset.sessionQuestion));
+        storeTextAnswer(e.target);
+      }
+    });
+    document.addEventListener('change', e => {
+      if (e.target.matches('input[type="radio"][data-answer]')) {
+        activateSessionQuestion(Number(e.target.closest('[data-session-question]').dataset.sessionQuestion));
+        answerQuestion(e.target.dataset.answer);
+      }
+    });
+    document.addEventListener('focusin', e => {
+      const card = e.target.closest('[data-session-question]');
+      if (card && state.session) activateSessionQuestion(Number(card.dataset.sessionQuestion));
+    });
+    let questionScrollFrame = null;
+    const trackQuestionScroll = () => {
+      if (questionScrollFrame) return;
+      questionScrollFrame = requestAnimationFrame(() => {
+        questionScrollFrame = null;
+        const stage = $('question-stage');
+        if (!state.session || stage.classList.contains('showing-results') || $('view-practice').classList.contains('hidden')) return;
+        const top = getComputedStyle(stage).overflowY === 'auto' ? stage.getBoundingClientRect().top + 45 : 140;
+        const card = [...stage.querySelectorAll('[data-session-question]')].find(node => node.getBoundingClientRect().bottom > top);
+        if (card) activateSessionQuestion(Number(card.dataset.sessionQuestion));
+      });
+    };
+    $('question-stage').addEventListener('scroll', trackQuestionScroll, { passive: true });
+    window.addEventListener('scroll', trackQuestionScroll, { passive: true });
     window.addEventListener('hashchange', () => { const hash = window.location.hash.slice(1); if (hash !== activeView && titleOf[hash]) showView(hash); });
     document.addEventListener('keydown', e => {
       const input = e.target;
