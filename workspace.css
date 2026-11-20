@@ -321,10 +321,10 @@ mjx-container[jax="SVG"] > svg { width: auto; height: auto; max-width: none; fil
   .nav-item.active { background: #eef3ff; color: #315ac3; }
   .nav-item span { display: block; font-size: 0; white-space: nowrap; text-align: center; line-height: 1.15; }
   .nav-item span::after { font-size: 10px; font-weight: 680; }
-  .nav-item:nth-child(1) span::after { content: 'Overview'; }
-  .nav-item:nth-child(2) span::after { content: 'Practice'; }
-  .nav-item:nth-child(3) span::after { content: 'Questions'; }
-  .nav-item:nth-child(4) span::after { content: 'Lessons'; }
+  .nav-item[data-nav="overview"] span::after { content: 'Overview'; }
+  .nav-item[data-nav="practice"] span::after { content: 'Practice'; }
+  .nav-item[data-nav="community"] span::after { content: "Leaderboard"; }
+  .nav-item[data-nav="roadmap"] span::after { content: 'Lessons'; }
   .nav-item svg { width: 19px; height: 19px; }
   .content { margin-left: 0; padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
   .topbar { height: 59px; padding-inline: 18px; }

@@ -20,7 +20,7 @@ const weekKey = time => {
 };
 
 function createGroupApi({ root = __dirname, storePath = path.join(root, 'storage', 'groups.json') } = {}) {
-  const bankPaths = ['bank.json', 'tfg27-questions.json', 'shl-practice.json'];
+  const bankPaths = ['bank.json'];
   const questions = new Map();
   for (const file of bankPaths) {
     const payload = JSON.parse(fs.readFileSync(path.join(root, 'data', file), 'utf8'));
@@ -47,11 +47,54 @@ function createGroupApi({ root = __dirname, storePath = path.join(root, 'storage
     if (!group) throw bad(404, 'Study group not found. Check the invite code.');
     return group;
   }
+  const nameKey = value => value.normalize('NFKC').trim().replace(/\s+/g, ' ').toLocaleLowerCase('vi-VN');
+  const blankProgress = () => ({ results: {}, bookmarks: [], session: null, lessonDay: 0 });
+  function profilePatch(current, patch) {
+    if (!patch || typeof patch !== 'object' || Array.isArray(patch)) throw bad(400, 'Invalid progress update.');
+    const next = JSON.parse(JSON.stringify(current || blankProgress()));
+    const ids = list => {
+      if (!Array.isArray(list) || list.length > questions.size || list.some(id => typeof id !== 'string' || !questions.has(id))) throw bad(400, 'Invalid question IDs.');
+      return [...new Set(list)];
+    };
+    if (patch.results !== undefined) {
+      if (!patch.results || typeof patch.results !== 'object' || Array.isArray(patch.results)) throw bad(400, 'Invalid results.');
+      for (const [id, value] of Object.entries(patch.results)) {
+        if (!questions.has(id) || !value || ![true, false, null].includes(value.ok) || !/^\d{4}-\d{2}-\d{2}$/.test(value.date) || !Number.isFinite(value.ts) || typeof value.choice !== 'string' || value.choice.length > 1500) throw bad(400, 'Invalid saved answer.');
+        if (!next.results[id] || value.ts >= next.results[id].ts) next.results[id] = { ok: value.ok, date: value.date, choice: value.choice, ts: value.ts };
+      }
+    }
+    const bookmarks = new Set(next.bookmarks);
+    for (const id of ids(patch.bookmarkAdd || [])) bookmarks.add(id);
+    for (const id of ids(patch.bookmarkRemove || [])) bookmarks.delete(id);
+    next.bookmarks = [...bookmarks];
+    if (Object.hasOwn(patch, 'lessonDay')) {
+      if (!Number.isInteger(patch.lessonDay) || patch.lessonDay < 0 || patch.lessonDay > 15) throw bad(400, 'Invalid lesson.');
+      next.lessonDay = patch.lessonDay;
+    }
+    if (Object.hasOwn(patch, 'session')) {
+      const session = patch.session;
+      if (session === null) next.session = null;
+      else {
+        if (!session || typeof session !== 'object' || JSON.stringify(session).length > 512000 || typeof session.id !== 'string' || !/^[a-zA-Z0-9-]{12,90}$/.test(session.id) || !['learn', 'exam'].includes(session.mode) || !Number.isFinite(session.startedAt) || !Number.isFinite(session.minutes)) throw bad(400, 'Invalid saved session.');
+        const questionIds = ids(session.ids);
+        if (!questionIds.length || !Number.isInteger(session.index) || session.index < 0 || session.index >= questionIds.length) throw bad(400, 'Invalid session position.');
+        const answers = {}, revealed = {};
+        if (!session.answers || typeof session.answers !== 'object' || !session.revealed || typeof session.revealed !== 'object') throw bad(400, 'Invalid session answers.');
+        for (const id of questionIds) {
+          if (Object.hasOwn(session.answers, id)) { if (typeof session.answers[id] !== 'string' || session.answers[id].length > 10000) throw bad(400, 'Invalid answer text.'); answers[id] = session.answers[id]; }
+          if (session.revealed[id]) revealed[id] = true;
+        }
+        const flagged = ids(session.flagged || []).filter(id => questionIds.includes(id));
+        next.session = { id: session.id, ids: questionIds, index: session.index, answers, revealed, flagged, mode: session.mode, startedAt: session.startedAt, minutes: session.minutes, submitted: !!session.submitted, review: !!session.review };
+      }
+    }
+    return next;
+  }
   function authenticate(body) {
     const group = groupFor(body.code);
     const member = group.members[String(body.memberId || '')];
     if (typeof body.token !== 'string' || !/^[a-f0-9]{64}$/.test(body.token) || !member ||
-        !crypto.timingSafeEqual(Buffer.from(digest(body.token)), Buffer.from(member.tokenHash))) {
+        !([member.tokenHash, ...(member.profileTokens || [])].some(hash => crypto.timingSafeEqual(Buffer.from(digest(body.token)), Buffer.from(hash))))) {
       throw bad(401, 'Membership is no longer valid on this browser. Join the group again.');
     }
     return { group, member };
@@ -60,7 +103,7 @@ function createGroupApi({ root = __dirname, storePath = path.join(root, 'storage
     const name = asText(nickname, 28, 'Nickname');
     if (Object.values(group.members).some(m => m.name.toLocaleLowerCase() === name.toLocaleLowerCase()))
       throw bad(409, 'Nickname already used in this group. Choose another.');
-    if (Object.keys(group.members).length >= 80) throw bad(409, 'This group is full (80 members).');
+    if (group.code !== 'PUBLIC01' && Object.keys(group.members).length >= 80) throw bad(409, 'This group is full (80 members).');
     const token = crypto.randomBytes(32).toString('hex');
     const id = crypto.randomUUID();
     group.members[id] = { id, name, tokenHash: digest(token), joinedAt: new Date().toISOString(), attempts: [] };
@@ -119,8 +162,9 @@ function createGroupApi({ root = __dirname, storePath = path.join(root, 'storage
     const pairs = ids.map(id => [id, questions.get(id)]);
     if (pairs.some(([id, q]) => typeof id !== 'string' || !q || !['mcq', 'numeric', 'output'].includes(q.type)))
       throw bad(400, 'This exam includes unsupported or unknown questions.');
-    const graded = pairs.filter(([id]) => String(answers[id] ?? '').trim()).length;
-    if (graded < 10 || Object.keys(answers).length > ids.length) throw bad(400, 'Answer at least 10 graded questions before submitting.');
+    const answeredCount = pairs.filter(([id]) => String(answers[id] ?? '').trim()).length;
+    if (answeredCount < 10 || Object.keys(answers).length > ids.length) throw bad(400, 'Answer at least 10 graded questions before submitting.');
+    const graded = pairs.length; // Unanswered objective questions count as incorrect in exams.
     const correctIds = pairs.filter(([id, q]) => correct(q, answers[id])).map(([id]) => id);
     const week = weekKey(Date.now());
     const seen = new Set(member.attempts.filter(a => a.week === week).flatMap(a => a.correctIds));
@@ -132,6 +176,35 @@ function createGroupApi({ root = __dirname, storePath = path.join(root, 'storage
   }
   function action(url, body) {
     if (!body || typeof body !== 'object' || Array.isArray(body)) throw bad(400, 'Invalid request.');
+    // The public board is separate from existing private groups.
+    if (url === '/api/groups/public') {
+      const group = db.groups.PUBLIC01 || { code: 'PUBLIC01', name: 'Leaderboard', members: {} };
+      return { group: snapshot(group, null, body.period === 'all' ? 'all' : 'week') };
+    }
+    if (url === '/api/groups/login') {
+      const name = asText(body.nickname, 28, 'Name').normalize('NFKC');
+      const group = db.groups.PUBLIC01 || { code: 'PUBLIC01', name: 'Leaderboard', createdAt: new Date().toISOString(), members: {} };
+      let member = Object.values(group.members).find(value => nameKey(value.name) === nameKey(name));
+      const created = !member;
+      db.groups.PUBLIC01 = group;
+      let identity;
+      if (!member) { identity = addMember(group, name); member = group.members[identity.memberId]; }
+      else {
+        const token = crypto.randomBytes(32).toString('hex');
+        member.profileTokens = [...(member.profileTokens || []), digest(token)].slice(-32);
+        identity = { code: group.code, memberId: member.id, token, nickname: member.name };
+      }
+      member.progress ||= blankProgress();
+      persist();
+      return { identity, created, progress: member.progress, group: snapshot(group, member.id) };
+    }
+    if (url === '/api/groups/enroll') {
+      asText(body.nickname, 28, 'Nickname');
+      const group = db.groups.PUBLIC01 || { code: 'PUBLIC01', name: 'Leaderboard', createdAt: new Date().toISOString(), members: {} };
+      db.groups.PUBLIC01 = group;
+      const identity = addMember(group, body.nickname);
+      return { identity, group: snapshot(group, identity.memberId) };
+    }
     if (url === '/api/groups/create') {
       const name = asText(body.name, 48, 'Group name');
       const nickname = asText(body.nickname, 28, 'Nickname');
@@ -148,6 +221,14 @@ function createGroupApi({ root = __dirname, storePath = path.join(root, 'storage
       return { identity, group: snapshot(group, identity.memberId) };
     }
     const { group, member } = authenticate(body);
+    if (url === '/api/groups/progress' || url === '/api/groups/progress-save') {
+      if (group.code !== 'PUBLIC01') throw bad(403, 'Open a StudyHub profile to save progress.');
+      if (url.endsWith('progress-save')) {
+        member.progress = profilePatch(member.progress, body.patch);
+        persist();
+      }
+      return { progress: member.progress || blankProgress() };
+    }
     if (url === '/api/groups/view') return { group: snapshot(group, member.id, body.period === 'all' ? 'all' : 'week') };
     if (url === '/api/groups/submit') return { result: submit(group, member, body), group: snapshot(group, member.id) };
     if (url === '/api/groups/leave') {
@@ -166,10 +247,11 @@ function createGroupApi({ root = __dirname, storePath = path.join(root, 'storage
       try { if (new URL(req.headers.origin).host !== req.headers.host) return send(403, { error: 'Cross-origin requests are not allowed.' }); }
       catch { return send(403, { error: 'Invalid origin.' }); }
     }
+    const limit = pathname === '/api/groups/progress-save' ? 1048576 : 36000;
     let body = '';
     for await (const part of req) {
       body += part;
-      if (body.length > 36000) return send(413, { error: 'Request too large.' });
+      if (Buffer.byteLength(body) > limit) return send(413, { error: 'Request too large.' });
     }
     try { send(200, action(pathname, JSON.parse(body))); }
     catch (error) { send(error.status || 500, { error: error.status ? error.message : 'Could not save group data.' }); }

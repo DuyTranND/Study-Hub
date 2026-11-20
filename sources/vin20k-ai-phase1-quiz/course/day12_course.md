@@ -1,10 +1,10 @@
 # Day 12 — Đưa agent lên production
 
-> **Ý chính:** Production đòi state bền vững, giới hạn chi phí/quyền, xử lý lỗi mạng và phát hành có thể quan sát/rollback—not chỉ chạy được trên máy cá nhân.
+> **Ý chính:** Production đòi state bền vững, giới hạn chi phí/quyền, xử lý lỗi mạng và phát hành có thể quan sát/rollback, không chỉ chạy được trên máy cá nhân.
 
 ## 1. Chọn mô hình triển khai
 
-Cân nhắc cloud API, managed agent runtime, self-hosted model, on-premise, edge hoặc hybrid theo dữ liệu, quyền kiểm soát, độ trễ, residency, chi phí và năng lực vận hành. Tách **framework** (định nghĩa luồng/agent) khỏi **runtime** (nơi chạy, state, auth, scaling, observability).
+Cân nhắc cloud API, managed agent runtime, self-hosted model, on-premises, edge hoặc hybrid theo dữ liệu, quyền kiểm soát, độ trễ, residency, chi phí và năng lực vận hành. Tách **framework** (định nghĩa luồng/agent) khỏi **runtime** (nơi chạy, state, auth, scaling, observability).
 
 Không mặc định managed/OSS đồng nghĩa với cùng mức kiểm soát, giấy phép hay trách nhiệm vận hành. Xác minh các điều kiện này trước khi chọn.
 
@@ -14,7 +14,7 @@ Không mặc định managed/OSS đồng nghĩa với cùng mức kiểm soát, 
 - **Idempotency:** request lặp lại không tạo hành động trùng; dùng idempotency key cho ghi/thanh toán/đặt chỗ.
 - **Timeout/retry:** đặt hạn cho model/tool, retry có giới hạn và backoff; không retry thao tác side effect mù quáng.
 - **Async queue:** chuyển công việc dài sang queue; dùng job ID, trạng thái và thông báo tiến độ.
-- **SSE/streaming:** gửi dữ liệu theo luồng, cấu hình proxy phù hợp và heartbeat để tránh kết nối bị đóng im lặng.
+- **Server-Sent Events (SSE):** cơ chế truyền sự kiện một chiều từ server đến client qua HTTP. SSE là một lựa chọn triển khai streaming, không đồng nghĩa với mọi hình thức streaming; cần cấu hình proxy và heartbeat phù hợp.
 - **Admission/cost control:** giới hạn concurrency, token, tool calls, thời gian và ngân sách theo user/tenant.
 
 ## 3. Bảo vệ ứng dụng và container
@@ -32,7 +32,7 @@ Model self-hosting cần tối ưu batching, bộ nhớ GPU và serving; chỉ t
 ## 5. CI/CD và phát hành an toàn
 
 - Chạy unit/integration tests, security scan và **eval gate** trên prompt/model/tool/config/index thay đổi.
-- Phát hành theo `shadow → canary → ramp`; quan sát quality, errors, latency và cost trước khi tăng traffic.
+- Chọn chiến lược phát hành phù hợp: **shadow** chạy đối chiếu mà chưa dùng đầu ra để tác động người dùng; **canary** đưa phiên bản mới tới một phần nhỏ lưu lượng thật; **ramp-up** tăng dần lưu lượng sau khi đạt ngưỡng. Không phải mọi hệ thống đều bắt buộc đi qua cả ba bước.
 - Rollback phải bao gồm đúng artifact liên quan: code, prompt/config, model hoặc index.
 - Với workflow nhiều bước có side effect, thiết kế saga/compensation hoặc bước người duyệt.
 

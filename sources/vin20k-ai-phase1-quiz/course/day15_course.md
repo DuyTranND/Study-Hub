@@ -4,7 +4,7 @@
 
 ## 1. Triển khai doanh nghiệp
 
-Chọn **cloud, on-premise hoặc hybrid** theo nơi lưu dữ liệu, tuân thủ, latency, ngân sách, tích hợp hệ thống cũ và năng lực vận hành. Self-host model có thể tăng quyền kiểm soát nhưng chuyển trách nhiệm sang đội ngũ về GPU, scaling, cập nhật, bảo mật và availability.
+Chọn **cloud, on-premises hoặc hybrid** theo nơi lưu dữ liệu, tuân thủ, latency, ngân sách, tích hợp hệ thống cũ và năng lực vận hành. Self-host model có thể tăng quyền kiểm soát nhưng chuyển trách nhiệm sang đội ngũ về GPU, scaling, cập nhật, bảo mật và availability.
 
 Tách chi phí thành:
 
@@ -12,7 +12,13 @@ Tách chi phí thành:
 - **Run:** API/token, compute/GPU, storage, vector search.
 - **Operate:** monitoring, human review, support, incident và bảo trì.
 
-Đừng chỉ tính token. Tính cả các lượt agent, embedding/re-embedding, retry, cache, hạ tầng và công việc con người. Theo dõi chi phí theo request, user/tenant, task và kết quả.
+Trong một kỳ tính toán cố định, có thể phân tách tổng chi phí vòng đời theo ba nhóm không trùng nhau:
+
+\[
+C_{\mathrm{total}}=C_{\mathrm{build}}+C_{\mathrm{run}}+C_{\mathrm{operate}}
+\]
+
+Đây là cách nhóm chi phí để lập kế hoạch; cần ghi rõ kỳ tính, đơn vị tiền tệ và phạm vi từng nhóm để không tính hai lần. Đừng chỉ tính token. Tính cả các lượt agent, embedding/re-embedding, retry, cache, hạ tầng và công việc con người. Theo dõi chi phí theo request, user/tenant, task và kết quả.
 
 ## 2. Bốn cách tối ưu chi phí
 

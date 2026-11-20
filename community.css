@@ -189,3 +189,27 @@
   #view-community .community-heading { flex-wrap: wrap; }
   #view-community .community-explainer { flex-direction: column; }
 }
+
+/* One shared leaderboard, with optional nickname enrollment. */
+.leaderboard-enrollment { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 32px; border-block: 1px solid #dde6df; padding: 24px 0; margin: 0 0 28px; }
+.leaderboard-enrollment h2 { font-size: 22px; margin: 0 0 10px; }
+.leaderboard-enrollment p { font-size: 14px; line-height: 1.8; margin: 0; max-width: 560px; }
+.leaderboard-enrollment .community-form { padding: 0; border: 0; background: transparent; }
+.leaderboard-profile { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 24px; border-bottom: 1px solid #e0e7e2; padding-bottom: 20px; }
+#view-community .community-metrics article small { line-height: 1.6; }
+@media(max-width:700px) { .leaderboard-enrollment { grid-template-columns: 1fr; gap: 20px; } .leaderboard-profile { align-items: flex-start; flex-direction: column; } }
+
+/* Name-based profiles and progress sync. */
+.account-open { background: #edf4ee; border: 1px solid #d5e3d9; color: #24503d; padding: 9px 14px; border-radius: 2px; font-size: 13px; font-weight: 650; max-width: 190px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.account-sync-status { border: 0; background: transparent; color: #6c8075; font-size: 11px; cursor: pointer; }
+.account-sync-status[data-kind="error"] { color: #a44a2c; }
+.account-dialog { width: min(460px, calc(100% - 32px)); padding: 32px; border: 1px solid #d9e4dc; border-radius: 3px; color: #253e31; }
+.account-dialog::backdrop { background: #15332866; }
+.account-dialog h2 { font-size: 25px; margin: 12px 0; }
+.account-dialog p { font-size: 14px; line-height: 1.75; }
+.account-dialog label { display: block; font-size: 13px; font-weight: 650; margin: 20px 0 8px; }
+.account-dialog input { width: 100%; padding: 12px; border: 1px solid #b8cfc0; border-radius: 2px; color: #263e32; font-size: 16px; }
+.account-dialog .account-note { font-size: 12px; color: #7a817b; }
+.account-dialog #account-error { color: #a13e2c; }
+.account-dialog-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 24px; }
+@media(max-width:620px) { .topbar .account-sync-status { display: none; } .topbar .account-open { display: block; max-width: 140px; font-size: 12px; padding: 8px 10px; } .account-dialog { padding: 24px; } }

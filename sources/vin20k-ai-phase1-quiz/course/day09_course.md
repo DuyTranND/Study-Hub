@@ -19,7 +19,7 @@ Trước khi code, trả lời: ai giữ kế hoạch; mỗi worker cần thấy
 
 ## 3. Bộ nhớ và cách lập kế hoạch
 
-Bốn loại memory:
+Một cách phân loại bộ nhớ thường dùng khi thiết kế agent, không phải chuẩn phân loại duy nhất:
 
 - **Working:** trạng thái hiện tại trong context.
 - **Episodic:** lịch sử các lần chạy/tương tác.
@@ -30,9 +30,9 @@ Bốn loại memory:
 
 ## 4. MCP, A2A và orchestration
 
-- **MCP** chuẩn hóa kết nối model/agent với **tools, resources, prompts**. Cần discovery rõ, transport phù hợp (stdio hoặc Streamable HTTP), xác thực và quyền tối thiểu.
-- **A2A** phục vụ giao tiếp giữa các agent độc lập; **Agent Card** mô tả khả năng, còn message contract quy định cách trao đổi trạng thái/kết quả. MCP không đồng nghĩa A2A.
-- **LangGraph** biểu diễn hệ thống bằng **nodes, edges, state**; checkpointer giữ trạng thái qua lần chạy, conditional routing chọn nhánh, `interrupt()` hỗ trợ dừng chờ người duyệt.
+- **Model Context Protocol (MCP)** chuẩn hóa giao tiếp giữa ứng dụng chủ/client và MCP server cung cấp **tools, resources, prompts**. Chọn transport và cơ chế xác thực phù hợp với phiên bản triển khai, đồng thời giới hạn quyền; model không tự mở kết nối MCP.
+- **Agent2Agent Protocol (A2A)** hỗ trợ các ứng dụng agent trao đổi thông điệp, tác vụ và kết quả. **Agent Card** mô tả danh tính dịch vụ, khả năng và cách kết nối; A2A khác phạm vi với MCP.
+- **LangGraph** biểu diễn luồng bằng **nodes, edges, state**. Checkpointer lưu checkpoint của trạng thái trong một thread; store phục vụ dữ liệu dài hạn dùng qua nhiều thread. Muốn tiếp tục sau khi tiến trình khởi động lại, cần backend lưu trữ bền vững, không chỉ checkpointer trong RAM. Conditional routing chọn nhánh; `interrupt()` hỗ trợ tạm dừng để lấy đầu vào hoặc chờ duyệt.
 
 MCP là giao diện kết nối công cụ/dữ liệu; A2A là hợp đồng giao tiếp agent-agent; framework điều phối kiểm soát luồng và state.
 
@@ -45,3 +45,5 @@ Thiết kế timeout, retry có giới hạn, partial failure, fallback và chec
 **Từ khóa:** supervisor-worker, parallelize reads/serialize writes, memory, MCP, A2A, Agent Card, LangGraph, StateGraph, checkpointer, interrupt, idempotency.
 
 **Nguồn tổng hợp:** transcript `day_09.md` và `MASTER_SUMMARY.md`.
+
+**Đối chiếu thuật ngữ:** [MCP Architecture](https://modelcontextprotocol.io/docs/learn/architecture), [A2A Specification](https://a2a-protocol.org/latest/specification/), [LangGraph Persistence](https://docs.langchain.com/oss/python/langgraph/persistence).

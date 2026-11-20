@@ -15,7 +15,7 @@ $online = $false
 for ($i = 0; $i -lt 30; $i++) {
   try {
     $response = Invoke-WebRequest -UseBasicParsing -Uri $uri -TimeoutSec 5 -ErrorAction Stop
-    if ($response.StatusCode -eq 200 -and $response.Content -match 'AI20K All-in-One') {
+    if ($response.StatusCode -eq 200 -and $response.Content -match '<title>StudyHub</title>') {
       $online = $true
       break
     }
@@ -25,5 +25,5 @@ for ($i = 0; $i -lt 30; $i++) {
     Start-Sleep -Milliseconds 200
   }
 }
-if (-not $online) { throw "Cannot reach the AI20K workspace at $uri" }
+if (-not $online) { throw "Cannot reach the StudyHub workspace at $uri" }
 Start-Process $uri

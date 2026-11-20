@@ -4,13 +4,13 @@
 
 ## 1. RAG hay fine-tuning?
 
-- **RAG:** tìm dữ liệu bên ngoài tại thời điểm hỏi, phù hợp tri thức riêng/cập nhật thường xuyên, cần nguồn dẫn và quyền truy cập.
-- **Fine-tuning:** điều chỉnh hành vi, phong cách hoặc kỹ năng theo ví dụ; không phải cách cập nhật kho sự kiện sống.
+- **Retrieval-augmented generation (RAG, sinh có tăng cường truy xuất):** bổ sung dữ liệu truy xuất vào ngữ cảnh sinh câu trả lời; phù hợp khi cần dùng tri thức riêng hoặc thường xuyên cập nhật, kèm nguồn và kiểm soát truy cập.
+- **Fine-tuning (tinh chỉnh):** cập nhật trọng số từ dữ liệu huấn luyện để thay đổi hành vi hoặc năng lực. Nó có thể học thêm kiến thức, nhưng không thay thế một kho dữ liệu cập nhật có thể truy xuất và kiểm chứng.
 - **Prompting:** hướng dẫn cách xử lý; thường là lựa chọn đầu tiên cho thay đổi nhỏ về định dạng/hành vi.
 
 Có thể phối hợp các phương pháp, nhưng trước hết phải xác định cần thay đổi **kiến thức**, **hành vi** hay **quy trình**.
 
-## 2. Ba pipeline của RAG
+## 2. Ba chặng trong một hệ thống RAG
 
 ### A. Indexing — chuẩn bị kho
 
@@ -19,13 +19,13 @@ Parse tài liệu (kể cả bảng/layout), làm sạch và chuẩn hóa; chia 
 ### B. Retrieval — tìm bằng chứng
 
 1. Làm sạch hoặc viết lại query khi mơ hồ.
-2. Tìm bằng dense, sparse hoặc hybrid.
-3. Lọc theo metadata/quyền truy cập.
+2. Xác định phạm vi tài liệu được phép truy cập và bộ lọc metadata.
+3. Tìm bằng dense, sparse hoặc hybrid trong phạm vi đó; không đợi lấy xong top-k mới kiểm tra quyền.
 4. Rerank một tập ứng viên nhỏ để đưa bằng chứng tốt lên đầu.
 
 Kỹ thuật biến đổi query gồm expansion, decomposition cho câu hỏi nhiều phần, step-back cho câu hỏi quá chi tiết và HyDE trong trường hợp phù hợp. Mỗi bước tăng độ trễ/chi phí, nên chỉ bật khi eval cho thấy có lợi.
 
-**Hybrid search** ghép dense và BM25; RRF gộp theo thứ hạng, tránh cộng trực tiếp điểm khác thang đo. **Cross-encoder reranker** chấm query–document chính xác hơn nhưng chậm hơn, nên dùng sau vòng tìm kiếm rộng. **MMR** giúp giảm các chunk trùng lặp khi cần nhiều góc nhìn.
+**Hybrid search** ghép dense và BM25; RRF gộp theo thứ hạng, tránh cộng trực tiếp điểm khác thang đo. **Cross-encoder reranker** chấm trực tiếp cặp truy vấn–tài liệu để xếp hạng lại tập ứng viên. Nó thường tốn tính toán hơn bước truy xuất ban đầu; chất lượng tốt hơn hay không phải được kiểm chứng trên dữ liệu sử dụng. **MMR** giúp giảm các chunk trùng lặp khi cần nhiều góc nhìn.
 
 ### C. Generation — tổng hợp câu trả lời
 
@@ -39,7 +39,7 @@ Kỹ thuật biến đổi query gồm expansion, decomposition cho câu hỏi n
 
 Dùng Golden Dataset đại diện cho người dùng, loại tài liệu, câu hỏi thường gặp và ca khó/adversarial. Đo riêng retrieval và generation để biết lỗi ở đâu.
 
-Các nhóm metric thường dùng trong RAGAS: **context precision**, **context recall**, **faithfulness** (câu trả lời có được bằng chứng hỗ trợ không) và **answer relevance**. Kết hợp đánh giá tự động với rà soát người thật; không coi điểm LLM-as-a-Judge là chân lý.
+Các nhóm metric thường dùng trong **Ragas** gồm **Context Precision**, **Context Recall**, **Faithfulness** (mức các nhận định được ngữ cảnh hỗ trợ) và **Response Relevancy** (còn gặp tên Answer Relevancy). Chúng không đồng nhất với Precision@k/Recall@k dựa trên nhãn tài liệu: cách chấm cụ thể phụ thuộc metric và dữ liệu tham chiếu. Faithfulness cao cho biết bám ngữ cảnh, không bảo đảm ngữ cảnh đúng hoặc câu trả lời đúng sự thật. Kết hợp đánh giá tự động với rà soát người thật; không coi điểm LLM-as-a-Judge là chân lý.
 
 Tuning mỗi lần chỉ nên thay một yếu tố (chunk size, hybrid weight, reranker, prompt...) rồi so scorecard trước/sau. A/B test hoặc regression gate giúp tránh tối ưu một metric nhưng làm xấu trải nghiệm hoặc chi phí.
 
@@ -50,6 +50,8 @@ Tuning mỗi lần chỉ nên thay một yếu tố (chunk size, hybrid weight, 
 - Trả lời không có nguồn → yêu cầu citation và fallback khi không đủ bằng chứng.
 - Chất lượng giảm khi tăng k → kiểm tra nhiễu, thứ tự context, reranking và trùng lặp.
 
-**Từ khóa:** RAG, indexing, retrieval, generation, query expansion, HyDE, BM25, RRF, reranking, MMR, grounding, citations, RAGAS, Golden Dataset.
+**Từ khóa:** RAG, indexing, retrieval, generation, query expansion, HyDE, BM25, RRF, reranking, MMR, grounding, citations, Ragas, Golden Dataset.
 
 **Nguồn tổng hợp:** transcript `day_08.md` và `MASTER_SUMMARY.md`.
+
+**Đối chiếu thuật ngữ:** [Ragas — Faithfulness](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/faithfulness/), [Ragas — Response Relevancy](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/answer_relevance/).

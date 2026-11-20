@@ -122,6 +122,14 @@ async function main() {
     assert.equal((await call('view', { ...alice, period: 'week' })).data.group.totalPoints, 12);
     assert.equal((await call('view', { ...alice, period: 'all' })).data.group.totalPoints, 24,
       'All-time scoreboard must add both weeks');
+    const earlyProfile = await call('create', { name: 'Early submission check', nickname: 'Early learner' });
+    const earlyIdentity = earlyProfile.data.identity;
+    const early = await call('submit', { ...earlyIdentity, ...exam, sessionId: crypto.randomUUID(), answers: Object.fromEntries(sample.slice(0, 10).map(q => [q.id, q.answer])) });
+    assert.equal(early.status, 200);
+    assert.equal(early.data.result.graded, 12, 'All exam questions count in the score denominator');
+    assert.equal(early.data.result.correct, 10);
+    const earlyBoard = await call('view', earlyIdentity);
+    assert.equal(earlyBoard.data.group.board[0].accuracy, 83, 'Skipped questions lower leaderboard accuracy');
     console.log('Study Groups API: PASS (membership, scoring, deduplication, ranking, cross-week totals, privacy, leave, Vietnam week boundary).');
   } finally {
     proc.kill();

@@ -1,13 +1,13 @@
-# Day 01 — Nền tảng AI, LLM và Token Economy
+# Day 01 — Nền tảng AI, LLM và chi phí token
 
 > **Ý chính:** LLM là mô hình dự đoán token tiếp theo; chất lượng ứng dụng còn phụ thuộc vào dữ liệu ngữ cảnh, công cụ và cách vận hành.
 
 ## 1. Bản đồ AI
 
-- **Machine Learning (ML):** học mẫu từ dữ liệu để phân loại hoặc dự đoán.
+- **Machine learning (ML, học máy):** học các mẫu hoặc quy luật từ dữ liệu; bao gồm học có giám sát, không giám sát và học tăng cường, không chỉ phân loại hay dự đoán.
 - **Deep Learning (DL):** ML dùng mạng nơ-ron nhiều tầng.
 - **Foundation model:** mô hình lớn được huấn luyện trước, có thể thích ứng với nhiều tác vụ.
-- **LLM:** foundation model chuyên xử lý ngôn ngữ.
+- **Large language model (LLM, mô hình ngôn ngữ lớn):** mô hình được huấn luyện để xử lý và sinh ngôn ngữ; nhiều hệ thống hiện nay còn nhận đầu vào đa phương thức. LLM và foundation model là hai khái niệm có phần giao nhau, không phải mọi foundation model đều là LLM.
 - **Discriminative AI** phân loại/dự đoán; **Generative AI** sinh nội dung; **Agentic AI** dùng mô hình để lập kế hoạch và thực hiện hành động.
 
 AI tạo sinh có thể làm việc với văn bản, giọng nói, hình ảnh, video và mã. Với thoại, kiến trúc phổ biến là `STT → LLM → TTS`; speech-to-speech xử lý hội thoại trực tiếp hơn và thường nhạy với độ trễ, ngắt lời (barge-in) và chất lượng âm thanh.
@@ -16,26 +16,26 @@ AI tạo sinh có thể làm việc với văn bản, giọng nói, hình ảnh,
 
 Một agent không chỉ là chatbot được thêm prompt. Có thể hình dung:
 
-`Agent = model + context/state + vòng lặp điều phối + tools + harness`
+**Các thành phần minh họa:** mô hình, ngữ cảnh/trạng thái, vòng lặp điều phối, công cụ và môi trường thực thi (harness). Đây là cách phân rã kiến trúc để học, không phải công thức toán học hay định nghĩa duy nhất của agent.
 
 - **Tool calling:** cơ chế để model yêu cầu ứng dụng gọi một hàm/API với tham số có cấu trúc.
-- **MCP:** giao thức chuẩn hóa cách ứng dụng khám phá và sử dụng tools, resources hoặc prompts.
+- **Model Context Protocol (MCP):** giao thức kết nối ứng dụng AI với MCP server thông qua client. Server có thể cung cấp công cụ (tools), tài nguyên (resources) và mẫu lời nhắc (prompts); ứng dụng chủ điều phối việc sử dụng chúng.
 - **Agent skill:** gói hướng dẫn, tài liệu và script cho một loại công việc; chỉ nạp khi cần để tránh đưa mọi thứ vào context.
 - **Harness:** phần bao quanh model—quyền, trạng thái, vòng lặp, kiểm tra, logging và cơ chế dừng.
 
 ## 3. LLM hoạt động thế nào?
 
-Transformer dùng **self-attention** để tính quan hệ giữa các token trong context. Mô hình không tra một câu trả lời cố định; nó tính phân phối xác suất cho token tiếp theo, chọn token rồi tiếp tục cho đến khi kết thúc.
+Trong LLM sinh văn bản tự hồi quy (autoregressive), Transformer dùng cơ chế attention để xử lý ngữ cảnh và tính phân phối xác suất cho token tiếp theo. Mô hình chọn token theo chiến lược giải mã rồi lặp lại đến khi gặp điều kiện dừng; đây không phải việc tra một câu trả lời cố định.
 
 `Văn bản → tokenization → Transformer/attention → xác suất token kế tiếp → chuỗi đầu ra`
 
 **Token không đồng nghĩa với từ.** Cách tách token phụ thuộc ngôn ngữ và tokenizer; tiếng Việt có thể tốn nhiều token hơn dự đoán theo số từ. Vì vậy hãy đo token thực tế thay vì ước lượng theo ký tự.
 
-### Các giai đoạn huấn luyện
+### Một quy trình huấn luyện phổ biến
 
 1. **Pre-training:** học mẫu ngôn ngữ và kiến thức tổng quát từ lượng dữ liệu lớn.
-2. **SFT:** tinh chỉnh bằng ví dụ chỉ dẫn–trả lời.
-3. **Alignment (ví dụ RLHF/DPO):** điều chỉnh để đầu ra phù hợp hơn với mục tiêu và sở thích được chọn.
+2. **Supervised fine-tuning (SFT, tinh chỉnh có giám sát):** học từ các ví dụ đầu vào–đầu ra mong muốn.
+3. **Preference optimization (tối ưu theo ưu tiên):** có thể dùng RLHF (reinforcement learning from human feedback) hoặc DPO (direct preference optimization). DPO tối ưu trực tiếp từ các cặp phản hồi ưu tiên, khác với quy trình RLHF huấn luyện mô hình phần thưởng rồi tối ưu bằng học tăng cường. Không phải mọi LLM đều đi qua đúng ba bước này.
 
 Mô hình vẫn có giới hạn kiến thức, có thể bịa và không tự biết dữ liệu mới nếu không được cung cấp hoặc truy xuất.
 
@@ -43,7 +43,13 @@ Mô hình vẫn có giới hạn kiến thức, có thể bịa và không tự 
 
 Dùng model nhỏ/rẻ cho tác vụ đơn giản, tần suất cao; chỉ dùng model mạnh hơn khi bài kiểm tra cho thấy cần suy luận hoặc chất lượng cao hơn. So sánh trên **cùng bộ test** về chất lượng, độ trễ và chi phí.
 
-`Chi phí ≈ (input tokens × giá input + output tokens × giá output) / đơn vị tính giá`
+Nếu đơn giá đầu vào và đầu ra được niêm yết theo cùng một đơn vị \(U\) token:
+
+\[
+C_{\mathrm{token}}=\frac{N_{\mathrm{in}}p_{\mathrm{in}}+N_{\mathrm{out}}p_{\mathrm{out}}}{U}
+\]
+
+Trong đó \(N_{\mathrm{in}},N_{\mathrm{out}}\) là số token đầu vào/đầu ra; \(p_{\mathrm{in}},p_{\mathrm{out}}\) là giá trên mỗi \(U\) token. Ví dụ, với giá theo một triệu token thì \(U=10^6\). Các mức giá cho cache, loại token đặc biệt và phí công cụ phải tính riêng theo cách tính phí thực tế; công thức trên chỉ mô tả phần token có hai mức giá.
 
 Cần tính cả context được gửi lặp lại, lượt gọi bổ sung của agent và chi phí tool. Context window là giới hạn làm việc của một lần gọi, không phải lý do để gửi toàn bộ dữ liệu.
 
@@ -53,7 +59,7 @@ Cần tính cả context được gửi lặp lại, lượt gọi bổ sung c�
 - Mỗi request có model, messages, giới hạn output và các tham số phù hợp.
 - **Streaming** trả nội dung theo từng phần, giúp giao diện phản hồi sớm hơn.
 - Ghi lại provider/model, latency, token usage, lỗi và kết quả đánh giá.
-- Điều chỉnh temperature theo tác vụ; bài cần ổn định thường dùng mức thấp hơn bài cần đa dạng.
+- Nếu model hỗ trợ, điều chỉnh temperature theo tác vụ. Temperature thấp thường làm đầu ra ít biến thiên hơn, nhưng không bảo đảm đúng sự thật hoặc hoàn toàn xác định.
 
 ## Ghi nhớ nhanh
 
@@ -65,3 +71,5 @@ Cần tính cả context được gửi lặp lại, lượt gọi bổ sung c�
 **Từ khóa:** Transformer, self-attention, tokenization, pre-training, SFT, RLHF, DPO, tool calling, MCP, skill, harness, streaming.
 
 **Nguồn tổng hợp:** transcript `day_01.md` và `MASTER_SUMMARY.md`.
+
+**Đối chiếu thuật ngữ:** [MCP Architecture](https://modelcontextprotocol.io/docs/learn/architecture), [DPO — bài báo gốc](https://arxiv.org/abs/2305.18290).

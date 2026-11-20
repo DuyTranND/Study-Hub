@@ -239,3 +239,133 @@ html, body { min-width: 0; }
   .option { font-size: 13.5px; line-height: 1.55; padding: 12px 9px; min-height: 52px; }
   .rich-text, .lesson-body, .lesson-body p { font-size: 13.5px; }
 }
+
+/* Home: one primary action, a compact progress strip, then the collections. */
+#view-overview.home { width: 100%; max-width: none; margin: 0; padding-top: 28px; gap: 0; }
+.home svg { width: 18px; height: 18px; flex-shrink: 0; }
+.home-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 28px; }
+.home-eyebrow { display: block; font-size: 10px; font-weight: 750; letter-spacing: .13em; color: #56746a; }
+.home-heading h1 { font-size: clamp(25px,2.2vw,34px); letter-spacing: -.04em; line-height: 1.2; margin: 9px 0; }
+.home-heading p { font-size: 14px; margin: 0; }
+.home-heading #today-label { font-size: 12px; color: #75837e; white-space: nowrap; }
+.home-start { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); border: 1px solid #dce6df; border-radius: 0; overflow: hidden; background: white; }
+.home-session { padding: 28px 32px; background: #183d32; color: white; }
+.home-session .home-eyebrow { color: #a9c7b8; }
+.home-session h2 { color: #fff; font-size: clamp(30px,2.2vw,38px); font-weight: 650; line-height: 1.15; letter-spacing: -.04em; margin: 16px 0 12px; }
+.home-session p { color: #c0d2c9; font-size: 14px; line-height: 1.8; margin: 0 0 25px; }
+.home-session .btn.primary { background: #e1f0b4; color: #203c2d; border: 1px solid #e1f0b4; padding: 13px 20px; min-height: 46px; border-radius: 3px; }
+.home-session .btn.primary:hover { background: #d3e89b; border-color: #d3e89b; color: #183d32; }
+.home-session-note { display: block; color: #a9c3b6; font-size: 11px; margin-top: 14px; }
+.home-modes { padding: 30px 28px; display: flex; flex-direction: column; justify-content: center; }
+.home-modes h2 { font-size: 17px; margin: 0 0 16px; }
+.home-modes button { display: flex; align-items: center; gap: 14px; padding: 19px 0; background: transparent; border: 0; border-top: 1px solid #e9eeeb; text-align: left; width: 100%; color: #233e32; border-radius: 0; }
+.home-modes button:hover { background: #f6f9f6; }
+.home-mode-icon { width: 38px; height: 38px; display: grid; place-items: center; background: #f0f5ee; border-radius: 2px; flex-shrink: 0; }
+.home-modes button > span:nth-child(2) { flex: 1; min-width: 0; }
+.home-modes strong { display: block; font-size: 14px; font-weight: 650; }
+.home-modes small { display: block; font-size: 12px; color: #728076; margin-top: 4px; line-height: 1.5; }
+.home-progress { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; align-items: center; margin: 20px 0 26px; padding: 18px 0; border-bottom: 1px solid #dde5df; gap: 20px; }
+.home-progress > div + div { padding-left: 24px; border-left: 1px solid #e0e7e2; }
+.home-progress p { font-size: 13px; margin: 7px 0 0; }
+.home-progress strong { display: block; font-size: 26px; line-height: 1.2; letter-spacing: -.03em; font-weight: 650; color: #243e32; }
+.home-progress span:not(.home-eyebrow) { display: block; font-size: 12px; color: #52645b; margin-top: 6px; }
+.home-progress small { display: block; font-size: 10px; color: #819087; margin-top: 3px; }
+.home-section-title { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+.home-section-title h2, .home-lessons h2 { font-size: 21px; letter-spacing: -.025em; margin: 0 0 5px; }
+.home-section-title p { font-size: 13px; margin: 0; }
+.home-collections { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+.home-collections > button { text-align: left; background: #fff; border: 1px solid #dfe6e0; padding: 22px 24px; border-radius: 0; min-width: 0; color: #233e32; transition: border-color .15s; }
+.home-collections > button:hover { border-color: #92b39c; }
+.home-source { font-size: 9px; letter-spacing: .12em; font-weight: 700; color: #7c8b80; }
+.home-collections h3 { font-size: 18px; margin: 20px 0 9px; letter-spacing: -.025em; }
+.home-collections p { font-size: 13px; line-height: 1.7; margin: 0 0 24px; }
+.home-collections button > div { display: flex; justify-content: space-between; align-items: center; font-size: 12px; padding-top: 16px; border-top: 1px solid #edf0eb; }
+.home-lessons { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; border-top: 1px solid #dde5df; margin-top: 24px; padding-top: 24px; }
+.home-lessons h2 { margin-top: 10px; }
+.home-lessons p { margin: 8px 0 16px; font-size: 13px; }
+.home-lessons .mini-lessons { display: grid; gap: 8px; align-content: center; }
+.home-lessons .mini-lesson { width: 100%; background: white; border: 0; border-bottom: 1px solid #e2e8e2; border-radius: 0; padding: 12px 15px; }
+@media(max-width:1000px) { .home-session { padding: 28px; } .home-modes { padding: 22px; } .home-collections > button { padding: 20px; } .home-collections p br { display: none; } }
+@media(max-width:700px) { #view-overview.home { padding-top: 24px; } .home-heading { align-items: flex-start; } .home-heading #today-label { display: none; } .home-start { grid-template-columns: 1fr; } .home-session { padding: 28px 24px; } .home-session h2 { font-size: 34px; } .home-session p br { display: none; } .home-modes { padding: 24px; } .home-modes button { padding: 16px 0; } .home-progress { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; } .home-progress > div:first-child { grid-column: 1/-1; } .home-progress > div:nth-child(2) { padding-left: 0; border-left: 0; } .home-progress > div + div { padding-left: 14px; } .home-progress small { font-size: 9px; } .home-collections, .home-lessons { grid-template-columns: 1fr; } .home-section-title { align-items: flex-start; } .home-section-title .text-link { font-size: 12px; } .home-lessons { gap: 20px; } }
+
+/* Classify assessments by purpose while retaining subject groups for practice. */
+#view-practice .assessment-type-filter { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; font-size: 13px; color: #465e51; }
+#view-practice .assessment-type-filter > span { font-weight: 650; }
+#view-practice .assessment-type-filter select { min-height: 42px; width: min(100%, 360px); padding: 9px 34px 9px 12px; border: 1px solid #cedbd2; border-radius: 2px; background: #fff; color: #263e30; font: inherit; }
+#view-practice .set-assessment-kind { display: inline-block; margin: 0 0 9px; color: #32674e; background: #edf5ef; padding: 3px 7px; border-radius: 1px; font-size: 11px; font-weight: 650; }
+#view-practice .set-grading-format { margin: 8px 0 0; font-size: 12px; line-height: 1.6; color: #748078; }
+#view-practice .set-group-heading p { max-width: 850px; line-height: 1.7; }
+@media(max-width:620px) { #view-practice .assessment-type-filter { align-items: stretch; flex-direction: column; gap: 7px; } #view-practice .assessment-type-filter select { width: 100%; min-width: 0; } }
+
+#view-practice .set-explorer[data-mode="exam"] .set-group-heading { display: flex; }
+#view-practice .set-group:is([data-set-group="dgnl"], [data-set-group="ai-test"]) .set-rows { grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); }
+#view-practice .set-assessment-kind { justify-self: start; }
+/* Active exam: reading column and persistent question navigator. */
+#view-practice .session-workspace { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 28px; align-items: start; }
+#view-practice .session-main, #view-practice .session-title-block { min-width: 0; }
+#view-practice .session-title-block h3 { overflow-wrap: anywhere; }
+#view-practice .session-mobile-actions { display: none; }
+#view-practice .question-heading-row { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+#view-practice .question-heading-row .question-section-label { margin: 0; }
+#view-practice #session-question-map { position: sticky; top: 20px; margin: 0; padding: 18px 16px; border: 1px solid #dce6df; border-radius: 2px; background: #fff; min-width: 0; }
+#view-practice .session-timer-label { font-size: 12px; color: #6e7c73; margin-bottom: 6px; }
+#view-practice #session-question-map .session-time { font-size: 24px; color: #203d2e; font-variant-numeric: tabular-nums; margin-bottom: 14px; }
+#view-practice .session-submit { width: 100%; border-radius: 2px; min-height: 42px; margin-bottom: 22px; }
+#view-practice #session-question-map h3 { font-size: 15px; margin: 0 0 8px; }
+#view-practice .session-map-summary { font-size: 12px; color: #526e5d; margin-bottom: 14px; }
+#view-practice .session-navigation-counts { display: grid; gap: 5px; font-size: 12px; padding-bottom: 12px; border-bottom: 1px solid #e6ece7; }
+#view-practice .session-navigation-counts > span { display: flex; justify-content: space-between; gap: 12px; color: #64776b; }
+#view-practice .session-navigation-counts strong { color: #294c37; font-variant-numeric: tabular-nums; }
+#view-practice .session-navigation-hint { font-size: 11px; line-height: 1.7; margin: 12px 0 10px; }
+#view-practice #session-question-list { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; max-height: 420px; overflow: auto; padding: 2px; border: 0; }
+#view-practice #session-question-list button { min-width: 0; min-height: 32px; padding: 5px 2px; border-radius: 1px; font-size: 12px; }
+#view-practice #session-question-list button.is-answered { background: #e2f1e7; color: #25583c; border-color: #9ec7ac; }
+#view-practice #session-question-list button.is-flagged { background: #fff1ce; color: #765414; border-color: #dbba67; }
+#view-practice #session-question-list button span { position: absolute; top: -3px; right: 0; font-size: 10px; }
+#view-practice .session-flag-button { margin-top: 14px; width: 100%; min-height: 40px; border-radius: 2px; font-size: 12px; }
+#view-practice .session-flag-button[aria-pressed="true"] { background: #fff1ce; border-color: #dbba67; color: #765414; }
+#view-practice #session-question-map .session-map-legend { display: grid; gap: 7px; padding: 15px 0 0; font-size: 11px; }
+#view-practice .session-map-legend > span { display: flex; align-items: center; gap: 7px; }
+#view-practice .session-map-legend i { width: 10px; height: 10px; display: inline-block; border: 1px solid #cedbd2; }
+#view-practice .session-map-legend .legend-answer { background: #e2f1e7; border-color: #9ec7ac; }
+#view-practice .session-map-legend .legend-empty { background: #fff; }
+#view-practice .session-map-legend .legend-flag { background: #fff1ce; border-color: #dbba67; }
+@media(max-width:980px) {
+  #view-practice .session-workspace { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  #view-practice #session-question-map { position: static; }
+  #view-practice .session-top { align-items: flex-start; flex-wrap: wrap; gap: 16px; }
+  #view-practice .session-mobile-actions { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 16px; }
+  #view-practice .session-mobile-clock { font-size: 18px; font-weight: 650; color: #27563d; font-variant-numeric: tabular-nums; }
+  #view-practice .session-mobile-actions .btn { min-height: 42px; border-radius: 2px; }
+  #view-practice #session-question-list { grid-template-columns: repeat(auto-fill, minmax(42px, 1fr)); max-height: 360px; }
+}
+@media(max-width:620px) {
+  #view-practice .session-bottom { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 8px; }
+  #view-practice .session-bottom .btn { min-width: 0; white-space: normal; font-size: 12px; line-height: 1.5; padding: 9px 7px; }
+  #view-practice .question-heading-row { gap: 8px; }
+}
+@media(pointer:coarse) { #view-practice #session-question-list { grid-template-columns: repeat(auto-fill, minmax(44px, 1fr)); } #view-practice #session-question-list button { min-height: 44px; } }
+
+#view-practice #session-question-map { max-height: calc(100dvh - 40px); overflow-y: auto; }
+@media(max-width:980px) { #view-practice #session-question-map { max-height: none; overflow: visible; scroll-margin-top: 16px; } #view-practice .session-mobile-actions .btn { font-size: 12px; padding: 9px 12px; } #view-practice #question-stage { scroll-margin-top: 16px; } }
+
+/* Keep question navigation steady and remove page chrome during a session. */
+body:has(#view-practice:not(.hidden) #session-panel:not(.hidden)) { overflow-anchor: none; }
+body:has(#view-practice:not(.hidden) #session-panel:not(.hidden)) .topbar,
+#view-practice:has(#session-panel:not(.hidden)) > .practice-heading { display: none; }
+#view-practice .session-exit { margin-left: auto; flex-shrink: 0; font-size: 12px; }
+
+#view-practice .code-library-intro { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 22px; background: #f1f7f3; border: 1px solid #dce8df; margin-bottom: 20px; }
+#view-practice .code-library-intro h3, #view-practice .code-task-card h3 { margin: 8px 0; }
+#view-practice .code-library-intro p, #view-practice .code-task-card p { font-size: 14px; line-height: 1.7; }
+#view-practice .code-library-intro small, #view-practice .code-task-card small { color: #586f63; }
+#view-practice .code-library-intro > .btn, #view-practice .code-task-card > .btn { flex-shrink: 0; }
+#view-practice .code-task-list { display: grid; gap: 12px; }
+#view-practice .code-task-card { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 22px; border: 1px solid #dce8df; background: #fff; min-width: 0; }
+#view-practice .code-task-card > div { min-width: 0; overflow-wrap: anywhere; }
+#view-practice .hand-code-editor { border: 1px solid #bdcec2; background: #f7faf8; }
+#view-practice .hand-code-toolbar { display: flex; justify-content: space-between; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #dce8df; font-size: 12px; }
+#view-practice .hand-code-input { display: block; margin: 0; border: 0; border-radius: 0; width: 100%; min-height: 340px; padding: 18px; resize: vertical; background: #fbfdfc; color: #19392b; font: 14px/1.75 Consolas, 'Courier New', monospace; white-space: pre; overflow-wrap: normal; tab-size: 4; }
+#view-practice .hand-code-input:focus { outline: 2px solid #2d7858; outline-offset: -2px; }
+#view-practice #hand-code-help { margin: 0; padding: 12px 16px; font-size: 11px; line-height: 1.7; color: #586f63; border-top: 1px solid #dce8df; }
+@media(max-width:700px) { #view-practice .code-library-intro, #view-practice .code-task-card { flex-direction: column; align-items: stretch; gap: 14px; padding: 18px; } #view-practice .hand-code-input { font-size: 16px; min-height: 300px; } }

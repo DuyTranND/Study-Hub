@@ -1,1 +1,16 @@
-{"name":"study-hub","version":"1.0.0","private":true,"description":"Local-first study and exam practice workspace","scripts":{"start":"node server.cjs","build":"node build-vercel.cjs","test:shl":"node _qa/shl-browser-test.cjs","test:community":"node _qa/community-api-test.cjs","test:community:browser":"node _qa/community-browser-test.cjs","test:deploy":"node _qa/vercel-deploy-test.cjs"},"engines":{"node":">=22"}}
+{
+  "name": "study-hub",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local-first study and exam practice workspace",
+  "scripts": {
+    "start": "node server.cjs",
+    "build": "node build-vercel.cjs",
+    "test:community": "node _qa/community-api-test.cjs",
+    "test:community:browser": "node _qa/community-browser-test.cjs",
+    "test:deploy": "node _qa/vercel-deploy-test.cjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

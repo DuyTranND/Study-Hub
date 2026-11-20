@@ -4,11 +4,12 @@
 
 ## 1. Mối đe dọa cần tính đến
 
-- **Direct prompt injection/jailbreak:** người dùng tìm cách ghi đè hướng dẫn.
+- **Direct prompt injection:** chỉ dẫn do người dùng đưa trực tiếp nhằm chuyển hướng hệ thống khỏi nhiệm vụ hoặc chính sách dự kiến.
+- **Jailbreak:** nỗ lực vượt các giới hạn an toàn của mô hình. Hai khái niệm có thể giao nhau nhưng không đồng nghĩa.
 - **Indirect injection:** chỉ dẫn độc nằm trong tài liệu, trang web hoặc tool output được truy xuất.
 - **Rò rỉ dữ liệu/PII:** model tiết lộ thông tin không được phép.
 - **Tool misuse:** gọi sai API, vượt quyền hoặc thực hiện side effect ngoài ý định.
-- **Reward hacking/misalignment:** tối ưu chỉ số cục bộ nhưng vi phạm mục tiêu thực.
+- **Reward hacking:** khai thác cách tính phần thưởng để đạt điểm cao mà không đạt mục tiêu mong muốn. Đây là một dạng vấn đề sai lệch mục tiêu; **misalignment** có phạm vi rộng hơn.
 
 Agent có nhiều nguồn input hơn chatbot—user, retrieval, tools, memory—nên mỗi nguồn cần được đánh dấu và xử lý theo mức tin cậy.
 
@@ -34,7 +35,7 @@ HITL cần **durable state**: lưu trạng thái chờ duyệt, người duyệt
 
 Tạo test suite theo nhóm: injection/jailbreak, rò rỉ PII, truy cập trái quyền, tool sai, dữ liệu mâu thuẫn, hành động không được duyệt và prompt vượt phạm vi. Ghi rõ mục tiêu, expected behavior, severity và kết quả.
 
-Dùng benchmark/công cụ red-team như nguồn khởi đầu, sau đó bổ sung tình huống thật của sản phẩm. Theo dõi cả lần bị chặn nhầm, vì guardrail quá chặt có thể làm mất giá trị hoặc tạo automation bias/alert fatigue.
+Dùng benchmark/công cụ red-team như nguồn khởi đầu, sau đó bổ sung tình huống thật của sản phẩm. Theo dõi cả lần bị chặn nhầm, vì chặn nhầm làm giảm giá trị sử dụng, còn cảnh báo dồn dập gây **alert fatigue** (mệt mỏi vì cảnh báo). **Automation bias** là xu hướng quá tin vào gợi ý tự động; cần kiểm tra riêng khả năng người dùng bỏ qua bằng chứng trái ngược.
 
 ## 5. Quản trị và UX tin cậy
 

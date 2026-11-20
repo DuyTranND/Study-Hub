@@ -47,7 +47,7 @@ function reply(res, status, data, headers = {}) {
   res.end(typeof data === 'string' ? data : JSON.stringify(data));
 }
 
-async function bodyBuffer(req) {
+async function bodyBuffer(req, limit) {
   if (Buffer.isBuffer(req.body)) return req.body;
   if (req.body !== undefined && req.body !== null) {
     return Buffer.from(typeof req.body === 'string' ? req.body : JSON.stringify(req.body));
@@ -57,7 +57,7 @@ async function bodyBuffer(req) {
   for await (const chunk of req) {
     const buf = Buffer.from(chunk);
     size += buf.length;
-    if (size > 36000) return null;
+    if (size > limit) return null;
     chunks.push(buf);
   }
   return Buffer.concat(chunks);
@@ -97,7 +97,7 @@ export default async function handler(req, res) {
   const action = req.query?.action || url.searchParams.get('action') ||
     (url.pathname.startsWith('/api/groups/') ? url.pathname.slice('/api/groups/'.length) : '');
   const pathname = '/api/groups/' + action;
-  if (!/^\/api\/groups\/(?:status|create|join|view|submit|leave)$/.test(pathname))
+  if (!/^\/api\/groups\/(?:status|public|login|progress|progress-save|enroll|create|join|view|submit|leave)$/.test(pathname))
     return reply(res, 404, { error: 'Unknown group action.' });
   if (req.method === 'GET' && pathname === '/api/groups/status') {
     try {
@@ -113,13 +113,14 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return reply(res, 405, { error: 'POST required.' });
   try {
     const config = credentials();
-    if (!config) return reply(res, 503, { error: 'Study Groups needs an Upstash Redis integration on this deployment.' });
-    const body = await bodyBuffer(req);
-    if (!body || body.length > 36000) return reply(res, 413, { error: 'Request too large.' });
+    if (!config) return reply(res, 503, { error: 'Leaderboard needs an Upstash Redis integration on this deployment.' });
+    const limit = pathname === '/api/groups/progress-save' ? 1048576 : 36000;
+    const body = await bodyBuffer(req, limit);
+    if (!body || body.length > limit) return reply(res, 413, { error: 'Request too large.' });
     for (let attempt = 0; attempt < 6; attempt++) {
       const previous = await redis(config, ['GET', KEY]);
       const current = await gradeWithSnapshot(pathname, req, body, previous);
-      if (current.status !== 200 || pathname === '/api/groups/view')
+      if (current.status !== 200 || (pathname === '/api/groups/view' || pathname === '/api/groups/public' || pathname === '/api/groups/progress'))
         return reply(res, current.status, current.content, current.headers);
       if (!current.changed) throw Error('Group data did not persist.');
       const saved = await redis(config, ['EVAL', COMPARE_AND_SAVE, 1, KEY, previous ?? MISSING, current.updated]);

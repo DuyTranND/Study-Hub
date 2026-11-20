@@ -10,14 +10,14 @@ Một pipeline điển hình:
 
 `Source → ingestion → validation/transform → quality gate → storage/index → serving → monitoring/lineage`
 
-- **ETL:** biến đổi trước khi nạp; **ELT:** nạp trước rồi biến đổi trong kho.
+- **ETL (extract, transform, load):** trích xuất, biến đổi rồi nạp vào hệ đích. **ELT (extract, load, transform):** trích xuất, nạp vào hệ đích rồi biến đổi tại đó.
 - **Batch:** xử lý theo đợt; **streaming:** xử lý liên tục/sự kiện.
 - **CDC log-based** thường đọc thay đổi từ log nguồn; query-based polling đọc định kỳ. Chọn theo độ trễ, tải hệ nguồn và yêu cầu đầy đủ.
-- Với streaming, quản lý **watermark**, dữ liệu đến muộn, backpressure, retry và duplicate.
+- Với streaming, quản lý **watermark** (ước lượng tiến độ theo thời gian sự kiện), dữ liệu đến muộn, backpressure, retry và bản ghi trùng. Watermark không phải cam kết rằng không bao giờ còn sự kiện đến muộn.
 
 ## 2. Transform, chất lượng và hợp đồng
 
-Biến đổi quan trọng nên nằm trong code có version, test và log—không dựa vào hành động thủ công không thể tái lập. Chuẩn hóa tiếng Việt (NFC/NFD), xử lý schema, kiểm tra kiểu/giá trị và mask PII **trước khi embed**.
+Biến đổi quan trọng nên nằm trong code có version, test và log—không dựa vào hành động thủ công không thể tái lập. Chọn nhất quán một dạng chuẩn hóa Unicode cho tiếng Việt (thường là NFC), xử lý schema, kiểm tra kiểu/giá trị và mask PII **trước khi embed**.
 
 Data quality có thể đo qua các chiều như completeness, validity, uniqueness, consistency, accuracy và timeliness. Dùng profiling để biết baseline, sau đó đặt kiểm tra cụ thể: not-null, uniqueness, range, freshness, volume và schema.
 
@@ -49,7 +49,7 @@ Pipeline cần orchestration, retry/backfill, idempotency và lịch chạy rõ.
 
 Lưu ý quyền truy cập, lưu trữ, chuyển dữ liệu và quy định áp dụng tại thị trường triển khai; nội dung luật trong slide chỉ là điểm bắt đầu để xác minh, không phải tư vấn pháp lý. Theo dõi chi phí scan/compute, embedding/re-embedding, lưu trữ và vận hành—không chỉ chi phí token.
 
-**Ghi chú kiểm chứng:** transcript Day 10 rà soát vụ *Moffatt v. Air Canada* và nêu mức phán quyết **$812.02**; đồng thời cảnh báo không khẳng định vụ việc là do “stale retrieval” nếu nguồn gốc không chứng minh điều đó.
+**Ghi chú kiểm chứng:** Khi dùng sự cố thực tế để minh họa, phải đối chiếu nguồn gốc trước khi kết luận nguyên nhân. Không tự gán lỗi cho dữ liệu truy xuất đã cũ (stale retrieval) chỉ vì câu trả lời của chatbot sai.
 
 **Từ khóa:** ETL/ELT, CDC, batch/streaming, watermark, data contract, quality gate, Medallion, freshness, lineage, drift, idempotency, backfill, runbook.
 

@@ -14,9 +14,9 @@ Mỗi thử nghiệm nên nêu: giả thuyết, phạm vi, thời gian, ngân s�
 
 | Loại | Câu hỏi cần trả lời | Kết quả mong muốn |
 |---|---|---|
-| **MVE** (Minimum Viable Experiment) | Người dùng có thật sự cần giá trị này không? | Học nhanh với thử nghiệm nhỏ nhất |
-| **MVP** | Phiên bản nhỏ có dùng được trong workflow thật không? | Sản phẩm tối thiểu có thể vận hành |
-| **PoC** | Công nghệ/giả định có khả thi để tiếp tục đầu tư không? | Giảm bất định cho quyết định đầu tư |
+| **MVE** (minimum viable experiment, thử nghiệm tối thiểu) | Giả thuyết cụ thể nào cần được kiểm chứng trước? | Thử nghiệm nhỏ để học nhanh; thuật ngữ có thể khác giữa các tổ chức |
+| **MVP** (minimum viable product, sản phẩm khả dụng tối thiểu) | Phiên bản nhỏ nhất nào giúp học từ người dùng thật? | Kiểm chứng giả thuyết sản phẩm, không đồng nghĩa đã đạt đầy đủ yêu cầu production |
+| **PoC** (proof of concept, minh chứng tính khả thi) | Ý tưởng hoặc kỹ thuật có thực hiện được trong phạm vi thử nghiệm không? | Bằng chứng khả thi; chưa chứng minh nhu cầu thị trường hoặc hiệu quả khi mở rộng |
 
 **Wizard of Oz** có thể dùng để kiểm chứng workflow trước khi tự động hóa: một người làm thủ công ở phía sau bản demo. Cần minh bạch phù hợp; mục đích là học sớm, không đánh lừa người dùng.
 
@@ -42,7 +42,13 @@ Tổng chi phí gồm:
 
 Giá trị có thể là thời gian tiết kiệm, throughput tăng, giảm lỗi/chi phí, giảm thời gian chờ hoặc doanh thu tăng.
 
-`ROI = (tổng giá trị − tổng chi phí) / tổng chi phí`
+Với lợi ích quy đổi thành tiền \(B\) và tổng chi phí \(C>0\), đo trên cùng phạm vi và cùng kỳ:
+
+\[
+\operatorname{ROI}=\frac{B-C}{C},\qquad \operatorname{ROI}_{\%}=\frac{B-C}{C}\times100\%
+\]
+
+Không cộng trực tiếp số giờ tiết kiệm với doanh thu: phải quy đổi về cùng đơn vị tiền tệ và nêu giả định. Nếu dòng tiền kéo dài nhiều kỳ, cần xem thêm giá trị thời gian của tiền; ROI đơn giản chưa phản ánh yếu tố đó.
 
 **Break-even** là thời điểm giá trị tích lũy bù được chi phí tích lũy. Lập ba kịch bản **conservative / realistic / optimistic**, nêu rõ adoption, chi phí review, giá model và tỷ lệ lỗi—không trình bày một con số đẹp duy nhất.
 

@@ -89,100 +89,61 @@ async function main() {
   await cdp('Page.enable');
   await cdp('Log.enable');
   await cdp('Page.navigate', { url: origin + '/#community' });
-  await until(() => evaluate(visible('#community-setup')));
-  assert.equal(await evaluate('document.documentElement.scrollWidth > innerWidth + 2'), false, 'Desktop overflow');
-  await evaluate('(' + function() {
-    const form = document.querySelector('#community-create');
-    form.elements.name.value = 'Browser Study Crew';
-    form.elements.nickname.value = 'Alice';
-    form.requestSubmit();
-  }.toString() + ')()');
   await until(() => evaluate(visible('#community-board')));
-  const groupCode = await evaluate('document.querySelector("#community-code").textContent');
-  assert.match(groupCode, /^[A-Z2-9]{8}$/);
-  assert.equal(await evaluate('document.querySelectorAll("#community-ranking-rows tr").length'), 1);
-  const response = await fetch(origin + '/api/groups/join', {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ code: groupCode, nickname: 'Bob' })
-  });
-  assert.equal(response.status, 200, 'Second learner should join group');
+  assert.equal(await evaluate('document.documentElement.scrollWidth > innerWidth + 2'), false, 'Desktop overflow');
+  await evaluate('document.querySelector("#account-open").click(); document.querySelector("#account-name").value="Browser Alice"; document.querySelector("#account-form").requestSubmit()');
+  await until(() => evaluate('!!window.StudyAccount?.identity() && !document.querySelector("#account-dialog").open'));
+  const alice = await evaluate('window.StudyAccount.identity()');
+  const joined = await fetch(origin + '/api/groups/login', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({nickname:'Browser Bob'}) });
+  assert.equal(joined.status, 200);
   await evaluate('document.querySelector("#community-refresh").click()');
-  await until(() => evaluate('document.querySelectorAll("#community-ranking-rows tr").length === 2'));
-
-  await evaluate('document.querySelector("#view-community [data-action=mode-start]").click()');
-  await until(() => evaluate('location.hash === "#practice"'));
-  await evaluate('(' + function() {
-    const bank = document.querySelector('#practice-bank');
-    bank.value = 'shl'; bank.dispatchEvent(new Event('change', { bubbles: true }));
-    document.querySelector('#custom-study').open = true;
-    document.querySelector('#practice-count').value = '10';
-    document.querySelector('#practice-mode').value = 'exam';
-    document.querySelector('#start-session').click();
-  }.toString() + ')()');
-  await until(() => evaluate('document.querySelectorAll("#session-question-list [data-jump-q]").length === 10'));
+  await until(() => evaluate('document.querySelectorAll("#community-ranking-rows tr").length===2'));
+  await evaluate('document.querySelector("[data-nav=practice]").click()');
+  await until(() => evaluate('!!document.querySelector("[data-launch-set=mixed-mock-01]")'));
+  await evaluate('document.querySelector("[data-launch-set=mixed-mock-01]").click()');
+  await until(() => evaluate('document.querySelectorAll("#session-question-list [data-jump-q]").length===60'));
   const exam = await evaluate('(' + async function() {
-    const state = JSON.parse(localStorage.getItem('ai20k-study-hub-v1'));
-    const questions = (await (await fetch('/data/shl-practice.json')).json()).questions;
-    const answers = Object.fromEntries(questions.map(q => [q.id, q.answer]));
-    for (let i = 0; i < 10; i++) {
-      document.querySelector('#session-question-list [data-jump-q="' + i + '"]').click();
-      const id = state.session.ids[i];
-      const option = document.querySelector('#question-stage [data-answer="' + answers[id] + '"]');
-      if (!option) throw Error('Missing correct answer choice: ' + id);
-      option.click();
+    const identity = window.StudyAccount.identity();
+    const state = JSON.parse(localStorage.getItem('ai20k-study-hub-v1:'+identity.memberId));
+    const bank = await (await fetch('/data/bank.json')).json();
+    const answers = Object.fromEntries(bank.questions.map(q => [q.id,q.answer]));
+    for(let i=0;i<10;i++){
+      document.querySelector('[data-jump-q="'+i+'"]').click();
+      document.querySelector('[data-answer="'+answers[state.session.ids[i]]+'"]').click();
     }
-    document.querySelector('#next-q').click();
-    return { mode: state.session.mode, count: state.session.ids.length, hasScoreAction: !!document.querySelector('[data-community-share]') };
-  }.toString() + ')()');
-  assert.deepEqual(exam, { mode: 'exam', count: 10, hasScoreAction: true });
-  await until(() => evaluate('document.querySelector("#community-sync-hint")?.textContent.includes("Score shared")'), 20000);
-  await evaluate('document.querySelector("[data-nav=community]").click()');
-  await until(() => evaluate(visible('#community-board') + ' && document.querySelector("#community-you-points").textContent === "10"'));
-  const ranking = await evaluate('(' + function() {
-    return { members: document.querySelectorAll('#community-ranking-rows tr').length,
-      points: document.querySelector('#community-you-points').textContent,
-      activity: document.querySelectorAll('#community-feed .community-feed-item').length,
-      width: document.documentElement.scrollWidth, viewport: innerWidth };
-  }.toString() + ')()');
-  assert.equal(ranking.members, 2);
-  assert.equal(ranking.points, '10');
-  assert.equal(ranking.activity, 1);
-  assert.ok(ranking.width <= ranking.viewport + 2, 'Desktop board overflow');
-  // Hold the first weekly request while switching to all-time, then verify
-  // that the board also requests the new period instead of keeping stale data.
-  await evaluate('(' + function() {
-    window.__groupViewCalls = [];
-    window.__originalGroupFetch = window.fetch;
-    window.fetch = async function(...args) {
-      if (String(args[0]).includes('/api/groups/view')) {
-        const requestedPeriod = JSON.parse(args[1].body).period;
-        window.__groupViewCalls.push(requestedPeriod);
-        if (requestedPeriod === 'week') await new Promise(resolve => setTimeout(resolve, 400));
-      }
-      return window.__originalGroupFetch.apply(this, args);
-    };
-  }.toString() + ')()');
+    document.querySelector('#flag-current-question').click();
+    await window.StudyAccount.flush();
+    return {count:state.session.ids.length,mode:state.session.mode};
+  }.toString()+')()');
+  assert.deepEqual(exam,{count:60,mode:'exam'});
+  await cdp('Page.reload');
+  await until(() => evaluate('document.querySelector("#nav-answered-count")?.textContent==="10" && document.querySelector("#nav-flagged-count")?.textContent==="1"'));
+  await evaluate('window.confirm=()=>true; document.querySelector("#submit-session").click()');
+  await until(() => evaluate('document.querySelector("#session-label").textContent==="SESSION RESULTS"'));
+  assert.equal(await evaluate('document.querySelector(".result-stat b").textContent'),'10/60');
+  await until(() => evaluate('document.querySelector("#community-sync-hint")?.textContent.includes("Score saved")'));
+  await evaluate('document.querySelector(".session-exit").click(); document.querySelector("[data-nav=community]").click()');
+  await until(() => evaluate('document.querySelector("#community-you-points").textContent==="10"'));
+  const ranking = await evaluate('('+function(){ return {members:document.querySelectorAll('#community-ranking-rows tr').length,points:document.querySelector('#community-you-points').textContent,activity:document.querySelectorAll('#community-feed .community-feed-item').length,width:document.documentElement.scrollWidth,viewport:innerWidth};}.toString()+')()');
+  assert.equal(ranking.members,2);assert.equal(ranking.points,'10');assert.equal(ranking.activity,1);
+  const snapshot = await (await fetch(origin+'/api/groups/public',{method:'POST',headers:{'Content-Type':'application/json'},body:'{}'})).json();
+  assert.equal(snapshot.group.board.find(row=>row.id===alice.memberId).accuracy,17);
+  await evaluate('window.__viewCalls=[];window.__originalFetch=window.fetch;window.fetch=async function(...args){if(String(args[0]).includes("/api/groups/view")){const p=JSON.parse(args[1].body).period;__viewCalls.push(p);if(p==="week")await new Promise(r=>setTimeout(r,400));}return __originalFetch.apply(this,args);}');
   await evaluate('document.querySelector("[data-community-period=week]").click()');
-  await until(() => evaluate('window.__groupViewCalls.includes("week")'));
+  await until(()=>evaluate('window.__viewCalls.includes("week")'));
   await evaluate('document.querySelector("[data-community-period=all]").click()');
-  await until(() => evaluate('window.__groupViewCalls.includes("all") && document.querySelector("[data-community-period=all]").getAttribute("aria-pressed") === "true"'));
-  await evaluate('window.fetch = window.__originalGroupFetch');
-  assert.equal(await evaluate('document.querySelector("#community-you-points").textContent'), '10');
-  await cdp('Emulation.setDeviceMetricsOverride', { width: 430, height: 932, deviceScaleFactor: 1, mobile: true });
-  const mobile = await evaluate('(' + function() {
-    return { viewport: innerWidth, width: document.documentElement.scrollWidth,
-      board: !document.querySelector('#community-board').classList.contains('hidden'),
-      groupName: document.querySelector('#community-group-name').textContent };
-  }.toString() + ')()');
-  assert.ok(mobile.board && mobile.groupName.includes('Browser Study Crew'));
-  assert.ok(mobile.width <= mobile.viewport + 2, 'Mobile horizontal overflow');
-  assert.deepEqual(errors, [], 'Chrome JavaScript errors');
-  console.log('Study Groups browser: PASS ' + JSON.stringify({ groupCode, ranking, mobile, errors }));
+  await until(()=>evaluate('window.__viewCalls.includes("all") && document.querySelector("[data-community-period=all]").getAttribute("aria-pressed")==="true"'));
+  await evaluate('window.fetch=window.__originalFetch');
+  await cdp('Emulation.setDeviceMetricsOverride',{width:430,height:932,deviceScaleFactor:1,mobile:true});
+  assert.equal(await evaluate('document.documentElement.scrollWidth>innerWidth+2'),false,'Mobile overflow');
+  assert.deepEqual(errors,[],'Chrome JavaScript errors');
+  console.log('StudyHub profiles and Leaderboard browser: PASS '+JSON.stringify({ranking,profileReload:true,reviewFlags:true,earlyScore:'10/60',leaderboardAccuracy:17,mobile:true,errors}));
 }
 main().catch(error => { console.error(error.stack || error); process.exitCode = 1; }).finally(async () => {
   try { socket?.close(); } catch {}
   browser?.kill();
   server?.kill();
   await pause(400);
+  if (path.dirname(path.resolve(temp)) !== path.resolve(os.tmpdir()) || !path.basename(temp).startsWith('study-hub-browser-')) throw Error('Unexpected browser test cleanup path');
   try { fs.rmSync(temp, { recursive: true, force: true }); } catch {}
 });

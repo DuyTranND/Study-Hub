@@ -2,9 +2,9 @@
 
 > **Ý chính:** Chất lượng agent không chỉ nằm ở prompt/model; context quyết định model thấy gì, loop quyết định nó làm gì tiếp, harness quyết định điều gì được phép.
 
-## 1. Bốn lớp lồng nhau
+## 1. Bốn lớp thiết kế để phân tích hệ thống
 
-`Prompt → Context → Loop → Harness`
+**Prompt → Context → Loop → Harness** là cách phân rã để phân tích trách nhiệm trong bài học, không phải một chuỗi xử lý bắt buộc hoặc một chuẩn kiến trúc chính thức.
 
 - **Prompt:** hướng dẫn cho một lần gọi.
 - **Context:** thông tin được đưa vào lần gọi đó.
@@ -32,7 +32,7 @@ Tool cần tên/mô tả rõ, schema chặt, quyền tối thiểu, kết quả 
 
 Ghi trace đủ để trả lời: lượt nào, model thấy context gì, tool nào được gọi với tham số gì, gate có duyệt không, kết quả/lỗi ra sao, tốn bao nhiêu.
 
-## 4. Bốn cơ chế bắt buộc của loop
+## 4. Bốn cơ chế nên có trong vòng lặp vận hành
 
 1. **Success predicate:** định nghĩa điều kiện hoàn thành theo domain.
 2. **Budget cap:** giới hạn số vòng, thời gian, token, tiền và tool call.

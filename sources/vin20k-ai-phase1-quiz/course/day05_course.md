@@ -2,11 +2,11 @@
 
 > **Ý chính:** Chuyển giá trị và rủi ro thành yêu cầu có thể xây, kiểm thử và vận hành; đừng để “AI thông minh” là tiêu chí nghiệm thu.
 
-## 1. AI product khác phần mềm xác định
+## 1. Đặc điểm của sản phẩm dùng mô hình học máy
 
-Phần mềm truyền thống thường cho kết quả theo logic rõ; AI có đầu ra xác suất, chất lượng có thể dao động và có thể thiếu căn cứ. Vì vậy sản phẩm AI cần quality threshold, fallback, ranh giới sử dụng, cơ chế người kiểm tra và cách biểu đạt giới hạn.
+Phần mềm theo quy tắc thường có hành vi xác định với cùng đầu vào và trạng thái. Nhiều hệ thống học máy, đặc biệt mô hình sinh, có đầu ra biến thiên và có thể sai; tuy nhiên không phải mọi hệ thống AI đều lấy mẫu ngẫu nhiên. Vì vậy sản phẩm AI cần quality threshold, fallback, ranh giới sử dụng, cơ chế người kiểm tra và cách biểu đạt giới hạn.
 
-Dùng **Jobs-to-be-Done (JTBD)** để hiểu công việc người dùng muốn hoàn thành, bối cảnh phát sinh và kết quả họ cần—not chỉ hỏi họ muốn tính năng nào. Trước khi chọn giải pháp, xác định ai dùng, dùng ở đâu, việc gì đang vướng và hậu quả khi sai.
+Dùng **Jobs-to-be-Done (JTBD)** để hiểu công việc người dùng muốn hoàn thành, bối cảnh phát sinh và kết quả họ cần, thay vì chỉ hỏi họ muốn tính năng nào. Trước khi chọn giải pháp, xác định ai dùng, dùng ở đâu, việc gì đang vướng và hậu quả khi sai.
 
 ## 2. Đặt metric cho giá trị thật
 
@@ -26,11 +26,11 @@ Theo dõi thêm metric bảo vệ chất lượng: lỗi nghiêm trọng, citati
 
 Nghiên cứu người dùng cần hỏi: họ muốn AI tự làm đến đâu; điều gì khiến họ tin; khi AI sai họ muốn sửa, thử lại hay chuyển người; và họ xem AI là trợ lý, copilot hay người thay thế. Persona nên bổ sung mức hiểu biết AI, độ sẵn sàng tự động hóa, ngưỡng chấp nhận lỗi và nhu cầu giải thích.
 
-Thu thập ba loại tín hiệu: **explicit** (đánh giá/thums up-down), **behavioral** (sửa, copy, bỏ dở, ghi đè) và **outcome** (đã giải quyết, đặt dịch vụ, escalation).
+Thu thập ba loại tín hiệu: **explicit** (đánh giá/thumbs up/down), **behavioral** (sửa, copy, bỏ dở, ghi đè) và **outcome** (đã giải quyết, đặt dịch vụ, escalation).
 
 ## 4. Viết yêu cầu có thể kiểm thử
 
-Ba nhóm requirement:
+Có thể tổ chức yêu cầu thành ba nhóm thực hành sau; nhóm đặc thù AI vẫn có thể chứa cả yêu cầu chức năng và phi chức năng:
 
 1. **Functional:** AI làm gì—tóm tắt, phân loại, tìm thông tin.
 2. **Non-functional:** latency, availability, ngân sách, khả năng mở rộng.
@@ -46,7 +46,7 @@ Nếu kỹ sư không thể viết test từ yêu cầu, yêu cầu chưa đủ 
 
 PRD AI nên có: problem, target user, success metrics, giải pháp/phạm vi, functional requirements, non-functional/AI-specific requirements, acceptance criteria/kiến trúc, risks và cách giảm thiểu.
 
-Lập **risk register** với mức khả năng xảy ra × mức tác động, owner, biện pháp kiểm soát và ngưỡng Go/No-Go. Tăng mức review cho các use case nhạy cảm; tuân thủ và yêu cầu pháp lý phải được kiểm tra theo thị trường triển khai.
+Lập **sổ đăng ký rủi ro (risk register)** với khả năng xảy ra, mức tác động, người phụ trách, biện pháp kiểm soát và ngưỡng Go/No-Go. Nếu dùng tích điểm khả năng và tác động để ưu tiên, cần ghi rõ thang điểm; đó là chỉ số quy ước, không mặc nhiên là tổn thất kỳ vọng bằng tiền. Tăng mức review cho các use case nhạy cảm; tuân thủ và yêu cầu pháp lý phải được kiểm tra theo thị trường triển khai.
 
 **Từ khóa:** JTBD, North Star Metric, Responsible AI, persona, feedback signals, acceptance criteria, PRD, risk register.
 

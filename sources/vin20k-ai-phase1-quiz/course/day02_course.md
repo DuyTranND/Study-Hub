@@ -18,7 +18,7 @@
 | Workflow | Nhiều bước nhưng thứ tự và điều kiện đã biết | Thường dễ kiểm soát hơn agent tự quyết |
 | Agent | Cần tự chọn bước tiếp, gọi nhiều tool, quan sát kết quả rồi điều chỉnh | Chỉ dùng khi giá trị bù được chi phí và rủi ro tăng thêm |
 
-Dùng **AI-Fit Matrix** với hai trục: mức mơ hồ của tác vụ và độ phức tạp vận hành. Nếu đầu vào rõ và quy tắc ổn định, dùng rule/workflow. Nếu cần hiểu ngôn ngữ, thử LLM feature. Chỉ tăng quyền tự chủ khi cần quyết định động.
+Có thể dùng **AI-Fit Matrix** như một khung thảo luận trong bài học, không phải tiêu chuẩn phân loại thống nhất, với hai trục: mức mơ hồ của tác vụ và độ phức tạp vận hành. Nếu đầu vào rõ và quy tắc ổn định, dùng rule/workflow. Nếu cần hiểu ngôn ngữ, thử LLM feature. Chỉ tăng quyền tự chủ khi cần quyết định động.
 
 ## 3. Vòng đời sản phẩm AI và các cổng quyết định
 
@@ -33,7 +33,7 @@ Dùng **AI-Fit Matrix** với hai trục: mức mơ hồ của tác vụ và đ�
 
 ## 4. Kiểm tra mức sẵn sàng bằng 5 câu hỏi
 
-1. Vấn đề xảy ra đủ thường xuyên và đang tiêu tốn thời gian, chi phí hoặc SLA không?
+1. Vấn đề xảy ra đủ thường xuyên và đang tốn thời gian, tăng chi phí hoặc gây vi phạm cam kết mức dịch vụ (SLA) không?
 2. Có baseline để so sánh với giải pháp AI không?
 3. Có metric, mẫu ca hoặc log để đánh giá lặp lại không?
 4. Có thể chấp nhận sai số giới hạn, hoặc có người kiểm tra ở điểm quan trọng không?
@@ -51,7 +51,7 @@ Phải chỉ ra actor, các bước hiện tại, nơi xảy ra lỗi/chậm, ch
 
 ## 6. Phân rã kiến trúc và trách nhiệm
 
-Một hệ thống có thể gồm **Model + Context + Planning + Tools**. Mỗi phần thêm vào đều có failure mode và chi phí: model có thể sai; retrieval có thể bỏ sót; planning có thể lặp; tool có thể gây side effect. Chỉ thêm thành phần khi có nhu cầu cụ thể và biện pháp kiểm soát tương ứng.
+Một cách phân rã hệ thống là **mô hình (model), ngữ cảnh (context), lập kế hoạch (planning) và công cụ (tools)**. Đây là các thành phần kiến trúc, không phải phép cộng toán học. Mỗi phần thêm vào đều có failure mode và chi phí: model có thể sai; retrieval có thể bỏ sót; planning có thể lặp; tool có thể gây side effect. Chỉ thêm thành phần khi có nhu cầu cụ thể và biện pháp kiểm soát tương ứng.
 
 Lập **RACI-lite/stakeholder grid** để nêu rõ ai chịu trách nhiệm về dữ liệu, vận hành, phê duyệt rủi ro và quyết định tiếp tục/dừng. Kết thúc discovery bằng một next experiment nhỏ, có giả thuyết và tiêu chí quyết định.
 

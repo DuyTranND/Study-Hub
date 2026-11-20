@@ -6,14 +6,14 @@
 
 - **Bot theo luật:** phản hồi cố định, dễ dự đoán và kiểm soát.
 - **LLM chatbot:** sinh câu trả lời theo prompt/context; thường không thực hiện công việc bên ngoài.
-- **Reactive/tool-using system:** gọi tool theo một luồng đã định.
+- **Workflow có công cụ (tool-using workflow):** ứng dụng điều phối các lời gọi công cụ theo luồng đã định; chỉ có tool calling chưa đủ để kết luận hệ thống là agent tự chủ.
 - **Autonomous agent:** giữ mục tiêu, chọn bước và tool, đọc kết quả rồi điều chỉnh.
 
 Agent không phải mặc định tốt hơn. Nếu chỉ cần FAQ, tóm tắt, hoặc workflow có bước cố định, chatbot/LLM feature hoặc workflow thường rẻ và dễ kiểm soát hơn.
 
-## 2. Agentic Fit: có thật sự cần agent không?
+## 2. Mức phù hợp với agent (agentic fit): có thật sự cần agent không?
 
-Chấm mức độ cần thiết trên bốn câu hỏi:
+Dùng bốn câu hỏi sau làm khung thảo luận; đây không phải thang đo chuẩn hóa:
 
 1. **Multi-step reasoning:** có nhiều bước phụ thuộc nhau không?
 2. **Tool interaction:** có cần truy cập API, tìm kiếm, cơ sở dữ liệu hoặc tính toán không?
@@ -24,7 +24,7 @@ Nếu đa số nhu cầu thấp, bắt đầu bằng giải pháp ít tự chủ
 
 ## 3. ReAct: Thought → Action → Observation
 
-ReAct xen kẽ quyết định và hành động:
+**ReAct (Reasoning and Acting)** là một phương pháp kết hợp suy luận và hành động, có sử dụng phản hồi từ môi trường:
 
 1. **Thought/decision:** xác định còn thiếu thông tin gì.
 2. **Action:** gọi đúng tool với tham số hợp lệ.
@@ -68,3 +68,5 @@ Tool output là dữ liệu không đáng tin tuyệt đối; có thể chứa c
 **Từ khóa:** Agentic Fit, ReAct, Thought-Action-Observation, function calling, tool schema, trace, prompt injection, graceful degradation.
 
 **Nguồn tổng hợp:** transcript `day_03.md` và `MASTER_SUMMARY.md`.
+
+**Đối chiếu thuật ngữ:** [ReAct — bài báo gốc](https://arxiv.org/abs/2210.03629).
