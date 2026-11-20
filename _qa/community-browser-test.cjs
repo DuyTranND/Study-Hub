@@ -113,13 +113,13 @@ async function main() {
       document.querySelector('[data-jump-q="'+i+'"]').click();
       document.querySelector('#session-question-'+i+' [data-answer="'+answers[state.session.ids[i]]+'"]').click();
     }
-    document.querySelector('#flag-current-question').click();
+    document.querySelector('#session-question-9 [data-action=flag-question]').click();
     await window.StudyAccount.flush();
     return {count:state.session.ids.length,mode:state.session.mode};
   }.toString()+')()');
   assert.deepEqual(exam,{count:60,mode:'exam'});
   await cdp('Page.reload');
-  await until(() => evaluate('document.querySelector("#nav-answered-count")?.textContent==="10" && document.querySelector("#nav-flagged-count")?.textContent==="1"'));
+  await until(() => evaluate('document.querySelectorAll("#session-question-list .is-answered").length===10 && document.querySelectorAll("#session-question-list .is-flagged").length===1'));
   await evaluate('window.confirm=()=>true; document.querySelector("#submit-session").click()');
   await until(() => evaluate('document.querySelector("#session-label").textContent==="SESSION RESULTS"'));
   assert.equal(await evaluate('document.querySelector(".result-stat b").textContent'),'10/60');
@@ -151,11 +151,25 @@ async function main() {
   await cdp('Page.reload');
   await until(()=>evaluate('document.querySelector("#answer-0")?.value.includes("first_solution") && document.querySelector("#answer-1")?.value.includes("second_solution")'));
   await evaluate('document.querySelector("#session-question-1 [data-action=check]").click();document.querySelector("#session-question-1 [data-action=self-right]").click()');
-  const codeState=await evaluate('('+async function(){await StudyAccount.flush();const id=StudyAccount.identity();const state=JSON.parse(localStorage.getItem('ai20k-study-hub-v1:'+id.memberId));return{first:state.results[state.session.ids[0]]?.ok??null,second:state.results[state.session.ids[1]]?.ok,choice:state.results[state.session.ids[1]]?.choice,answered:document.querySelector('#nav-answered-count').textContent};}.toString()+')()');
+  const codeState=await evaluate('('+async function(){await StudyAccount.flush();const id=StudyAccount.identity();const state=JSON.parse(localStorage.getItem('ai20k-study-hub-v1:'+id.memberId));return{first:state.results[state.session.ids[0]]?.ok??null,second:state.results[state.session.ids[1]]?.ok,choice:state.results[state.session.ids[1]]?.choice,answered:String(document.querySelectorAll('#session-question-list .is-answered').length)};}.toString()+')()');
   assert.deepEqual(codeState,{first:null,second:true,choice:'def second_solution():\n    return 2',answered:'2'},'Code drafts and actions belong to their own question');
   assert.equal(await evaluate('document.documentElement.scrollWidth>innerWidth+2'),false,'Mobile code list overflow');
+  await evaluate('document.querySelector(".session-exit").click();document.querySelector("[data-nav=roadmap]").click()');
+  await until(()=>evaluate('!!document.querySelector(".lesson-body")'));
+  await evaluate('const select=document.querySelector("#lesson-day-select");select.value="7";select.dispatchEvent(new Event("change",{bubbles:true}))');
+  await until(()=>evaluate('document.querySelector(".lesson-header h2")?.textContent.includes("Nền tảng dữ liệu")'));
+  await evaluate('window.StudyAccount.flush()');
+  const progress=await(await fetch(origin+'/api/groups/progress',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(alice)})).json();
+  assert.equal(progress.progress.lessonDay,7,'Selected lesson saved on the server');
+  await cdp('Page.reload');
+  await until(()=>evaluate('document.querySelector("#lesson-day-select")?.value==="7" && document.querySelector(".lesson-header h2")?.textContent.includes("Nền tảng dữ liệu")'));
+  assert.equal(await evaluate('document.querySelectorAll("#day-grid .day-btn").length'),15);
+  assert.equal(await evaluate('document.querySelectorAll(".lesson-outline-mobile [data-lesson-anchor]").length'),5);
+  await evaluate('document.querySelector(".lesson-outline-mobile").open=true;document.querySelector(".lesson-outline-mobile [data-lesson-anchor]").click()');
+  assert.equal(await evaluate('location.hash'),'#roadmap','Outline navigation preserves the lesson route');
+  assert.equal(await evaluate('document.documentElement.scrollWidth>innerWidth+2'),false,'Mobile lesson overflow');
   assert.deepEqual(errors,[],'Chrome JavaScript errors');
-  console.log('StudyHub profiles and Leaderboard browser: PASS '+JSON.stringify({ranking,profileReload:true,reviewFlags:true,continuousQuestions:true,independentCodeDrafts:true,earlyScore:'10/60',leaderboardAccuracy:17,mobile:true,errors}));
+  console.log('StudyHub profiles and Leaderboard browser: PASS '+JSON.stringify({ranking,profileReload:true,reviewFlags:true,continuousQuestions:true,independentCodeDrafts:true,lessonSelectionSaved:true,lessonOutline:true,earlyScore:'10/60',leaderboardAccuracy:17,mobile:true,errors}));
 }
 main().catch(error => { console.error(error.stack || error); process.exitCode = 1; }).finally(async () => {
   try { socket?.close(); } catch {}

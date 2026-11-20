@@ -555,22 +555,13 @@
   }
   function renderQuestionNavigator(s) {
     const flagged = new Set(s.flagged || []);
-    const answered = s.ids.filter(id => String(s.answers[id] ?? '').trim()).length;
     $('session-question-map').classList.remove('hidden');
-    $('session-map-summary').textContent = answered + '/' + s.ids.length + ' câu đã trả lời';
-    $('nav-answered-count').textContent = answered;
-    $('nav-unanswered-count').textContent = s.ids.length - answered;
-    $('nav-flagged-count').textContent = s.ids.filter(id => flagged.has(id)).length;
     $('session-question-list').innerHTML = s.ids.map((id, i) => {
       const done = Boolean(String(s.answers[id] ?? '').trim()), marked = flagged.has(id), current = i === s.index;
       const label = 'Câu ' + (i + 1) + ', ' + (done ? 'đã trả lời' : 'chưa trả lời') + (marked ? ', cần xem lại' : '');
       return '<button type="button" data-jump-q="' + i + '" class="' + (current ? 'is-current ' : '') + (done ? 'is-answered ' : '') + (marked ? 'is-flagged' : '') + '" ' + (current ? 'aria-current="step" ' : '') + 'aria-label="' + escapeHtml(label) + '">' + (i + 1) + (marked ? '<span aria-hidden="true">⚑</span>' : '') + '</button>';
     }).join('');
     document.querySelectorAll('[data-action="submit-early"]').forEach(button => button.classList.toggle('hidden', !!s.submitted));
-    const currentFlag = flagged.has(s.ids[s.index]);
-    $('flag-current-question').textContent = currentFlag ? 'Bỏ dấu xem lại' : 'Đánh dấu xem lại';
-    $('flag-current-question').setAttribute('aria-pressed', String(currentFlag));
-    $('flag-current-question').disabled = !!s.submitted && !s.review;
   }
   function confirmEarlySubmission() {
     const s = state.session; if (!s || s.submitted) return;
@@ -748,17 +739,50 @@
     submitSession();
   }
 
+  const LESSON_TITLES = [
+    'Nền tảng AI & LLM', 'Bài toán kinh doanh', 'ReAct & tool calling', 'Context & harness',
+    'Yêu cầu sản phẩm AI', 'Quản lý dự án AI', 'Dữ liệu & embedding', 'RAG',
+    'Multi-agent & MCP', 'Data pipeline', 'Guardrails & HITL', 'Triển khai production',
+    'Observability', 'Evaluation', 'Chi phí & tối ưu'
+  ];
+  let lessonSectionObserver = null;
   function renderRoadmap() {
     if (!data) return;
     const days = data.sets.filter(s => s.bank === 'vin20k' && /^Day/.test(s.code));
-    $('day-grid').innerHTML = days.map((s, i) => `<button class="day-btn ${selectedDay === i + 1 ? 'active' : ''}" data-day="${i + 1}"><span class="day-number">${String(i + 1).padStart(2, '0')}</span><span><strong>${escapeHtml(displaySetTitle(s.title))}</strong><small>${s.count} questions</small></span>${icon('chevron')}</button>`).join('');
+    $('day-grid').innerHTML = days.map((s, i) => `<button type="button" class="day-btn ${selectedDay === i + 1 ? 'active' : ''}" data-day="${i + 1}" ${selectedDay === i + 1 ? 'aria-current="page"' : ''}><span class="day-number">${String(i + 1).padStart(2, '0')}.</span><strong>${escapeHtml(LESSON_TITLES[i] || displaySetTitle(s.title))}</strong></button>`).join('');
+    $('lesson-day-select').innerHTML = days.map((s, i) => `<option value="${i + 1}">${String(i + 1).padStart(2, '0')}. ${escapeHtml(LESSON_TITLES[i] || displaySetTitle(s.title))}</option>`).join('');
+    $('lesson-day-select').value = String(selectedDay || 1);
+  }
+  function renderLessonOutline(day) {
+    lessonSectionObserver?.disconnect();
+    const headings = [...$('lesson-panel').querySelectorAll('.lesson-body > h3')];
+    headings.forEach((heading, index) => { heading.id = 'lesson-' + day + '-section-' + index; heading.tabIndex = -1; });
+    const items = headings.map((heading, index) => `<button type="button" class="lesson-outline-link ${index === 0 ? 'active' : ''}" data-lesson-anchor="${heading.id}" ${index === 0 ? 'aria-current="location"' : ''}>${escapeHtml(heading.textContent)}</button>`).join('');
+    document.querySelectorAll('.lesson-outline-list').forEach(nav => { nav.innerHTML = items; });
+    const active = target => {
+      document.querySelectorAll('[data-lesson-anchor]').forEach(button => {
+        const current = button.dataset.lessonAnchor === target;
+        button.classList.toggle('active', current);
+        if (current) button.setAttribute('aria-current', 'location'); else button.removeAttribute('aria-current');
+      });
+    };
+    if (headings.length) {
+      lessonSectionObserver = new IntersectionObserver(entries => {
+        const visible = entries.filter(entry => entry.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length) active(visible[0].target.id);
+      }, { rootMargin: '-10% 0px -65% 0px' });
+      headings.forEach(heading => lessonSectionObserver.observe(heading));
+    }
   }
   async function openLesson(day) {
+    if (!Number.isInteger(day) || day < 1 || day > 15) return;
     selectedDay = day; loadingLesson = true; state.lessonDay = day; save(); showView('roadmap');
     const s = data.sets.find(x => x.id === 'vin-day-' + String(day).padStart(2, '0'));
     const panel = $('lesson-panel');
+    lessonSectionObserver?.disconnect();
     window.MathJax?.typesetClear?.([panel]);
-    panel.innerHTML = `<div class="muted">Opening lesson...</div>`;
+    panel.setAttribute('aria-busy', 'true');
+    panel.innerHTML = '<div class="lesson-loading" role="status">Đang mở bài học…</div>';
     try {
       const response = await fetch(`/sources/vin20k-ai-phase1-quiz/course/day${String(day).padStart(2, '0')}_course.md`);
       if (!response.ok) throw new Error('HTTP ' + response.status);
@@ -767,12 +791,29 @@
       const heading = lesson.match(/^#\s+(.+)\r?$/m);
       const lessonTitle = heading ? heading[1].replace(/^Day\s+\d+\s*[—–-]\s*/i, '') : displaySetTitle(s?.title || `Day ${day}`);
       const lessonBody = heading ? lesson.replace(/^#\s+.+\r?\n/, '') : lesson;
-      panel.innerHTML = `<div class="lesson-header"><span class="mini-tag">BÀI ${String(day).padStart(2, '0')} / 15</span><h2>${escapeHtml(lessonTitle)}</h2><button class="btn primary" data-action="day-practice" data-day="${day}">Luyện tập bài này ${icon('arrow')}</button></div><article class="lesson-body rich-text">${markdown(lessonBody)}</article>`;
-      renderRoadmap(); typeset();
-    } catch (err) { if (selectedDay !== day) return; panel.innerHTML = `<p>Could not load lesson: ${escapeHtml(err.message)}</p>`; } finally { if (selectedDay === day) loadingLesson = false; }
+      panel.innerHTML = `<div class="lesson-reader"><header class="lesson-header"><div class="lesson-title-row"><span class="mini-tag">BÀI ${String(day).padStart(2, '0')} / 15</span><button class="btn primary" data-action="day-practice" data-day="${day}">Luyện tập bài này ${icon('arrow')}</button></div><h2>${escapeHtml(lessonTitle)}</h2></header><details class="lesson-outline-mobile"><summary>Trong bài này</summary><nav class="lesson-outline-list" aria-label="Mục lục bài học"></nav></details><article class="lesson-body rich-text" lang="vi">${markdown(lessonBody)}</article><footer class="lesson-pagination"><button type="button" class="lesson-page-button" ${day > 1 ? `data-day="${day - 1}"` : 'disabled'}><span>← Bài trước</span><strong>${day > 1 ? escapeHtml(LESSON_TITLES[day - 2]) : 'Bài đầu tiên'}</strong></button><button type="button" class="lesson-page-button lesson-page-next" ${day < 15 ? `data-day="${day + 1}"` : 'disabled'}><span>Bài tiếp theo →</span><strong>${day < 15 ? escapeHtml(LESSON_TITLES[day]) : 'Bài cuối cùng'}</strong></button></footer></div><aside class="lesson-outline" aria-label="Mục lục"><h3>Trong bài này</h3><nav class="lesson-outline-list" aria-label="Mục lục bài học"></nav></aside>`;
+      renderLessonOutline(day); renderRoadmap(); typeset();
+    } catch (err) {
+      if (selectedDay !== day) return;
+      panel.innerHTML = `<p role="alert">Không mở được bài học: ${escapeHtml(err.message)}</p>`;
+    } finally {
+      if (selectedDay === day) { loadingLesson = false; panel.removeAttribute('aria-busy'); }
+    }
   }
+
   function bind() {
     document.addEventListener('click', event => {
+      const outlineButton = event.target.closest('[data-lesson-anchor]');
+      if (outlineButton) {
+        const target = $(outlineButton.dataset.lessonAnchor);
+        if (target) {
+          document.querySelectorAll('.lesson-outline-mobile').forEach(details => { details.open = false; });
+          document.querySelectorAll('[data-lesson-anchor]').forEach(button => { const active = button.dataset.lessonAnchor === target.id; button.classList.toggle('active', active); if (active) button.setAttribute('aria-current', 'location'); else button.removeAttribute('aria-current'); });
+          target.focus({ preventScroll: true });
+          target.scrollIntoView({ behavior: 'instant', block: 'start' });
+        }
+        return;
+      }
       const modeTab = event.target.closest('[data-set-mode]'); if (modeTab) { setBrowserAssessment = 'all'; setBrowserMode = modeTab.dataset.setMode; setBrowserDomain = 'all'; setBrowserBank = 'all'; setBrowserPage = 0; $('set-search').value = ''; renderSetExplorer(); return; }
       const pageButton = event.target.closest('[data-set-page]'); if (pageButton) { setBrowserPage += pageButton.dataset.setPage === 'next' ? 1 : -1; renderSetExplorer(); $('set-result-heading').scrollIntoView({ behavior: 'smooth', block: 'start' }); return; }
       const jumpButton = event.target.closest('[data-jump-q]'); if (jumpButton && state.session) { jumpToSessionQuestion(Number(jumpButton.dataset.jumpQ)); return; }
@@ -818,6 +859,7 @@
     $('practice-bank').addEventListener('change', () => { const bank = $('practice-bank').value; chooseSetOptions(bank, 'practice-set', 'All topics'); refreshSetupCount(); renderSetExplorer(); });
     ['practice-set', 'practice-count', 'practice-mode', 'practice-wrong', 'practice-star'].forEach(id => $(id).addEventListener('change', () => { refreshSetupCount(); if (id === 'practice-set') renderSetExplorer(); }));
     $('start-session').addEventListener('click', startFromSetup);
+    $('lesson-day-select').addEventListener('change', event => { void openLesson(Number(event.target.value)); });
     $('prev-q').addEventListener('click', () => { if (state.session?.index > 0) jumpToSessionQuestion(state.session.index - 1); });
     $('next-q').addEventListener('click', () => { if (state.session?.submitted && !state.session.review) { state.session = null; save(); renderPractice(); } else moveNext(); });
     document.addEventListener('input', e => {

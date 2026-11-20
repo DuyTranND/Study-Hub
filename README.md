@@ -20,6 +20,8 @@ Practice separates full exams into **ĐGNL** and **AI Test**; all six integrated
 
 **Code tay** contains 14 Python, pandas, algorithm and SQL problems. Drafts save automatically, Tab inserts four spaces, and Escape then Tab leaves the editor. Reference solutions are available for comparison and self-assessment. The website does not execute code or award automatic scores for code-writing sessions. Ten complete reference functions and corrected complexity/API explanations were verified in the content review; `tools/content-corrections.cjs` keeps those reviewed edits reproducible without changing question IDs or answer keys.
 
+Lessons use compact course navigation, a section outline generated from the actual chapter headings, and previous/next lesson controls. On smaller screens, a lesson selector and collapsible outline keep the reading area clear. The selected lesson is included in profile synchronization.
+
 ## Shared profiles and leaderboard
 
 Choose **Enter your name** in the top bar to open a profile. Names ignore case, extra spaces and Unicode compatibility differences. The same name opens the same shared profile on any browser using the same server. This is an intentionally shared name-only system, without passwords: anyone entering the name can view and change that profile. Use a different name for a separate profile.

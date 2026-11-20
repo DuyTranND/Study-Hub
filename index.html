@@ -27,14 +27,14 @@
   <link rel="stylesheet" href="/editorial.css">
   <link rel="stylesheet" href="/study4-library.css">
   <link rel="stylesheet" href="/web-layout.css?v=20261120-code-mode">
-  <link rel="stylesheet" href="/reading.css?v=20261120-question-list-final">
+  <link rel="stylesheet" href="/reading.css?v=20261120-lesson-reader-final">
   <link rel="stylesheet" href="/community.css?v=20261120-profiles">
   <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},svg:{fontCache:'global'},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},startup:{typeset:false}};</script>
   <script defer src="/sources/ai20k-exam-prep/vendor/mathjax/es5/tex-svg.js"></script>
   <script defer src="/sources/ai20k-exam-prep/vendor/mermaid/mermaid.min.js"></script>
   <script defer src="/community.js?v=20261120-profiles"></script>
   <script defer src="/question-dedup.js"></script>
-  <script defer src="/app.js?v=20261120-question-list-final"></script>
+  <script defer src="/app.js?v=20261120-lesson-reader-final"></script>
 </head>
 <body>
   <a class="skip-link" href="#view-overview">Skip to main content</a>
@@ -106,12 +106,7 @@
             <aside class="session-question-map" id="session-question-map" aria-label="Danh sách câu hỏi">
               <div class="session-timer-label">Thời gian làm bài</div><div class="session-time"><svg><use href="#i-clock"/></svg><span id="session-clock" data-session-clock>—</span></div>
               <button class="btn primary session-submit" type="button" id="submit-session" data-action="submit-early">Nộp bài</button>
-              <h3>Danh sách câu hỏi</h3><div id="session-map-summary" class="session-map-summary" role="status" aria-live="polite"></div>
-              <div class="session-navigation-counts"><span>Đã trả lời <strong id="nav-answered-count">0</strong></span><span>Chưa trả lời <strong id="nav-unanswered-count">0</strong></span><span>Cần xem lại <strong id="nav-flagged-count">0</strong></span></div>
-              <p class="session-navigation-hint">Bấm số câu để chuyển tới câu đó.</p>
               <div class="session-question-list" id="session-question-list" aria-label="Chuyển tới câu hỏi"></div>
-              <button type="button" class="btn outline session-flag-button" id="flag-current-question" data-action="flag-question" aria-pressed="false">Đánh dấu xem lại</button>
-              <div class="session-map-legend"><span><i class="legend-answer" aria-hidden="true"></i>Đã trả lời</span><span><i class="legend-empty" aria-hidden="true"></i>Chưa trả lời</span><span><i class="legend-flag" aria-hidden="true"></i>Cần xem lại</span></div>
             </aside>
           </div>
         </div>
@@ -131,8 +126,8 @@
       </section>
 
       <section class="view hidden" id="view-roadmap">
-        <div class="page-heading"><div><div class="muted small">15 DAILY LESSONS</div><h1>Lessons</h1><p>Follow the Vin20K study plan, one lesson at a time.</p></div></div>
-        <div class="roadmap-layout" id="study-lessons"><div class="day-grid" id="day-grid"></div><div class="lesson-panel panel" id="lesson-panel"><div class="lesson-empty"><div>✦</div><h3>Choose a day to begin</h3><p>The lesson and its practice questions will appear here.</p></div></div></div>
+        <div class="page-heading"><div><h1>Lessons</h1><p>15 bài học, học theo cách của bạn.</p></div></div><label class="lesson-mobile-picker" for="lesson-day-select">Chọn bài học<select id="lesson-day-select" aria-label="Chọn bài học"></select></label>
+        <div class="roadmap-layout" id="study-lessons"><aside class="lesson-course-nav"><h2>Nội dung khóa học</h2><nav class="day-grid" id="day-grid" aria-label="Các bài học"></nav></aside><div class="lesson-panel panel" id="lesson-panel"><p class="muted">Đang mở bài học…</p></div></div>
       </section>
 
 
