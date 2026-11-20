@@ -1,0 +1,62 @@
+/* Inter is bundled locally, including real italic and variable weights. */
+@font-face {
+  font-family: "InterVariable";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/sources/studyhub-fonts/InterVariable.woff2") format("woff2");
+}
+@font-face {
+  font-family: "InterVariable";
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/sources/studyhub-fonts/InterVariable-Italic.woff2") format("woff2");
+}
+:root {
+  --font-ui: "InterVariable", "Segoe UI", Arial, sans-serif;
+  font-family: var(--font-ui);
+}
+body {
+  font-family: var(--font-ui);
+  font-optical-sizing: auto;
+  font-weight: 400;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+}
+#view-practice #question-stage,
+.code-editor-bar,
+.study-diagram svg { font-family: var(--font-ui); }
+button, input, select, textarea { font-family: inherit; }
+h1, h2, h3, h4 { font-weight: 600; letter-spacing: -.015em; }
+.page-heading h1,
+#view-practice .practice-heading h1,
+#view-roadmap .page-heading h1,
+#view-roadmap .lesson-header h2,
+#view-practice .session-top #session-heading,
+#view-overview .home-heading h1,
+#view-overview .home-session h2 {
+  font-weight: 600;
+  letter-spacing: -.015em;
+}
+.brand-text b { font-weight: 600; letter-spacing: -.015em; }
+.btn, .btn.primary, .btn.outline, .nav-item, .topbar-cta, .account-open {
+  font-family: var(--font-ui);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+.section-kicker, .side-caption, .mini-tag { font-weight: 500; letter-spacing: .05em; }
+.code-editor-bar { font-weight: 500; }
+#view-roadmap .day-btn strong { font-weight: 400; }
+#view-roadmap .day-btn.active strong { font-weight: 600; }
+#view-roadmap .lesson-outline-link { font-weight: 400; }
+#view-roadmap .lesson-outline-link.active { font-weight: 500; }
+#view-roadmap .lesson-body h3,
+#view-roadmap .lesson-body h4,
+#view-roadmap .lesson-body h5 { font-weight: 600; letter-spacing: -.01em; }
+#view-roadmap .lesson-body strong,
+#view-practice .question-title strong,
+#view-practice .option-copy strong,
+#view-practice .feedback strong { font-weight: 600; }
+#view-practice .session-question .question-title > p:first-child { font-weight: 400; }
+/* Code samples, editors and MathJax retain their own technical typefaces. */

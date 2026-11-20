@@ -29,12 +29,14 @@
   <link rel="stylesheet" href="/web-layout.css?v=20261120-code-mode">
   <link rel="stylesheet" href="/reading.css?v=20261120-lesson-reader-final">
   <link rel="stylesheet" href="/community.css?v=20261120-profiles">
+  <link rel="preload" href="/sources/studyhub-fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/typography.css?v=20261120-inter">
   <script>window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['$$','$$'],['\\[','\\]']],processEscapes:true},svg:{fontCache:'global'},options:{skipHtmlTags:['script','noscript','style','textarea','pre','code']},startup:{typeset:false}};</script>
   <script defer src="/sources/ai20k-exam-prep/vendor/mathjax/es5/tex-svg.js"></script>
   <script defer src="/sources/ai20k-exam-prep/vendor/mermaid/mermaid.min.js"></script>
   <script defer src="/community.js?v=20261120-profiles"></script>
   <script defer src="/question-dedup.js"></script>
-  <script defer src="/app.js?v=20261120-lesson-reader-final"></script>
+  <script defer src="/app.js?v=20261120-sidebar-clean"></script>
 </head>
 <body>
   <a class="skip-link" href="#view-overview">Skip to main content</a>
@@ -62,10 +64,7 @@
         <button class="nav-item" data-nav="roadmap"><svg><use href="#i-calendar"/></svg><span>Lessons</span></button>
         <button class="nav-item" data-nav="community"><svg><use href="#i-star"/></svg><span>Leaderboard</span></button>
       </nav>
-      <div class="side-bottom">
-        <div class="goal-widget"><div class="goal-top"><span>Today's goal</span><span id="goal-text">0/15</span></div><div class="goal-track"><span id="goal-fill"></span></div><small>Make progress a few minutes at a time.</small></div>
-        <div class="sidebar-foot"><span class="status-dot"></span> Your study workspace</div>
-      </div>
+
     </aside>
 
     <main class="content">

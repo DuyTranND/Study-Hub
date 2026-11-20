@@ -71,3 +71,8 @@ Original content and bundled third-party libraries remain subject to their respe
 ## Duplicate questions
 
 The practice picker show one copy per question type and normalized prompt (including numbered scenario variants). Currently 563 duplicate entries are filtered, leaving 2,738 questions. Published mock IDs take priority. Imported files and the ID lookup remain intact so saved sessions still open. This filters repeated wording, not paraphrases. Run `node _qa/dedup-test.cjs` to verify the filter and published exam membership.
+
+
+## Typography
+
+The interface uses locally served Inter variable fonts (regular and italic) under SIL Open Font License 1.1. The original files, license and pinned upstream revision are in [sources/studyhub-fonts](sources/studyhub-fonts/). Code samples and editors retain monospaced fonts.

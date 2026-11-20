@@ -9,7 +9,8 @@ async function main() {
   const root = path.resolve(__dirname, '..');
   const { default: handler } = await import('../api/groups.mjs');
   execFileSync(process.execPath, ['build-vercel.cjs'], { cwd: root, stdio: 'pipe' });
-  for (const file of ['index.html', 'app.js', 'community.js', 'question-dedup.js', 'data/bank.json',
+  for (const file of ['index.html', 'app.js', 'community.js', 'question-dedup.js', 'data/bank.json', 'typography.css',
+    'sources/studyhub-fonts/InterVariable.woff2', 'sources/studyhub-fonts/InterVariable-Italic.woff2', 'sources/studyhub-fonts/LICENSE.txt',
     'sources/ai-quiz/index.html', 'sources/ai20k-exam-prep/offline.html']) {
     assert(fs.existsSync(path.join(root, 'dist', file)), `Missing public asset: ${file}`);
   }

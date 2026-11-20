@@ -258,7 +258,6 @@
     window.scrollTo({ top: 0, behavior: 'instant' });
     typeset();
   }
-  function answeredToday() { const d = todayKey(); return Object.values(state.results).filter(r => r.date === d).length; }
   function refreshDashboard() {
     if (!data) return;
     const results = Object.values(state.results), scored = results.filter(x => typeof x.ok === 'boolean');
@@ -268,7 +267,6 @@
     $('stat-done-sub').textContent = `${((results.length / data.questions.length) * 100).toFixed(1)}% of question bank`;
     $('stat-accuracy').textContent = scored.length ? `${Math.round(correct / scored.length * 100)}%` : '—';
     $('stat-wrong').textContent = fmt(wrong);
-    const t = answeredToday(); $('goal-text').textContent = `${t}/15`; $('goal-fill').style.width = `${Math.min(100, t / 15 * 100)}%`;
     $('today-label').textContent = new Intl.DateTimeFormat('en-US', { weekday: 'long', day: 'numeric', month: 'long' }).format(new Date());
     $('mini-lessons').innerHTML = data.sets.filter(s => s.bank === 'vin20k' && /^Day/.test(s.code)).slice(0, 3).map((s, i) => `<button class="mini-lesson" data-day="${i + 1}"><span>${String(i + 1).padStart(2, '0')}</span><b>${escapeHtml(displaySetTitle(s.title))}</b>${icon('chevron')}</button>`).join('');
   }
