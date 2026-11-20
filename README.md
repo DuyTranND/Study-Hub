@@ -54,3 +54,7 @@ This repository incorporates materials from:
 Original content and bundled third-party libraries remain subject to their respective owners' terms and licenses. No blanket license is asserted over those materials. Preserve upstream attribution and library notices.
 
 SHL-style questions are independently authored practice material, not official SHL or Techcombank assessments. External links are references, not endorsements or proof of the actual exam structure.
+
+## Duplicate questions
+
+The combined catalog and practice picker show one copy per question type and normalized prompt (including numbered scenario variants). Currently 563 duplicate entries are filtered, leaving 2,981 questions. Published mock IDs take priority. Imported files and the ID lookup remain intact so saved sessions still open. This filters repeated wording, not paraphrases. Run `node _qa/dedup-test.cjs` to verify the filter and published exam membership.

@@ -804,6 +804,12 @@
         const sheetResponse = await fetch('/data/cheatsheets-index.json');
         if (sheetResponse.ok) cheatIndex = await sheetResponse.json();
       } catch (error) { console.warn('Could not load formula sheet index', error); }
+      // Keep original IDs in byId so saved sessions and published mocks still open.
+      const publishedIds = new Set([...mockSets.values()].flatMap(set => set.questionIds));
+      data.questions = window.StudyQuestions.unique(data.questions, publishedIds);
+      for (const set of data.sets) {
+        if (!mockSets.has(set.id)) set.count = data.questions.filter(q => q.setId === set.id).length;
+      }
       chooseSetOptions('all', 'practice-set', 'All topics');
       chooseSetOptions('all', 'library-set', 'All question sets');
       bind(); refreshDashboard(); refreshSetupCount();

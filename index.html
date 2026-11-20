@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#ffffff">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <meta name="description" content="AI20K All-in-One — 3,301 questions, 15 lessons and 29 formula sheets from AI20K, Vin20K and Hirin.">
+  <meta name="description" content="AI20K All-in-One — 2,981 unique questions, 15 lessons and 29 formula sheets from AI20K, Vin20K and Hirin.">
   <title>AI20K All-in-One — Study and Practice</title>
   <!-- AI20K_FILE_PROTOCOL_NOTICE: show launch steps when index.html is opened directly. -->
   <script>
@@ -35,7 +35,8 @@
   <script defer src="/sources/ai20k-exam-prep/vendor/mathjax/es5/tex-svg.js"></script>
   <script defer src="/sources/ai20k-exam-prep/vendor/mermaid/mermaid.min.js"></script>
   <script defer src="/community.js?v=20261115a"></script>
-  <script defer src="/app.js?v=20261112a"></script>
+  <script defer src="/question-dedup.js"></script>
+  <script defer src="/app.js?v=20261120a"></script>
 </head>
 <body>
   <a class="skip-link" href="#view-overview">Skip to main content</a>
@@ -89,7 +90,7 @@
             <h2>Start with<br><span>20 questions.</span></h2>
             <p>Practice by topic, review explanations and bookmark questions to revisit. Your progress stays on this device.</p>
             <div class="focus-actions"><button class="btn primary" data-action="quick-start">Start practicing <svg><use href="#i-arrow"/></svg></button><button class="focus-link" data-nav="library">Browse questions <svg><use href="#i-chevron"/></svg></button></div>
-            <div class="focus-foot"><span><b>3,301</b> questions</span><span class="focus-foot-rule"></span><span><b>3</b> content sources</span></div>
+            <div class="focus-foot"><span><b>2,981</b> questions</span><span class="focus-foot-rule"></span><span><b>3</b> content sources</span></div>
           </div>
           <div class="study-actions">
             <div class="study-actions-head"><h3>Choose how to study</h3><p>Pick a mode to get started.</p></div>
@@ -101,7 +102,7 @@
         </div>
 
         <div class="stat-grid" aria-label="Study progress">
-          <article class="stat-card"><div class="stat-label">Total questions</div><div class="stat-value" id="stat-total">3,301</div><div class="stat-foot">AI20K · Vin20K · Hirin</div></article>
+          <article class="stat-card"><div class="stat-label">Total questions</div><div class="stat-value" id="stat-total">2,981</div><div class="stat-foot">AI20K · Vin20K · Hirin</div></article>
           <article class="stat-card"><div class="stat-label">Practiced</div><div class="stat-value" id="stat-done">0</div><div class="stat-foot" id="stat-done-sub">Start today</div></article>
           <article class="stat-card"><div class="stat-label">Accuracy</div><div class="stat-value" id="stat-accuracy">—</div><div class="stat-foot">Based on graded answers</div></article>
           <article class="stat-card"><div class="stat-label">Needs review</div><div class="stat-value" id="stat-wrong">0</div><div class="stat-foot">Questions answered incorrectly</div></article>
@@ -114,7 +115,7 @@
           <button class="collection-card" data-action="open-bank" data-bank="hirin"><span class="collection-mark h-mark">H</span><span class="collection-info"><h4>Hirin AI Quiz</h4><p>Math, statistics, Python, SQL, AI/ML and AI ethics.</p><small>45 topics · 4 modules</small></span><span class="collection-end"><strong>581</strong><small>questions</small></span><svg class="collection-arrow"><use href="#i-arrow"/></svg></button>
         </div>
 
-        <div class="overview-bottom"><div class="panel lesson-shortcut"><div class="panel-title"><div><div class="section-kicker">STUDY PLAN / 02</div><h3>Learn day by day</h3></div><button class="text-link" data-nav="roadmap">View study plan <svg><use href="#i-arrow"/></svg></button></div><p>A 15-day path from fundamentals to building and evaluating AI systems. Select a lesson to begin.</p><div class="mini-lessons" id="mini-lessons"></div></div><div class="panel reference-shortcut"><div class="section-kicker">REFERENCE / 03</div><h3>Knowledge at your fingertips.</h3><p>Find formulas, notes and questions whenever you need them.</p><button class="reference-link" data-nav="roadmap"><span>29 Hirin formula sheets</span><svg><use href="#i-arrow"/></svg></button><button class="reference-link" data-nav="library"><span>Search 3,301 questions</span><svg><use href="#i-arrow"/></svg></button></div></div>
+        <div class="overview-bottom"><div class="panel lesson-shortcut"><div class="panel-title"><div><div class="section-kicker">STUDY PLAN / 02</div><h3>Learn day by day</h3></div><button class="text-link" data-nav="roadmap">View study plan <svg><use href="#i-arrow"/></svg></button></div><p>A 15-day path from fundamentals to building and evaluating AI systems. Select a lesson to begin.</p><div class="mini-lessons" id="mini-lessons"></div></div><div class="panel reference-shortcut"><div class="section-kicker">REFERENCE / 03</div><h3>Knowledge at your fingertips.</h3><p>Find formulas, notes and questions whenever you need them.</p><button class="reference-link" data-nav="roadmap"><span>29 Hirin formula sheets</span><svg><use href="#i-arrow"/></svg></button><button class="reference-link" data-nav="library"><span>Search 2,981 unique questions</span><svg><use href="#i-arrow"/></svg></button></div></div>
       </section>
 
       <section class="view hidden" id="view-practice">
@@ -137,7 +138,7 @@
         </div><aside class="practice-aside"><div class="panel tips"><div class="panel-title"><h3>Study tips</h3><svg class="aside-icon"><use href="#i-book"/></svg></div><p>Try answering before viewing explanations. Bookmark questions you want to revisit.</p><div class="tip-divider"></div><div class="tip-item"><span>01</span><div><b>Study by topic</b><small>Focus on one topic at a time</small></div></div><div class="tip-item"><span>02</span><div><b>Track your progress</b><small>Automatically saved in your browser</small></div></div><div class="tip-item"><span>03</span><div><b>Review mistakes</b><small>Strengthen areas that need work</small></div></div></div><div class="aside-note"><b>The best part of learning</b><p>Progress means understanding a little more each day.</p><span>✳</span></div></aside></div>
       </section>
 
-      <section class="view hidden" id="view-library"><div class="page-heading"><div><div class="muted small">QUESTION EXPLORER</div><h1>Question Bank</h1><p>Search every question across all collections.</p></div><button class="btn primary" data-action="quick-start">Random practice <svg><use href="#i-arrow"/></svg></button></div><div class="library-toolbar"><label class="searchbox"><svg><use href="#i-search"/></svg><input id="search-input" type="search" placeholder="Search questions, topics or keywords..."></label><select id="library-bank" aria-label="Source"><option value="all">All sources</option><option value="shl">SHL Sample Practice</option><option value="tfg27">TFG27 Exam Prep</option><option value="mixed">Mixed mock exams</option><option value="ai20k">AI20K</option><option value="vin20k">Vin20K</option><option value="hirin">Hirin AI Quiz</option></select><select id="library-set" aria-label="Question set"><option value="all">All question sets</option></select><select id="library-status" aria-label="Status"><option value="all">All statuses</option><option value="todo">Not attempted</option><option value="correct">Correct</option><option value="wrong">Needs review</option><option value="star">Bookmarked</option></select></div><div class="library-summary"><b id="library-count">3,301 questions</b><span>Select a question to start practicing</span></div><div class="question-list" id="question-list"></div><div class="paging"><button class="btn outline" id="lib-prev">← Previous</button><span id="lib-page">1 / 1</span><button class="btn outline" id="lib-next">Next →</button></div></section>
+      <section class="view hidden" id="view-library"><div class="page-heading"><div><div class="muted small">QUESTION EXPLORER</div><h1>Question Bank</h1><p>Search every question across all collections.</p></div><button class="btn primary" data-action="quick-start">Random practice <svg><use href="#i-arrow"/></svg></button></div><div class="library-toolbar"><label class="searchbox"><svg><use href="#i-search"/></svg><input id="search-input" type="search" placeholder="Search questions, topics or keywords..."></label><select id="library-bank" aria-label="Source"><option value="all">All sources</option><option value="shl">SHL Sample Practice</option><option value="tfg27">TFG27 Exam Prep</option><option value="mixed">Mixed mock exams</option><option value="ai20k">AI20K</option><option value="vin20k">Vin20K</option><option value="hirin">Hirin AI Quiz</option></select><select id="library-set" aria-label="Question set"><option value="all">All question sets</option></select><select id="library-status" aria-label="Status"><option value="all">All statuses</option><option value="todo">Not attempted</option><option value="correct">Correct</option><option value="wrong">Needs review</option><option value="star">Bookmarked</option></select></div><div class="library-summary"><b id="library-count">2,981 unique questions</b><span>Select a question to start practicing</span></div><div class="question-list" id="question-list"></div><div class="paging"><button class="btn outline" id="lib-prev">← Previous</button><span id="lib-page">1 / 1</span><button class="btn outline" id="lib-next">Next →</button></div></section>
 
       <section class="view hidden" id="view-community">
         <div class="page-heading community-heading"><div><div class="section-kicker">STUDY TOGETHER</div><h1>Study Groups</h1><p>Challenge your friends, compare exam scores and keep each other practicing.</p></div><button class="btn outline hidden" type="button" id="community-refresh">Refresh scores ↻</button></div>

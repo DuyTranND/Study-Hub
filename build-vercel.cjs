@@ -33,6 +33,9 @@ try {
     ...listFiles(path.join(root, 'sources'), 'sources')];
 }
 
+// Include the browser helper before the first commit as well as in source archives.
+candidates = [...new Set([...candidates, 'question-dedup.js'])];
+
 fs.rmSync(output, { force: true, recursive: true });
 let count = 0;
 for (const relative of candidates) {
